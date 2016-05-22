@@ -1,0 +1,52 @@
+[
+  {
+    "id" : 1,
+    "slug" : "10-reasons-you-should-use-react-in-your-next-app",
+    "title" : "10 reasons to use React in your next project",
+    "description" : "React, developed by Facebook, is an open source library for building User Interfaces. As the front end world moves too fast you should not be hesitant to try out new things. I am a big fan of AngularJS and a few months back I started trying React. As React doesn't assume anything about rest of your tech stack it plays well with others. The biggest reason for me to try React was to create isomorphic apps that render on both client and server (with a little help from other libraries as well). In this article I am going to share 10 best reasons to use React in your next project.",
+    "author" : {
+      "photo" : "/images/sandeep.png",
+      "name" : "Sandeep"
+    }
+  },
+  {
+    "id" : 2,
+    "slug" : "creating-a-super-simple-todo-app-using-angular-2—tutorial",
+    "title" : "Creating a Super Simple Todo app Using Angular 2 — Tutorial",
+    "description" : "Angular 2 is already popular and so many JavaScript developers are eagerly waiting to try it out. You may have the idea that Angular 2 is going to introduce a lot of new & exciting features and remove several old concepts. So, in this tutorial I will show you how to create a super simple Todo app using Angular 2.0. In the process you will also learn how to use Components, Templates, Data Binding and a few other important stuff. So, let's start!",
+    "author" : {
+      "photo" : "/images/syed.jpg",
+      "name" : "Syed"
+    }
+  },
+  {
+    "id" : 3,
+    "slug" : "understanding-foundation-5-grid-system-tutorial",
+    "title" : "Understanding Foundation 5 Grid System — Tutorial",
+    "description" : "A grid system is used to place the website's elements in proper locations and control the overall structure of the website. It is a virtual structure of rows and columns, which when intersect, create rectangular containers for placing other elements.",
+    "author" : {
+      "photo" : "/images/sandeep.png",
+      "name" : "Sandeep"
+    }
+  },
+  {
+    "id" : 4,
+    "slug" : "creating-a-social-news-sharing-app-in-20-minutes-with-meteor",
+    "title" : "Creating a social news sharing app in 20 minutes with Meteor",
+    "description" : "Meteor 1.0 is already out and everybody is talking about its reactiveness. In this article I will show you how to create a basic social news sharing app (in other words a Hacker News clone) in just 20 minutes with Meteor. Obviously, the end product won't be as feature rich as Hacker News. But it will be simple and easy to extend. The source code is available on GitHub.",
+    "author" : {
+      "photo" : "/images/syed.jpg",
+      "name" : "Syed"
+    }
+  },
+  {
+    "id" : 5,
+    "slug" : "introduction-to-javascript-immutability-with-immutablejs",
+    "title" : "Introduction to JavaScript Immutability with Immutable.js",
+    "description" : "Immutable.js is a JavaScript library by Facebook that lets you work with persistent immutable data collections. Immutability means once a collection is created, it can't be changed (mutated). With Immutable.js, operations like push, unshift, set etc will return new immutable collections instead of changing the original collection. So, let's see why immutability is useful and explore how Immutable.js lets you write immutable code.",
+    "author" : {
+      "photo" : "/images/sandeep.png",
+      "name" : "Sandeep"
+    }
+  }
+]

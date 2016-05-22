@@ -1,0 +1,111 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,300);
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+}
+
+body{
+    background: #EEE;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+}
+
+.body-container{
+    width: 900px;
+    background: #FFF;
+    margin: auto;
+    -webkit-box-shadow: 0 0 10px #aaa;
+    -moz-box-shadow: 0 0 10px #aaa;
+    box-shadow: 0 0 10px #aaa;
+}
+
+.header{
+    background: #CFD8DC;
+    padding: 20px;
+}
+
+.header h1{
+    color: #455A64;
+    text-transform: uppercase;
+    font-size: 34px;
+}
+
+.header h1 a{
+    text-decoration: none;
+    color: #455A64;
+}
+
+.single-post{
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+}
+
+.single-post .post-title{
+    font-size: 20px;
+    color: #607D8B;
+    font-weight: 300;
+}
+
+.single-post:hover{
+    background: #ECEFF1;
+}
+
+.single-post .author-details{
+    overflow: auto;
+    margin-top: 15px;
+}
+
+.author-details .author-photo{
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: 2px solid #CFD8DC;
+    float: left;
+}
+
+.author-details .author-name{
+    font-size: 12px;
+    margin-top: 8px;
+    margin-left: 10px;
+    color: #607D8B;
+    text-transform: uppercase;
+    float: left;
+}
+
+.full-post{
+    padding: 30px 20px;
+}
+
+.full-post .post-title{
+    font-size: 43px;
+    font-weight: 300;
+    color: #263238;
+}
+
+.full-post .author-details{
+    margin-top: 20px;
+    overflow: auto;
+}
+
+.full-post .author-details .author-photo{
+    width: 60px;
+    height: 60px;
+}
+
+.full-post .author-details .author-name{
+    font-size: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.full-post .post-content{
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: 300;
+    color: #263238;
+}

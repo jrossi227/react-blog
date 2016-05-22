@@ -1,0 +1,13 @@
+doctype html
+html(class='no-js',lang='en')
+    head
+        title React Isomorphic Seed
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        link(rel='stylesheet',href='/css/app.css',type='text/css')
+        link(rel="stylesheet", href='/lib/nprogress/nprogress.css')
+    body !{content}
+        script(src='/scripts/react/bundle.js')
+        script(src='/lib/nprogress/nprogress.js')
+        script.
+            NProgress.configure({ minimum : 0.4 });
