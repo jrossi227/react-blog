@@ -1,5 +1,5 @@
 var React = require('react/addons');
-var PostStore = require('../stores/PostStore');
+var SinglePostStore = require('../stores/SinglePostStore');
 
 var SinglePostView = React.createClass({
 
@@ -8,11 +8,11 @@ var SinglePostView = React.createClass({
     },
 
     componentDidMount : function() {
-        PostStore.listen(this.onChange);
+        SinglePostStore.listen(this.onChange);
     },
 
     componentWillUnmount : function() {
-        PostStore.unlisten(this.onChange);
+        SinglePostStore.unlisten(this.onChange);
     },
 
     onChange : function(state){
@@ -20,7 +20,7 @@ var SinglePostView = React.createClass({
     },
 
     getInitialState : function(){
-        return PostStore.getState();
+        return SinglePostStore.getState();
     },
 
     render : function() {

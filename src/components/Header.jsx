@@ -1,7 +1,7 @@
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var Link = require('react-router').Link;
-var PostActions = require('../actions/PostActions');
+var AllPostActions = require('../actions/AllPostActions');
 
 var Header = React.createClass({
 
@@ -11,7 +11,7 @@ var Header = React.createClass({
 
     showAllPosts : function(e){
         e.preventDefault();
-        PostActions.loadAllPosts((function(){
+        AllPostActions.loadAllPosts((function(){
            this.context.router.transitionTo('postListView');
         }).bind(this));
     },

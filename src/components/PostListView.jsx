@@ -1,7 +1,7 @@
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var Link = require('react-router').Link;
-var PostStore = require('../stores/PostStore');
+var AllPostStore = require('../stores/AllPostStore');
 var PostPreview = require('./PostPreview.jsx');
 
 var PostListView = React.createClass({
@@ -11,11 +11,11 @@ var PostListView = React.createClass({
     },
 
     componentDidMount : function() {
-        PostStore.listen(this.onChange);
+        AllPostStore.listen(this.onChange);
     },
 
     componentWillUnmount : function() {
-        PostStore.unlisten(this.onChange);
+        AllPostStore.unlisten(this.onChange);
     },
 
     onChange : function(state){
@@ -23,7 +23,7 @@ var PostListView = React.createClass({
     },
 
     getInitialState : function(){
-        return PostStore.getState();
+        return AllPostStore.getState();
     },
 
     render : function() {

@@ -1,6 +1,3 @@
-/**
- * Created by Sandeep on 28/06/15.
- */
 
 var request = require('superagent'),
     config = require('../config');
@@ -8,7 +5,7 @@ var request = require('superagent'),
 exports.showAllPosts = function(req,res,next){
     request.get(config.baseUrl+'/static/posts.json',function(err,response){
        res.locals.data = {
-           "PostStore" : {
+           "AllPostStore" : {
                "posts" : response.body
            }
        }
@@ -32,7 +29,7 @@ exports.showSinglePost = function(req,res,next){
         posts.forEach(function(post){
             if(post.id === parseInt(id,10)){
                 res.locals.data = {
-                    "PostStore" : {
+                    "SinglePostStore" : {
                         "currentPost" : post
                     }
                 };

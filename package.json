@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "React Isomorphic Seed",
   "main": "bin/www",
-  "author": "Sandeep Panda <sandeep@devmag.io>",
+  "author": "Jonathan Rossi <jonathan.m.rossi@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "alt": "^0.14.5",

@@ -1,7 +1,3 @@
-/**
- * Created by Sandeep on 28/06/15.
- */
-
 var express = require('express'),
     router = express.Router(),
     PostController = require('../controllers/post.controller');

@@ -1,6 +1,4 @@
-/**
- * Created by Sandeep on 28/06/15.
- */
+
 var Iso = require('iso');
 var Router = require('react-router');
 var React = require('react/addons');
