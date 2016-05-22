@@ -1,10 +1,8 @@
-# react-isomorphic-seed
+# react-blog
 
-![React Isomorphic Seed](https://s3-us-west-2.amazonaws.com/devmag-engineering-blog/react-isomorphic-seed-1.jpg)
+![React Blog Isomorphic Seed](https://s3-us-west-2.amazonaws.com/devmag-engineering-blog/react-isomorphic-seed-1.jpg)
 
-A seed project for creating Isomorphic apps with React and Flux architecture
-
-Read full article [here](http://engineering.devmag.io/post/1/creating-an-isomorphic-blogging-app-using-react-and-flux)
+A seed project for creating an Isomorphic blog with React and Flux architecture
 
 ### How to run 
 
