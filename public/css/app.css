@@ -15,9 +15,7 @@ body{
 }
 
 .body-container{
-    width: 900px;
     background: #FFF;
-    margin: auto;
     -webkit-box-shadow: 0 0 10px #aaa;
     -moz-box-shadow: 0 0 10px #aaa;
     box-shadow: 0 0 10px #aaa;

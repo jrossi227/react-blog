@@ -2,6 +2,7 @@ var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var Link = require('react-router').Link;
 var AllPostActions = require('../actions/AllPostActions');
+var PageHeader = require('react-bootstrap').PageHeader;
 
 var Header = React.createClass({
 
@@ -18,9 +19,9 @@ var Header = React.createClass({
 
     render : function() {
         return (
-            <div className="header">
-                <h1><a href="#" onClick={this.showAllPosts}>React Isomorphic Blog</a></h1>
-            </div>
+            <PageHeader className="header">
+                <a href="#" onClick={this.showAllPosts}>React Isomorphic Blog</a>
+            </PageHeader>
         )
     }
 });
