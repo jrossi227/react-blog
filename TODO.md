@@ -9,4 +9,4 @@
 5. Add support for RSS feeds
 6. Implement Breadcrumbs
 7. Document blog installation
-
+8. Add scss support
