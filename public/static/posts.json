@@ -48,5 +48,35 @@
       "photo" : "/images/jonathan.jpg",
       "name" : "Jonathan"
     }
+  },
+  {
+    "id" : 6,
+    "slug" : "introduction-to-javascript-immutability-with-immutablejs",
+    "title" : "Introduction to JavaScript Immutability with Immutable.js",
+    "description" : "Immutable.js is a JavaScript library by Facebook that lets you work with persistent immutable data collections. Immutability means once a collection is created, it can't be changed (mutated). With Immutable.js, operations like push, unshift, set etc will return new immutable collections instead of changing the original collection. So, let's see why immutability is useful and explore how Immutable.js lets you write immutable code.",
+    "author" : {
+      "photo" : "/images/jonathan.jpg",
+      "name" : "Jonathan"
+    }
+  },
+  {
+    "id" : 7,
+    "slug" : "introduction-to-javascript-immutability-with-immutablejs",
+    "title" : "Introduction to JavaScript Immutability with Immutable.js",
+    "description" : "Immutable.js is a JavaScript library by Facebook that lets you work with persistent immutable data collections. Immutability means once a collection is created, it can't be changed (mutated). With Immutable.js, operations like push, unshift, set etc will return new immutable collections instead of changing the original collection. So, let's see why immutability is useful and explore how Immutable.js lets you write immutable code.",
+    "author" : {
+      "photo" : "/images/jonathan.jpg",
+      "name" : "Jonathan"
+    }
+  },
+  {
+    "id" : 8,
+    "slug" : "introduction-to-javascript-immutability-with-immutablejs",
+    "title" : "Introduction to JavaScript Immutability with Immutable.js",
+    "description" : "Immutable.js is a JavaScript library by Facebook that lets you work with persistent immutable data collections. Immutability means once a collection is created, it can't be changed (mutated). With Immutable.js, operations like push, unshift, set etc will return new immutable collections instead of changing the original collection. So, let's see why immutability is useful and explore how Immutable.js lets you write immutable code.",
+    "author" : {
+      "photo" : "/images/jonathan.jpg",
+      "name" : "Jonathan"
+    }
   }
 ]

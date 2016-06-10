@@ -17,9 +17,13 @@ window.onload = function(){
 }
 
 },{"./alt":472,"./routes.jsx":478,"iso":11,"react-router":273,"react/addons":291}],2:[function(require,module,exports){
+var port = 9080;
+
 var config = {
-    baseUrl : "http://localhost:9080"
-}
+    port: port,
+    baseUrl : "http://localhost:" + port,
+    pageTitle: 'React Blog'
+};
 
 module.exports = config;
 
@@ -42979,7 +42983,6 @@ module.exports = alt;
 },{"alt":3}],473:[function(require,module,exports){
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
-var Link = require('react-router').Link;
 var Header = require('./Header.jsx');
 var Grid = require('react-bootstrap').Grid;
 var Row = require('react-bootstrap').Row;
@@ -43005,10 +43008,14 @@ module.exports = App;
 
 },{"./Header.jsx":474,"react-bootstrap":83,"react-router":273,"react/addons":291}],474:[function(require,module,exports){
 var React = require('react/addons');
-var RouteHandler = require('react-router').RouteHandler;
-var Link = require('react-router').Link;
 var AllPostActions = require('../actions/AllPostActions');
-var PageHeader = require('react-bootstrap').PageHeader;
+
+var Navbar = require('react-bootstrap').Navbar;
+var NavBrand = require('react-bootstrap').NavBrand;
+var Nav = require('react-bootstrap').Nav;
+var NavItem = require('react-bootstrap').NavItem;
+var NavDropdown = require('react-bootstrap').NavDropdown;
+var MenuItem = require('react-bootstrap').MenuItem;
 
 var Header = React.createClass({displayName: "Header",
 
@@ -43021,23 +43028,40 @@ var Header = React.createClass({displayName: "Header",
         AllPostActions.loadAllPosts((function(){
            this.context.router.transitionTo('postListView');
         }).bind(this));
+    }, 
+
+    /*
+    _handleSelect: function(eventKey) {
+        console.log(eventKey);
     },
+    */
 
     render : function() {
         return (
-            React.createElement(PageHeader, {className: "header"}, 
-                React.createElement("a", {href: "#", onClick: this.showAllPosts}, "React Isomorphic Blog")
+            React.createElement(Navbar, null, 
+                React.createElement(NavBrand, null, React.createElement("a", {href: "/"}, "React Blog"))
+
+                /*<Nav right>
+                    <NavItem eventKey={1} href="#" onSelect={this._handleSelect}>Link</NavItem>
+                    <NavItem eventKey={2} href="#">Link</NavItem>
+                    <NavDropdown eventKey={3} title="Dropdown" id="collapsible-navbar-dropdown">
+                        <MenuItem eventKey={3.1}>Action</MenuItem>
+                        <MenuItem eventKey={3.2}>Another action</MenuItem>
+                        <MenuItem eventKey={3.3}>Something else here</MenuItem>
+                        <MenuItem divider />
+                        <MenuItem eventKey={3.4}>Separated link</MenuItem>
+                    </NavDropdown>
+                </Nav>*/
             )
+            
         )
     }
 });
 
 module.exports = Header;
 
-},{"../actions/AllPostActions":470,"react-bootstrap":83,"react-router":273,"react/addons":291}],475:[function(require,module,exports){
+},{"../actions/AllPostActions":470,"react-bootstrap":83,"react/addons":291}],475:[function(require,module,exports){
 var React = require('react/addons');
-var RouteHandler = require('react-router').RouteHandler;
-var Link = require('react-router').Link;
 var AllPostStore = require('../stores/AllPostStore');
 var PostPreview = require('./PostPreview.jsx');
 
@@ -43079,7 +43103,7 @@ var PostListView = React.createClass({displayName: "PostListView",
 
 module.exports = PostListView;
 
-},{"../stores/AllPostStore":479,"./PostPreview.jsx":476,"react-router":273,"react/addons":291}],476:[function(require,module,exports){
+},{"../stores/AllPostStore":479,"./PostPreview.jsx":476,"react/addons":291}],476:[function(require,module,exports){
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var Link = require('react-router').Link;

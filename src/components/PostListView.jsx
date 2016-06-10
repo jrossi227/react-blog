@@ -1,6 +1,4 @@
 var React = require('react/addons');
-var RouteHandler = require('react-router').RouteHandler;
-var Link = require('react-router').Link;
 var AllPostStore = require('../stores/AllPostStore');
 var PostPreview = require('./PostPreview.jsx');
 

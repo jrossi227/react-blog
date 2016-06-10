@@ -1,6 +1,5 @@
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
-var Link = require('react-router').Link;
 var Header = require('./Header.jsx');
 var Grid = require('react-bootstrap').Grid;
 var Row = require('react-bootstrap').Row;

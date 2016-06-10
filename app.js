@@ -16,6 +16,7 @@ var cookieParser = require('cookie-parser');
 var posts = require('./routes/post.routes');
 var routes = require('./src/routes.jsx');
 var alt = require('./src/alt');
+var config = require('./config.js');
 var app = express();
 
 app.set('views', __dirname+'/views');
@@ -42,7 +43,10 @@ app.use(function (req, res) {
 
         iso.add(content, alt.flush());
 
-        res.render('index',{content:iso.render()});
+        res.render('index',{
+            content:iso.render(),
+            pageTitle: config.pageTitle
+        });
     });
 });
 
@@ -62,6 +66,6 @@ app.use(function(err, req, res, next) {
 
 });
 
-app.listen(9080, function () {
-    console.log('Listening on localhost:9080');
+app.listen(config.port, function () {
+    console.log('Listening on ' + config.baseUrl);
 });

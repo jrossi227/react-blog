@@ -1,5 +1,9 @@
+var port = 9080;
+
 var config = {
-    baseUrl : "http://localhost:9080"
-}
+    port: port,
+    baseUrl : "http://localhost:" + port,
+    pageTitle: 'React Blog'
+};
 
 module.exports = config;
