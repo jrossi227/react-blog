@@ -107,3 +107,7 @@ body{
     font-weight: 300;
     color: #263238;
 }
+
+.pagination-container {
+    margin: 0 auto;
+}

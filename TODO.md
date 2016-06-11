@@ -2,7 +2,7 @@
 
 ### How to run 
 
-1. Implement paging
+1. Implement paging (Still need to center pagination nav)
 2. Refine Styling
 3. Support html markup in articles
 4. Add tags and Grouping

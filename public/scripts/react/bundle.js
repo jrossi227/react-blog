@@ -43064,8 +43064,11 @@ module.exports = Header;
 var React = require('react/addons');
 var AllPostStore = require('../stores/AllPostStore');
 var PostPreview = require('./PostPreview.jsx');
+var Pagination = require('react-bootstrap').Pagination;
 
 var PostListView = React.createClass({displayName: "PostListView",
+
+    itemsPerPage: 4,
 
     contextTypes: {
         router: React.PropTypes.func
@@ -43080,22 +43083,67 @@ var PostListView = React.createClass({displayName: "PostListView",
     },
 
     onChange : function(state){
+        state.activePage = 1;
         this.setState(state);
     },
 
     getInitialState : function(){
-        return AllPostStore.getState();
+        var state = AllPostStore.getState();
+        state.activePage = 1;
+
+        return state;
+    },
+
+    handleSelect:function(event, data) {
+        this.setState({
+            activePage: data.eventKey
+        });
+    },
+
+    getNumberOfPages: function() {
+        return Math.ceil(this.state.posts.length / this.itemsPerPage);
+    },
+
+    generatePostsForPage: function() {
+        var pageNum = (this.state.activePage - 1);
+
+        var posts = [];
+        var post;
+        for(var i = pageNum * this.itemsPerPage; i < ((pageNum * this.itemsPerPage) + this.itemsPerPage); i++) {
+            post = this.state.posts[i];
+            if(!!post) {
+                posts.push(post);
+            }
+        }
+
+        return posts;
     },
 
     render : function() {
-        var posts = this.state.posts.map(function(post){
-           return (
-               React.createElement(PostPreview, {key: post.id, post: post})
-           )
+        var posts = this.generatePostsForPage().map(function(post){
+                return (
+                    React.createElement(PostPreview, {key: post.id, post: post})
+                )
         });
+
         return (
             React.createElement("div", null, 
-                posts
+                React.createElement("div", {className: "post-list"}, 
+                    posts
+                ), 
+
+                React.createElement(Pagination, {
+                    className: "pagination-container", 
+                    prev: true, 
+                    next: true, 
+                    first: true, 
+                    last: true, 
+                    ellipsis: true, 
+                    boundaryLinks: true, 
+                    items: this.getNumberOfPages(), 
+                    maxButtons: 5, 
+                    activePage: this.state.activePage, 
+                    onSelect: this.handleSelect})
             )
         )
     }
@@ -43103,7 +43151,7 @@ var PostListView = React.createClass({displayName: "PostListView",
 
 module.exports = PostListView;
 
-},{"../stores/AllPostStore":479,"./PostPreview.jsx":476,"react/addons":291}],476:[function(require,module,exports){
+},{"../stores/AllPostStore":479,"./PostPreview.jsx":476,"react-bootstrap":83,"react/addons":291}],476:[function(require,module,exports){
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var Link = require('react-router').Link;
