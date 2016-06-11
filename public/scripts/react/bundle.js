@@ -22,7 +22,8 @@ var port = 9080;
 var config = {
     port: port,
     baseUrl : "http://localhost:" + port,
-    pageTitle: 'React Blog'
+    pageTitle: 'React Blog',
+    itemsPerPage: 4
 };
 
 module.exports = config;
@@ -43065,10 +43066,11 @@ var React = require('react/addons');
 var AllPostStore = require('../stores/AllPostStore');
 var PostPreview = require('./PostPreview.jsx');
 var Pagination = require('react-bootstrap').Pagination;
+var config = require('../../config');
 
 var PostListView = React.createClass({displayName: "PostListView",
 
-    itemsPerPage: 4,
+    itemsPerPage: config.itemsPerPage,
 
     contextTypes: {
         router: React.PropTypes.func
@@ -43132,18 +43134,20 @@ var PostListView = React.createClass({displayName: "PostListView",
                     posts
                 ), 
 
-                React.createElement(Pagination, {
-                    className: "pagination-container", 
-                    prev: true, 
-                    next: true, 
-                    first: true, 
-                    last: true, 
-                    ellipsis: true, 
-                    boundaryLinks: true, 
-                    items: this.getNumberOfPages(), 
-                    maxButtons: 5, 
-                    activePage: this.state.activePage, 
-                    onSelect: this.handleSelect})
+                React.createElement("div", {className: "pagination-wrapper"}, 
+                    React.createElement(Pagination, {
+                        className: "pagination-container", 
+                        prev: true, 
+                        next: true, 
+                        first: true, 
+                        last: true, 
+                        ellipsis: true, 
+                        boundaryLinks: true, 
+                        items: this.getNumberOfPages(), 
+                        maxButtons: 5, 
+                        activePage: this.state.activePage, 
+                        onSelect: this.handleSelect})
+                )
             )
         )
     }
@@ -43151,7 +43155,7 @@ var PostListView = React.createClass({displayName: "PostListView",
 
 module.exports = PostListView;
 
-},{"../stores/AllPostStore":479,"./PostPreview.jsx":476,"react-bootstrap":83,"react/addons":291}],476:[function(require,module,exports){
+},{"../../config":2,"../stores/AllPostStore":479,"./PostPreview.jsx":476,"react-bootstrap":83,"react/addons":291}],476:[function(require,module,exports){
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var Link = require('react-router').Link;

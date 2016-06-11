@@ -111,3 +111,7 @@ body{
 .pagination-container {
     margin: 0 auto;
 }
+
+.pagination-wrapper {
+    text-align: center;
+}

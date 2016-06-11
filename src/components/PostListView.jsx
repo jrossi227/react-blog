@@ -2,10 +2,11 @@ var React = require('react/addons');
 var AllPostStore = require('../stores/AllPostStore');
 var PostPreview = require('./PostPreview.jsx');
 var Pagination = require('react-bootstrap').Pagination;
+var config = require('../../config');
 
 var PostListView = React.createClass({
 
-    itemsPerPage: 4,
+    itemsPerPage: config.itemsPerPage,
 
     contextTypes: {
         router: React.PropTypes.func
@@ -69,18 +70,20 @@ var PostListView = React.createClass({
                     {posts}
                 </div>
 
-                <Pagination
-                    className = "pagination-container"
-                    prev
-                    next
-                    first
-                    last
-                    ellipsis
-                    boundaryLinks
-                    items={this.getNumberOfPages()}
-                    maxButtons={5}
-                    activePage={this.state.activePage}
-                    onSelect={this.handleSelect} />
+                <div className="pagination-wrapper">
+                    <Pagination
+                        className = "pagination-container"
+                        prev
+                        next
+                        first
+                        last
+                        ellipsis
+                        boundaryLinks
+                        items={this.getNumberOfPages()}
+                        maxButtons={5}
+                        activePage={this.state.activePage}
+                        onSelect={this.handleSelect} />
+                </div>
             </div>
         )
     }
