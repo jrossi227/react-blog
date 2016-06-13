@@ -43195,6 +43195,7 @@ module.exports = PostPreview;
 },{"../actions/SinglePostActions":471,"react-router":273,"react/addons":291}],477:[function(require,module,exports){
 var React = require('react/addons');
 var SinglePostStore = require('../stores/SinglePostStore');
+var Glyphicon = require('react-bootstrap').Glyphicon;
 
 var SinglePostView = React.createClass({displayName: "SinglePostView",
 
@@ -43221,6 +43222,9 @@ var SinglePostView = React.createClass({displayName: "SinglePostView",
     render : function() {
         return (
             React.createElement("div", {className: "full-post"}, 
+                React.createElement("div", null, 
+                    React.createElement("a", {href: "/"}, React.createElement(Glyphicon, {glyph: "arrow-left"}), "  Back")
+                ), 
                 React.createElement("h1", {className: "post-title"}, this.state.currentPost.title), 
                 React.createElement("div", {className: "author-details"}, 
                     React.createElement("img", {src: this.state.currentPost.author.photo, className: "author-photo"}), 
@@ -43236,7 +43240,7 @@ var SinglePostView = React.createClass({displayName: "SinglePostView",
 
 module.exports = SinglePostView;
 
-},{"../stores/SinglePostStore":480,"react/addons":291}],478:[function(require,module,exports){
+},{"../stores/SinglePostStore":480,"react-bootstrap":83,"react/addons":291}],478:[function(require,module,exports){
 var React = require('react/addons');
 var Route = require('react-router').Route;
 var PostListView = require('./components/PostListView.jsx');

@@ -1,5 +1,6 @@
 var React = require('react/addons');
 var SinglePostStore = require('../stores/SinglePostStore');
+var Glyphicon = require('react-bootstrap').Glyphicon;
 
 var SinglePostView = React.createClass({
 
@@ -26,6 +27,9 @@ var SinglePostView = React.createClass({
     render : function() {
         return (
             <div className="full-post">
+                <div>
+                    <a href="/"><Glyphicon glyph="arrow-left" />&nbsp; Back</a>
+                </div>
                 <h1 className="post-title">{this.state.currentPost.title}</h1>
                 <div className="author-details">
                     <img src={this.state.currentPost.author.photo} className="author-photo"/>
