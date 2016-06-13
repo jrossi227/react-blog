@@ -43040,7 +43040,10 @@ var Header = React.createClass({displayName: "Header",
     render : function() {
         return (
             React.createElement(Navbar, null, 
-                React.createElement(NavBrand, null, React.createElement("a", {href: "/"}, "React Blog"))
+                React.createElement(NavBrand, null, React.createElement("a", {href: "/"}, "React Blog")), 
+                React.createElement(Nav, {right: true}, 
+                    React.createElement(NavItem, {eventKey: 1, href: "/"}, "Index")
+                )
 
                 /*<Nav right>
                     <NavItem eventKey={1} href="#" onSelect={this._handleSelect}>Link</NavItem>

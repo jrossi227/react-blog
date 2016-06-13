@@ -1,0 +1,32 @@
+.full-post{
+  padding: 30px 20px;
+}
+
+.full-post .post-title{
+  font-size: 43px;
+  font-weight: 300;
+  color: #263238;
+}
+
+.full-post .author-details{
+  margin-top: 20px;
+  overflow: auto;
+}
+
+.full-post .author-details .author-photo{
+  width: 60px;
+  height: 60px;
+}
+
+.full-post .author-details .author-name{
+  font-size: 20px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.full-post .post-content{
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: 300;
+  color: #263238;
+}

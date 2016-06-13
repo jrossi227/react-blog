@@ -4,7 +4,11 @@ var gulp = require('gulp'),
     buffer = require('vinyl-buffer'),
     reactify = require('reactify'),
     package = require('./package.json'),
-    nodemon = require('nodemon');
+    nodemon = require('nodemon'),
+    minifyCss = require('gulp-minify-css'),
+    rename = require('gulp-rename'),
+    concat = require('gulp-concat'),
+    sass = require('gulp-sass');
 
 
 gulp.task('bundle', function() {
@@ -15,8 +19,20 @@ gulp.task('bundle', function() {
         .pipe(gulp.dest(package.dest.dist));
 });
 
+gulp.task('styles', function() {
+    gulp.src('sass/**/*.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(minifyCss({
+            keepSpecialComments: 0
+        }))
+        .pipe(rename({ extname: '.min.css' }))
+        .pipe(concat('app.min.css'))
+        .pipe(gulp.dest('public/css/'));
+});
+
 gulp.task('watch', function () {
     gulp.watch(['src/**/*.js', 'src/**/*.jsx'],['bundle']);
+    gulp.watch(['sass/**/*.scss'],['styles']);
 });
 
 gulp.task('nodemon', function () {

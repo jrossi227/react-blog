@@ -31,6 +31,9 @@ var Header = React.createClass({
         return (
             <Navbar>
                 <NavBrand><a href="/">React Blog</a></NavBrand>
+                <Nav right>
+                    <NavItem eventKey={1} href="/">Index</NavItem>
+                </Nav>
 
                 {/*<Nav right>
                     <NavItem eventKey={1} href="#" onSelect={this._handleSelect}>Link</NavItem>
