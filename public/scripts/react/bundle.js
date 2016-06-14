@@ -16,7 +16,7 @@ window.onload = function(){
     });
 }
 
-},{"./alt":472,"./routes.jsx":478,"iso":11,"react-router":273,"react/addons":291}],2:[function(require,module,exports){
+},{"./alt":473,"./routes.jsx":479,"iso":11,"react-router":273,"react/addons":291}],2:[function(require,module,exports){
 var port = 9080;
 
 var config = {
@@ -42920,6 +42920,22 @@ module.exports = function(arr, fn, initial){
   return curr;
 };
 },{}],470:[function(require,module,exports){
+var React = require('react/addons');
+
+module.exports = React.createClass({displayName: "exports",
+    render : function() {
+        return (
+            React.createElement("p", null, "React, developed by Facebook, is an open source library for building User Interfaces. As the front end world moves" + ' ' +
+                "too fast you should not be hesitant to try out new things. I am a big fan of AngularJS and a few months back I" + ' ' +
+                "started trying React. As React doesn't assume anything about rest of your tech stack it plays well with others. The" + ' ' +
+                "biggest reason for me to try React was to create isomorphic apps that render on both client and server (with a" + ' ' +
+                "little help from other libraries as well). In this article I am going to share 10 best reasons to use React in your" + ' ' +
+                "next project.")
+        );
+    }
+});
+
+},{"react/addons":291}],471:[function(require,module,exports){
 var alt = require('../alt');
 var request = require('superagent');
 var config = require('../../config');
@@ -42947,7 +42963,7 @@ function AllPostActions(){"use strict";}
 
 module.exports = alt.createActions(AllPostActions);
 
-},{"../../config":2,"../alt":472,"superagent":464}],471:[function(require,module,exports){
+},{"../../config":2,"../alt":473,"superagent":464}],472:[function(require,module,exports){
 var alt = require('../alt');
 var request = require('superagent');
 var config = require('../../config');
@@ -42976,12 +42992,12 @@ function SinglePostActions(){"use strict";}
 
 module.exports = alt.createActions(SinglePostActions);
 
-},{"../../config":2,"../alt":472,"superagent":464}],472:[function(require,module,exports){
+},{"../../config":2,"../alt":473,"superagent":464}],473:[function(require,module,exports){
 var Alt = require('alt');
 var alt = new Alt();
 module.exports = alt;
 
-},{"alt":3}],473:[function(require,module,exports){
+},{"alt":3}],474:[function(require,module,exports){
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var Header = require('./Header.jsx');
@@ -43007,7 +43023,7 @@ var App = React.createClass({displayName: "App",
 
 module.exports = App;
 
-},{"./Header.jsx":474,"react-bootstrap":83,"react-router":273,"react/addons":291}],474:[function(require,module,exports){
+},{"./Header.jsx":475,"react-bootstrap":83,"react-router":273,"react/addons":291}],475:[function(require,module,exports){
 var React = require('react/addons');
 var AllPostActions = require('../actions/AllPostActions');
 
@@ -43064,7 +43080,7 @@ var Header = React.createClass({displayName: "Header",
 
 module.exports = Header;
 
-},{"../actions/AllPostActions":470,"react-bootstrap":83,"react/addons":291}],475:[function(require,module,exports){
+},{"../actions/AllPostActions":471,"react-bootstrap":83,"react/addons":291}],476:[function(require,module,exports){
 var React = require('react/addons');
 var AllPostStore = require('../stores/AllPostStore');
 var PostPreview = require('./PostPreview.jsx');
@@ -43158,7 +43174,7 @@ var PostListView = React.createClass({displayName: "PostListView",
 
 module.exports = PostListView;
 
-},{"../../config":2,"../stores/AllPostStore":479,"./PostPreview.jsx":476,"react-bootstrap":83,"react/addons":291}],476:[function(require,module,exports){
+},{"../../config":2,"../stores/AllPostStore":480,"./PostPreview.jsx":477,"react-bootstrap":83,"react/addons":291}],477:[function(require,module,exports){
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var Link = require('react-router').Link;
@@ -43192,10 +43208,14 @@ var PostPreview = React.createClass({displayName: "PostPreview",
 
 module.exports = PostPreview;
 
-},{"../actions/SinglePostActions":471,"react-router":273,"react/addons":291}],477:[function(require,module,exports){
+},{"../actions/SinglePostActions":472,"react-router":273,"react/addons":291}],478:[function(require,module,exports){
 var React = require('react/addons');
 var SinglePostStore = require('../stores/SinglePostStore');
 var Glyphicon = require('react-bootstrap').Glyphicon;
+var SinglePostActions = require('../actions/SinglePostActions');
+
+/** STATIC FILE INCLUDES **/
+var ReasonsToUseReact  = require('../../public/static/jsx/reasons-to-use-react.jsx');
 
 var SinglePostView = React.createClass({displayName: "SinglePostView",
 
@@ -43220,10 +43240,27 @@ var SinglePostView = React.createClass({displayName: "SinglePostView",
     },
 
     render : function() {
+        var includes = this.state.currentPost.includes || [];
+
+        var htmlIncludes = [], jsIncludes = [];
+        if(!!includes) {
+            var include;
+            var Template;
+            for(var i=0; i<includes.length; i++) {
+                include = includes[i];
+                switch(include.type) {
+                    case 'jsx':
+                        Template = require(include.path);
+                        htmlIncludes.push(React.createElement(Template, {key: i}));
+                        break;
+                }
+            }
+        }
+
         return (
             React.createElement("div", {className: "full-post"}, 
                 React.createElement("div", null, 
-                    React.createElement("a", {href: "/"}, React.createElement(Glyphicon, {glyph: "arrow-left"}), "  Back")
+                    React.createElement("a", {href: "/"}, React.createElement(Glyphicon, {glyph: "arrow-left"}), " Back")
                 ), 
                 React.createElement("h1", {className: "post-title"}, this.state.currentPost.title), 
                 React.createElement("div", {className: "author-details"}, 
@@ -43231,7 +43268,8 @@ var SinglePostView = React.createClass({displayName: "SinglePostView",
                     React.createElement("span", {className: "author-name"}, this.state.currentPost.author.name)
                 ), 
                 React.createElement("div", {className: "post-content"}, 
-                    this.state.currentPost.description
+                    this.state.currentPost.description || '', 
+                    htmlIncludes
                 )
             )
         )
@@ -43240,7 +43278,7 @@ var SinglePostView = React.createClass({displayName: "SinglePostView",
 
 module.exports = SinglePostView;
 
-},{"../stores/SinglePostStore":480,"react-bootstrap":83,"react/addons":291}],478:[function(require,module,exports){
+},{"../../public/static/jsx/reasons-to-use-react.jsx":470,"../actions/SinglePostActions":472,"../stores/SinglePostStore":481,"react-bootstrap":83,"react/addons":291}],479:[function(require,module,exports){
 var React = require('react/addons');
 var Route = require('react-router').Route;
 var PostListView = require('./components/PostListView.jsx');
@@ -43256,7 +43294,7 @@ var routes = (
 
 module.exports = routes;
 
-},{"./components/App.jsx":473,"./components/PostListView.jsx":475,"./components/SinglePostView.jsx":477,"react-router":273,"react/addons":291}],479:[function(require,module,exports){
+},{"./components/App.jsx":474,"./components/PostListView.jsx":476,"./components/SinglePostView.jsx":478,"react-router":273,"react/addons":291}],480:[function(require,module,exports){
 var alt = require('../alt');
 var AllPostActions = require('../actions/AllPostActions');
 
@@ -43279,7 +43317,7 @@ var AllPostActions = require('../actions/AllPostActions');
 
 module.exports = alt.createStore(AllPostStore, 'AllPostStore');
 
-},{"../actions/AllPostActions":470,"../alt":472}],480:[function(require,module,exports){
+},{"../actions/AllPostActions":471,"../alt":473}],481:[function(require,module,exports){
 var alt = require('../alt');
 var SinglePostActions = require('../actions/SinglePostActions');
 
@@ -43301,4 +43339,4 @@ var SinglePostActions = require('../actions/SinglePostActions');
 
 module.exports = alt.createStore(SinglePostStore, 'SinglePostStore');
 
-},{"../actions/SinglePostActions":471,"../alt":472}]},{},[1]);
+},{"../actions/SinglePostActions":472,"../alt":473}]},{},[1]);

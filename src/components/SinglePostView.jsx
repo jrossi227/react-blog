@@ -1,6 +1,10 @@
 var React = require('react/addons');
 var SinglePostStore = require('../stores/SinglePostStore');
 var Glyphicon = require('react-bootstrap').Glyphicon;
+var SinglePostActions = require('../actions/SinglePostActions');
+
+/** STATIC FILE INCLUDES **/
+var ReasonsToUseReact  = require('../../public/static/jsx/reasons-to-use-react.jsx');
 
 var SinglePostView = React.createClass({
 
@@ -25,10 +29,27 @@ var SinglePostView = React.createClass({
     },
 
     render : function() {
+        var includes = this.state.currentPost.includes || [];
+
+        var htmlIncludes = [], jsIncludes = [];
+        if(!!includes) {
+            var include;
+            var Template;
+            for(var i=0; i<includes.length; i++) {
+                include = includes[i];
+                switch(include.type) {
+                    case 'jsx':
+                        Template = require(include.path);
+                        htmlIncludes.push(<Template key={i}/>);
+                        break;
+                }
+            }
+        }
+
         return (
             <div className="full-post">
                 <div>
-                    <a href="/"><Glyphicon glyph="arrow-left" />&nbsp; Back</a>
+                    <a href="/"><Glyphicon glyph="arrow-left" />&nbsp;Back</a>
                 </div>
                 <h1 className="post-title">{this.state.currentPost.title}</h1>
                 <div className="author-details">
@@ -36,7 +57,8 @@ var SinglePostView = React.createClass({
                     <span className="author-name">{this.state.currentPost.author.name}</span>
                 </div>
                 <div className="post-content">
-                    {this.state.currentPost.description}
+                    {this.state.currentPost.description || ''}
+                    {htmlIncludes}
                 </div>
             </div>
         )
