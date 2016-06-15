@@ -43056,9 +43056,9 @@ var Header = React.createClass({displayName: "Header",
     render : function() {
         return (
             React.createElement(Navbar, null, 
-                React.createElement(NavBrand, null, React.createElement("a", {href: "/"}, "React Blog")), 
+                React.createElement(NavBrand, null, React.createElement("a", {href: "#", onClick: this.showAllPosts}, "React Blog")), 
                 React.createElement(Nav, {right: true}, 
-                    React.createElement(NavItem, {eventKey: 1, href: "/"}, "Index")
+                    React.createElement(NavItem, {eventKey: 1, href: "#", onClick: this.showAllPosts}, "Index")
                 )
 
                 /*<Nav right>
@@ -43213,6 +43213,7 @@ var React = require('react/addons');
 var SinglePostStore = require('../stores/SinglePostStore');
 var Glyphicon = require('react-bootstrap').Glyphicon;
 var SinglePostActions = require('../actions/SinglePostActions');
+var AllPostActions = require('../actions/AllPostActions');
 
 /** STATIC FILE INCLUDES **/
 var ReasonsToUseReact  = require('../../public/static/jsx/reasons-to-use-react.jsx');
@@ -43239,6 +43240,13 @@ var SinglePostView = React.createClass({displayName: "SinglePostView",
         return SinglePostStore.getState();
     },
 
+    showAllPosts : function(e){
+        e.preventDefault();
+        AllPostActions.loadAllPosts((function(){
+            this.context.router.transitionTo('postListView');
+        }).bind(this));
+    },
+
     render : function() {
         var includes = this.state.currentPost.includes || [];
 
@@ -43260,7 +43268,7 @@ var SinglePostView = React.createClass({displayName: "SinglePostView",
         return (
             React.createElement("div", {className: "full-post"}, 
                 React.createElement("div", null, 
-                    React.createElement("a", {href: "/"}, React.createElement(Glyphicon, {glyph: "arrow-left"}), " Back")
+                    React.createElement("a", {href: "#", onClick: this.showAllPosts}, React.createElement(Glyphicon, {glyph: "arrow-left"}), " Back")
                 ), 
                 React.createElement("h1", {className: "post-title"}, this.state.currentPost.title), 
                 React.createElement("div", {className: "author-details"}, 
@@ -43278,7 +43286,7 @@ var SinglePostView = React.createClass({displayName: "SinglePostView",
 
 module.exports = SinglePostView;
 
-},{"../../public/static/jsx/reasons-to-use-react.jsx":470,"../actions/SinglePostActions":472,"../stores/SinglePostStore":481,"react-bootstrap":83,"react/addons":291}],479:[function(require,module,exports){
+},{"../../public/static/jsx/reasons-to-use-react.jsx":470,"../actions/AllPostActions":471,"../actions/SinglePostActions":472,"../stores/SinglePostStore":481,"react-bootstrap":83,"react/addons":291}],479:[function(require,module,exports){
 var React = require('react/addons');
 var Route = require('react-router').Route;
 var PostListView = require('./components/PostListView.jsx');

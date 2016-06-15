@@ -30,9 +30,9 @@ var Header = React.createClass({
     render : function() {
         return (
             <Navbar>
-                <NavBrand><a href="/">React Blog</a></NavBrand>
+                <NavBrand><a href="#" onClick={this.showAllPosts}>React Blog</a></NavBrand>
                 <Nav right>
-                    <NavItem eventKey={1} href="/">Index</NavItem>
+                    <NavItem eventKey={1} href="#" onClick={this.showAllPosts}>Index</NavItem>
                 </Nav>
 
                 {/*<Nav right>

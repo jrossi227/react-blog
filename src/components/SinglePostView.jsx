@@ -2,6 +2,7 @@ var React = require('react/addons');
 var SinglePostStore = require('../stores/SinglePostStore');
 var Glyphicon = require('react-bootstrap').Glyphicon;
 var SinglePostActions = require('../actions/SinglePostActions');
+var AllPostActions = require('../actions/AllPostActions');
 
 /** STATIC FILE INCLUDES **/
 var ReasonsToUseReact  = require('../../public/static/jsx/reasons-to-use-react.jsx');
@@ -28,6 +29,13 @@ var SinglePostView = React.createClass({
         return SinglePostStore.getState();
     },
 
+    showAllPosts : function(e){
+        e.preventDefault();
+        AllPostActions.loadAllPosts((function(){
+            this.context.router.transitionTo('postListView');
+        }).bind(this));
+    },
+
     render : function() {
         var includes = this.state.currentPost.includes || [];
 
@@ -49,7 +57,7 @@ var SinglePostView = React.createClass({
         return (
             <div className="full-post">
                 <div>
-                    <a href="/"><Glyphicon glyph="arrow-left" />&nbsp;Back</a>
+                    <a href="#" onClick={this.showAllPosts}><Glyphicon glyph="arrow-left" />&nbsp;Back</a>
                 </div>
                 <h1 className="post-title">{this.state.currentPost.title}</h1>
                 <div className="author-details">
