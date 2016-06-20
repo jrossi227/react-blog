@@ -33,7 +33,7 @@ gulp.task('styles', function() {
         .pipe(concat('app.min.css'))
         .pipe(gulp.dest('public/css/'));
 });
-
+ 
 gulp.task('watch', function () {
     gulp.watch(['src/**/*.js', 'src/**/*.jsx'],['bundle']);
     gulp.watch(['sass/**/*.scss'],['styles']);

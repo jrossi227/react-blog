@@ -15,6 +15,8 @@ var PostListView = React.createClass({
 
     componentDidMount : function() {
         AllPostStore.listen(this.onChange);
+        AllPostActions.getNumberOfPosts();
+        AllPostActions.loadPage(this.state.pageNum);
     },
 
     componentWillUnmount : function() {
@@ -36,26 +38,13 @@ var PostListView = React.createClass({
     },
 
     getNumberOfPages: function() {
-        return Math.ceil(this.state.posts.length / this.itemsPerPage);
-    },
-
-    generatePostsForPage: function() {
-        var pageNum = (this.state.pageNum - 1);
-
-        var posts = [];
-        var post;
-        for(var i = pageNum * this.itemsPerPage; i < ((pageNum * this.itemsPerPage) + this.itemsPerPage); i++) {
-            post = this.state.posts[i];
-            if(!!post) {
-                posts.push(post);
-            }
-        }
-
-        return posts;
+        return Math.ceil(this.state.numberOfPosts / this.itemsPerPage);
     },
 
     render : function() {
-        var posts = this.generatePostsForPage().map(function(post){
+        var posts = this.state.posts[this.state.pageNum] || [];
+
+        posts = posts.map(function(post){
                 return (
                     <PostPreview key={post.id} post={post} />
                 )

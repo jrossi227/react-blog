@@ -42940,16 +42940,48 @@ var config = require('../../config');
 function AllPostActions(){"use strict";}
     Object.defineProperty(AllPostActions.prototype,"loadAllPosts",{writable:true,configurable:true,value:function(cb){"use strict";
         var self = this;
-        //NProgress.start();
+        NProgress.start();
         request.get(config.baseUrl+'/ajax/posts',function(err,response){
             self.actions.updatePosts(response.body);
             setTimeout(function(){
-                //NProgress.done();
+                NProgress.done();
             },500);
             if(cb){
                 cb();
             }
         });
+    }});
+
+    Object.defineProperty(AllPostActions.prototype,"loadPage",{writable:true,configurable:true,value:function(pageNum, cb) {"use strict";
+        var self = this;
+
+        pageNum = pageNum -1;
+
+        var end = (pageNum * config.itemsPerPage) + config.itemsPerPage;
+        var start = (pageNum * config.itemsPerPage);
+
+        NProgress.start();
+        request.get(config.baseUrl+'/ajax/postsByPage/' + start + '/' + end,function(err,response){
+            self.actions.updatePosts(response.body);
+            setTimeout(function(){
+                NProgress.done();
+            },500);
+            if(!!cb){
+                cb();
+            }
+        });
+    }});
+
+    Object.defineProperty(AllPostActions.prototype,"getNumberOfPosts",{writable:true,configurable:true,value:function() {"use strict";
+        var self = this;
+
+        request.get(config.baseUrl+'/ajax/getNumberOfPosts',function(err,response) {
+            self.actions.updateNumberOfPosts(response.body.numberOfPosts);
+        });
+    }});
+
+    Object.defineProperty(AllPostActions.prototype,"updateNumberOfPosts",{writable:true,configurable:true,value:function(num) {"use strict";
+        this.dispatch(num);
     }});
 
     Object.defineProperty(AllPostActions.prototype,"updatePosts",{writable:true,configurable:true,value:function(posts){"use strict";
@@ -42958,6 +42990,7 @@ function AllPostActions(){"use strict";}
 
     Object.defineProperty(AllPostActions.prototype,"updateActivePage",{writable:true,configurable:true,value:function(pageNum) {"use strict";
         this.dispatch(pageNum);
+        this.actions.loadPage(pageNum);
     }});
 
 
@@ -43055,18 +43088,6 @@ var Header = React.createClass({displayName: "Header",
                 React.createElement(Nav, {right: true}, 
                     React.createElement(NavItem, null, React.createElement(Link, {to: ("/")}, "Index"))
                 )
-
-                /*<Nav right>
-                    <NavItem eventKey={1} href="#" onSelect={this._handleSelect}>Link</NavItem>
-                    <NavItem eventKey={2} href="#">Link</NavItem>
-                    <NavDropdown eventKey={3} title="Dropdown" id="collapsible-navbar-dropdown">
-                        <MenuItem eventKey={3.1}>Action</MenuItem>
-                        <MenuItem eventKey={3.2}>Another action</MenuItem>
-                        <MenuItem eventKey={3.3}>Something else here</MenuItem>
-                        <MenuItem divider />
-                        <MenuItem eventKey={3.4}>Separated link</MenuItem>
-                    </NavDropdown>
-                </Nav>*/
             )
             
         )
@@ -43093,6 +43114,8 @@ var PostListView = React.createClass({displayName: "PostListView",
 
     componentDidMount : function() {
         AllPostStore.listen(this.onChange);
+        AllPostActions.getNumberOfPosts();
+        AllPostActions.loadPage(this.state.pageNum);
     },
 
     componentWillUnmount : function() {
@@ -43114,26 +43137,13 @@ var PostListView = React.createClass({displayName: "PostListView",
     },
 
     getNumberOfPages: function() {
-        return Math.ceil(this.state.posts.length / this.itemsPerPage);
-    },
-
-    generatePostsForPage: function() {
-        var pageNum = (this.state.pageNum - 1);
-
-        var posts = [];
-        var post;
-        for(var i = pageNum * this.itemsPerPage; i < ((pageNum * this.itemsPerPage) + this.itemsPerPage); i++) {
-            post = this.state.posts[i];
-            if(!!post) {
-                posts.push(post);
-            }
-        }
-
-        return posts;
+        return Math.ceil(this.state.numberOfPosts / this.itemsPerPage);
     },
 
     render : function() {
-        var posts = this.generatePostsForPage().map(function(post){
+        var posts = this.state.posts[this.state.pageNum] || [];
+
+        posts = posts.map(function(post){
                 return (
                     React.createElement(PostPreview, {key: post.id, post: post})
                 )
@@ -43297,18 +43307,23 @@ var AllPostActions = require('../actions/AllPostActions');
         var self = this;
         this.bindListeners({
             handleUpdatePosts:  AllPostActions.UPDATE_POSTS,
-            handleUpdateActivePage:  AllPostActions.UPDATE_ACTIVE_PAGE
+            handleUpdateActivePage:  AllPostActions.UPDATE_ACTIVE_PAGE,
+            handleNumberOfPosts: AllPostActions.UPDATE_NUMBER_OF_POSTS
         });
         this.on('init', function(){
-            self.posts = [];
+            self.posts = {};
             self.pageNum = 1;
+            self.numberOfPosts = 0;
         });
 
-        AllPostActions.loadAllPosts();
     }
 
+    Object.defineProperty(AllPostStore.prototype,"handleNumberOfPosts",{writable:true,configurable:true,value:function(num) {"use strict";
+        this.numberOfPosts = num;
+    }});
+    
     Object.defineProperty(AllPostStore.prototype,"handleUpdatePosts",{writable:true,configurable:true,value:function(posts){"use strict";
-        this.posts = posts;
+        this.posts[this.pageNum] = posts;
     }});
 
     Object.defineProperty(AllPostStore.prototype,"handleUpdateActivePage",{writable:true,configurable:true,value:function(pageNum) {"use strict";

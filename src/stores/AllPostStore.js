@@ -6,18 +6,23 @@ class AllPostStore{
         var self = this;
         this.bindListeners({
             handleUpdatePosts:  AllPostActions.UPDATE_POSTS,
-            handleUpdateActivePage:  AllPostActions.UPDATE_ACTIVE_PAGE
+            handleUpdateActivePage:  AllPostActions.UPDATE_ACTIVE_PAGE,
+            handleNumberOfPosts: AllPostActions.UPDATE_NUMBER_OF_POSTS
         });
         this.on('init', function(){
-            self.posts = [];
+            self.posts = {};
             self.pageNum = 1;
+            self.numberOfPosts = 0;
         });
 
-        AllPostActions.loadAllPosts();
     }
 
+    handleNumberOfPosts(num) {
+        this.numberOfPosts = num;
+    }
+    
     handleUpdatePosts(posts){
-        this.posts = posts;
+        this.posts[this.pageNum] = posts;
     }
 
     handleUpdateActivePage(pageNum) {

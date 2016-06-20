@@ -51,3 +51,27 @@ exports.loadSinglePostViaAjax = function(req,res){
         });
     });
 }
+
+exports.loadPostsByPage = function(req,res){
+    var start = req.params.start;
+    var end = req.params.end;
+    request.get(config.baseUrl+'/static/posts.json',function(err,response){
+
+        res.json(response.body.filter(function(post, index) {
+            if(index >= start && index < end) {
+                return true;
+            }
+
+            return false;
+        }));
+    });
+}
+
+exports.getNumberOfPosts = function(req,res){
+    request.get(config.baseUrl+'/static/posts.json',function(err,response){
+
+        res.json({
+            numberOfPosts: response.body.length
+        });
+    });
+}
