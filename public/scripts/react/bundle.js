@@ -42938,20 +42938,7 @@ var request = require('superagent');
 var config = require('../../config');
 
 function AllPostActions(){"use strict";}
-    Object.defineProperty(AllPostActions.prototype,"loadAllPosts",{writable:true,configurable:true,value:function(cb){"use strict";
-        var self = this;
-        NProgress.start();
-        request.get(config.baseUrl+'/ajax/posts',function(err,response){
-            self.actions.updatePosts(response.body);
-            setTimeout(function(){
-                NProgress.done();
-            },500);
-            if(cb){
-                cb();
-            }
-        });
-    }});
-
+    
     Object.defineProperty(AllPostActions.prototype,"loadPage",{writable:true,configurable:true,value:function(pageNum, cb) {"use strict";
         var self = this;
 
@@ -43128,7 +43115,6 @@ var PostListView = React.createClass({displayName: "PostListView",
 
     getInitialState : function(){
         var state = AllPostStore.getState();
-
         return state;
     },
 
@@ -43141,7 +43127,7 @@ var PostListView = React.createClass({displayName: "PostListView",
     },
 
     render : function() {
-        var posts = this.state.posts[this.state.pageNum] || [];
+        var posts = this.state.postsByPage[this.state.pageNum + ''] || [];
 
         posts = posts.map(function(post){
                 return (
@@ -43311,9 +43297,10 @@ var AllPostActions = require('../actions/AllPostActions');
             handleNumberOfPosts: AllPostActions.UPDATE_NUMBER_OF_POSTS
         });
         this.on('init', function(){
-            self.posts = {};
+            self.postsByPage = {};
             self.pageNum = 1;
             self.numberOfPosts = 0;
+            self.test = 'test';
         });
 
     }
@@ -43323,7 +43310,7 @@ var AllPostActions = require('../actions/AllPostActions');
     }});
     
     Object.defineProperty(AllPostStore.prototype,"handleUpdatePosts",{writable:true,configurable:true,value:function(posts){"use strict";
-        this.posts[this.pageNum] = posts;
+        this.postsByPage[this.pageNum + ''] = posts;
     }});
 
     Object.defineProperty(AllPostStore.prototype,"handleUpdateActivePage",{writable:true,configurable:true,value:function(pageNum) {"use strict";

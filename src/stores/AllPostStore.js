@@ -10,9 +10,10 @@ class AllPostStore{
             handleNumberOfPosts: AllPostActions.UPDATE_NUMBER_OF_POSTS
         });
         this.on('init', function(){
-            self.posts = {};
+            self.postsByPage = {};
             self.pageNum = 1;
             self.numberOfPosts = 0;
+            self.test = 'test';
         });
 
     }
@@ -22,7 +23,7 @@ class AllPostStore{
     }
     
     handleUpdatePosts(posts){
-        this.posts[this.pageNum] = posts;
+        this.postsByPage[this.pageNum + ''] = posts;
     }
 
     handleUpdateActivePage(pageNum) {

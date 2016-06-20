@@ -8,6 +8,7 @@ var gulp = require('gulp'),
     minifyCss = require('gulp-minify-css'),
     rename = require('gulp-rename'),
     concat = require('gulp-concat'),
+    clean = require('gulp-clean'),
     sass = require('gulp-sass');
 
 
@@ -20,6 +21,7 @@ gulp.task('bundle', function() {
 
         .bundle()
         .pipe(source(package.dest.app))
+        .pipe(clean({force: true}))
         .pipe(gulp.dest(package.dest.dist));
 });
 

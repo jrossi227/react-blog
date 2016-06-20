@@ -29,7 +29,6 @@ var PostListView = React.createClass({
 
     getInitialState : function(){
         var state = AllPostStore.getState();
-
         return state;
     },
 
@@ -42,7 +41,7 @@ var PostListView = React.createClass({
     },
 
     render : function() {
-        var posts = this.state.posts[this.state.pageNum] || [];
+        var posts = this.state.postsByPage[this.state.pageNum + ''] || [];
 
         posts = posts.map(function(post){
                 return (
