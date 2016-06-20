@@ -42940,11 +42940,11 @@ var config = require('../../config');
 function AllPostActions(){"use strict";}
     Object.defineProperty(AllPostActions.prototype,"loadAllPosts",{writable:true,configurable:true,value:function(cb){"use strict";
         var self = this;
-        NProgress.start();
+        //NProgress.start();
         request.get(config.baseUrl+'/ajax/posts',function(err,response){
             self.actions.updatePosts(response.body);
             setTimeout(function(){
-                NProgress.done();
+                //NProgress.done();
             },500);
             if(cb){
                 cb();
@@ -42973,11 +42973,11 @@ function SinglePostActions(){"use strict";}
     
     Object.defineProperty(SinglePostActions.prototype,"loadSinglePost",{writable:true,configurable:true,value:function(id,cb){"use strict";
         var self = this;
-        NProgress.start();
+        //NProgress.start();
         request.get(config.baseUrl+'/ajax/post/'+id,function(err,response){
             self.actions.updateCurrentPost(response.body);
             setTimeout(function(){
-                NProgress.done();
+                //NProgress.done();
             },500);
             if(cb){
                 cb();
@@ -43034,19 +43034,13 @@ var Nav = require('react-bootstrap').Nav;
 var NavItem = require('react-bootstrap').NavItem;
 var NavDropdown = require('react-bootstrap').NavDropdown;
 var MenuItem = require('react-bootstrap').MenuItem;
+var Link = require('react-router').Link;
 
 var Header = React.createClass({displayName: "Header",
 
     contextTypes: {
         router: React.PropTypes.func
     },
-
-    showAllPosts : function(e){
-        e.preventDefault();
-        AllPostActions.loadAllPosts((function(){
-           this.context.router.transitionTo('postListView');
-        }).bind(this));
-    }, 
 
     /*
     _handleSelect: function(eventKey) {
@@ -43057,9 +43051,9 @@ var Header = React.createClass({displayName: "Header",
     render : function() {
         return (
             React.createElement(Navbar, null, 
-                React.createElement(NavBrand, null, React.createElement("a", {href: "#", onClick: this.showAllPosts}, "React Blog")), 
+                React.createElement(NavBrand, null, React.createElement(Link, {to: ("/")}, "React Blog")), 
                 React.createElement(Nav, {right: true}, 
-                    React.createElement(NavItem, {eventKey: 1, href: "#", onClick: this.showAllPosts}, "Index")
+                    React.createElement(NavItem, null, React.createElement(Link, {to: ("/")}, "Index"))
                 )
 
                 /*<Nav right>
@@ -43081,7 +43075,7 @@ var Header = React.createClass({displayName: "Header",
 
 module.exports = Header;
 
-},{"../actions/AllPostActions":469,"react-bootstrap":216,"react/addons":287}],474:[function(require,module,exports){
+},{"../actions/AllPostActions":469,"react-bootstrap":216,"react-router":272,"react/addons":287}],474:[function(require,module,exports){
 var React = require('react/addons');
 var AllPostStore = require('../stores/AllPostStore');
 var AllPostActions = require('../actions/AllPostActions');
@@ -43212,6 +43206,7 @@ var SinglePostStore = require('../stores/SinglePostStore');
 var Glyphicon = require('react-bootstrap').Glyphicon;
 var SinglePostActions = require('../actions/SinglePostActions');
 var AllPostActions = require('../actions/AllPostActions');
+var Link = require('react-router').Link;
 
 /** STATIC FILE INCLUDES **/
 var ReasonsToUseReact  = require('../../public/static/jsx/reasons-to-use-react.jsx');
@@ -43238,13 +43233,6 @@ var SinglePostView = React.createClass({displayName: "SinglePostView",
         return SinglePostStore.getState();
     },
 
-    showAllPosts : function(e){
-        e.preventDefault();
-        AllPostActions.loadAllPosts((function(){
-            this.context.router.transitionTo('postListView');
-        }).bind(this));
-    },
-
     render : function() {
         var includes = this.state.currentPost.includes || [];
 
@@ -43266,7 +43254,7 @@ var SinglePostView = React.createClass({displayName: "SinglePostView",
         return (
             React.createElement("div", {className: "full-post"}, 
                 React.createElement("div", null, 
-                    React.createElement("a", {href: "#", onClick: this.showAllPosts}, React.createElement(Glyphicon, {glyph: "arrow-left"}), " Back")
+                    React.createElement(Link, {to: ("/")}, React.createElement(Glyphicon, {glyph: "arrow-left"}), " Back")
                 ), 
                 React.createElement("h1", {className: "post-title"}, this.state.currentPost.title), 
                 React.createElement("div", {className: "author-details"}, 
@@ -43284,7 +43272,7 @@ var SinglePostView = React.createClass({displayName: "SinglePostView",
 
 module.exports = SinglePostView;
 
-},{"../../public/static/jsx/reasons-to-use-react.jsx":468,"../actions/AllPostActions":469,"../actions/SinglePostActions":470,"../stores/SinglePostStore":479,"react-bootstrap":216,"react/addons":287}],477:[function(require,module,exports){
+},{"../../public/static/jsx/reasons-to-use-react.jsx":468,"../actions/AllPostActions":469,"../actions/SinglePostActions":470,"../stores/SinglePostStore":479,"react-bootstrap":216,"react-router":272,"react/addons":287}],477:[function(require,module,exports){
 var React = require('react/addons');
 var Route = require('react-router').Route;
 var PostListView = require('./components/PostListView.jsx');
@@ -43308,20 +43296,22 @@ var AllPostActions = require('../actions/AllPostActions');
     function AllPostStore(){"use strict";
         var self = this;
         this.bindListeners({
-            updatePosts:  AllPostActions.UPDATE_POSTS,
-            updateActivePage:  AllPostActions.UPDATE_ACTIVE_PAGE
+            handleUpdatePosts:  AllPostActions.UPDATE_POSTS,
+            handleUpdateActivePage:  AllPostActions.UPDATE_ACTIVE_PAGE
         });
         this.on('init', function(){
             self.posts = [];
             self.pageNum = 1;
         });
+
+        AllPostActions.loadAllPosts();
     }
 
-    Object.defineProperty(AllPostStore.prototype,"updatePosts",{writable:true,configurable:true,value:function(posts){"use strict";
+    Object.defineProperty(AllPostStore.prototype,"handleUpdatePosts",{writable:true,configurable:true,value:function(posts){"use strict";
         this.posts = posts;
     }});
 
-    Object.defineProperty(AllPostStore.prototype,"updateActivePage",{writable:true,configurable:true,value:function(pageNum) {"use strict";
+    Object.defineProperty(AllPostStore.prototype,"handleUpdateActivePage",{writable:true,configurable:true,value:function(pageNum) {"use strict";
         this.pageNum = pageNum;
     }});
 
@@ -43337,14 +43327,14 @@ var SinglePostActions = require('../actions/SinglePostActions');
     function SinglePostStore(){"use strict";
         var self = this;
         this.bindListeners({
-            updateCurrentPost: SinglePostActions.UPDATE_CURRENT_POST
+            handleUpdateCurrentPost: SinglePostActions.UPDATE_CURRENT_POST
         });
         this.on('init', function(){
             self.currentPost = null;
         });
     }
 
-    Object.defineProperty(SinglePostStore.prototype,"updateCurrentPost",{writable:true,configurable:true,value:function(post){"use strict";
+    Object.defineProperty(SinglePostStore.prototype,"handleUpdateCurrentPost",{writable:true,configurable:true,value:function(post){"use strict";
         this.currentPost = post;
     }});
 

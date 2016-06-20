@@ -5,14 +5,14 @@ class SinglePostStore{
     constructor(){
         var self = this;
         this.bindListeners({
-            updateCurrentPost: SinglePostActions.UPDATE_CURRENT_POST
+            handleUpdateCurrentPost: SinglePostActions.UPDATE_CURRENT_POST
         });
         this.on('init', function(){
             self.currentPost = null;
         });
     }
 
-    updateCurrentPost(post){
+    handleUpdateCurrentPost(post){
         this.currentPost = post;
     }
 }

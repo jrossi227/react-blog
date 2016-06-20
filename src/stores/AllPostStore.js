@@ -5,20 +5,22 @@ class AllPostStore{
     constructor(){
         var self = this;
         this.bindListeners({
-            updatePosts:  AllPostActions.UPDATE_POSTS,
-            updateActivePage:  AllPostActions.UPDATE_ACTIVE_PAGE
+            handleUpdatePosts:  AllPostActions.UPDATE_POSTS,
+            handleUpdateActivePage:  AllPostActions.UPDATE_ACTIVE_PAGE
         });
         this.on('init', function(){
             self.posts = [];
             self.pageNum = 1;
         });
+
+        AllPostActions.loadAllPosts();
     }
 
-    updatePosts(posts){
+    handleUpdatePosts(posts){
         this.posts = posts;
     }
 
-    updateActivePage(pageNum) {
+    handleUpdateActivePage(pageNum) {
         this.pageNum = pageNum;
     }
 

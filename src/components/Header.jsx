@@ -7,19 +7,13 @@ var Nav = require('react-bootstrap').Nav;
 var NavItem = require('react-bootstrap').NavItem;
 var NavDropdown = require('react-bootstrap').NavDropdown;
 var MenuItem = require('react-bootstrap').MenuItem;
+var Link = require('react-router').Link;
 
 var Header = React.createClass({
 
     contextTypes: {
         router: React.PropTypes.func
     },
-
-    showAllPosts : function(e){
-        e.preventDefault();
-        AllPostActions.loadAllPosts((function(){
-           this.context.router.transitionTo('postListView');
-        }).bind(this));
-    }, 
 
     /*
     _handleSelect: function(eventKey) {
@@ -30,9 +24,9 @@ var Header = React.createClass({
     render : function() {
         return (
             <Navbar>
-                <NavBrand><a href="#" onClick={this.showAllPosts}>React Blog</a></NavBrand>
+                <NavBrand><Link to={`/`}>React Blog</Link></NavBrand>
                 <Nav right>
-                    <NavItem eventKey={1} href="#" onClick={this.showAllPosts}>Index</NavItem>
+                    <NavItem><Link to={`/`}>Index</Link></NavItem>
                 </Nav>
 
                 {/*<Nav right>
