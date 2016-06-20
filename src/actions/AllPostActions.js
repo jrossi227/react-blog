@@ -20,6 +20,10 @@ class AllPostActions {
     updatePosts(posts){
         this.dispatch(posts);
     }
+
+    updateActivePage(pageNum) {
+        this.dispatch(pageNum);
+    }
 }
 
 

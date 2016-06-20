@@ -1,5 +1,6 @@
 var React = require('react/addons');
 var AllPostStore = require('../stores/AllPostStore');
+var AllPostActions = require('../actions/AllPostActions');
 var PostPreview = require('./PostPreview.jsx');
 var Pagination = require('react-bootstrap').Pagination;
 var config = require('../../config');
@@ -21,21 +22,17 @@ var PostListView = React.createClass({
     },
 
     onChange : function(state){
-        state.activePage = 1;
         this.setState(state);
     },
 
     getInitialState : function(){
         var state = AllPostStore.getState();
-        state.activePage = 1;
 
         return state;
     },
 
-    handleSelect(event, data) {
-        this.setState({
-            activePage: data.eventKey
-        });
+    handleSelect: function(event, data) {
+        AllPostActions.updateActivePage(data.eventKey);
     },
 
     getNumberOfPages: function() {
@@ -43,7 +40,7 @@ var PostListView = React.createClass({
     },
 
     generatePostsForPage: function() {
-        var pageNum = (this.state.activePage - 1);
+        var pageNum = (this.state.pageNum - 1);
 
         var posts = [];
         var post;
@@ -81,7 +78,7 @@ var PostListView = React.createClass({
                         boundaryLinks
                         items={this.getNumberOfPages()}
                         maxButtons={5}
-                        activePage={this.state.activePage}
+                        activePage={this.state.pageNum}
                         onSelect={this.handleSelect} />
                 </div>
             </div>
