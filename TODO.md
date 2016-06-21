@@ -10,7 +10,8 @@
 6. Add support for RSS feeds
 7. Implement Breadcrumbs and three levels (Should start)
 8. Make NProgress work or find something else
-9. move posts.json to require include
+9. move posts.json to require include (rethink that)
 10. Load page by page in post list view
 11. Document blog installation using blog created
+12. Cache pages after looking them up (Need to do single page view)
 

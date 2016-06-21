@@ -42938,33 +42938,45 @@ var request = require('superagent');
 var config = require('../../config');
 
 function AllPostActions(){"use strict";}
-    
+
     Object.defineProperty(AllPostActions.prototype,"loadPage",{writable:true,configurable:true,value:function(pageNum, cb) {"use strict";
-        var self = this;
+        var AllPostStore = require('../stores/AllPostStore');
+        var state = AllPostStore.getState();
+        if(!!state.postsByPage[pageNum + '']) {
+            this.actions.updatePosts(state.postsByPage[pageNum])
+        } else {
+            var self = this;
 
-        pageNum = pageNum -1;
+            pageNum = pageNum -1;
 
-        var end = (pageNum * config.itemsPerPage) + config.itemsPerPage;
-        var start = (pageNum * config.itemsPerPage);
+            var end = (pageNum * config.itemsPerPage) + config.itemsPerPage;
+            var start = (pageNum * config.itemsPerPage);
 
-        NProgress.start();
-        request.get(config.baseUrl+'/ajax/postsByPage/' + start + '/' + end,function(err,response){
-            self.actions.updatePosts(response.body);
-            setTimeout(function(){
-                NProgress.done();
-            },500);
-            if(!!cb){
-                cb();
-            }
-        });
+            NProgress.start();
+            request.get(config.baseUrl+'/ajax/postsByPage/' + start + '/' + end,function(err,response){
+                self.actions.updatePosts(response.body);
+                setTimeout(function(){
+                    NProgress.done();
+                },500);
+                if(!!cb){
+                    cb();
+                }
+            });
+        }
     }});
 
     Object.defineProperty(AllPostActions.prototype,"getNumberOfPosts",{writable:true,configurable:true,value:function() {"use strict";
         var self = this;
 
-        request.get(config.baseUrl+'/ajax/getNumberOfPosts',function(err,response) {
-            self.actions.updateNumberOfPosts(response.body.numberOfPosts);
-        });
+        var AllPostStore = require('../stores/AllPostStore');
+        var state = AllPostStore.getState();
+        if(state.numberOfPosts == 0) {
+            request.get(config.baseUrl+'/ajax/getNumberOfPosts',function(err,response) {
+                self.actions.updateNumberOfPosts(response.body.numberOfPosts);
+            });
+        } else {
+            this.actions.updateNumberOfPosts(state.numberOfPosts);
+        }
     }});
 
     Object.defineProperty(AllPostActions.prototype,"updateNumberOfPosts",{writable:true,configurable:true,value:function(num) {"use strict";
@@ -42984,7 +42996,7 @@ function AllPostActions(){"use strict";}
 
 module.exports = alt.createActions(AllPostActions);
 
-},{"../../config":2,"../alt":471,"superagent":461}],470:[function(require,module,exports){
+},{"../../config":2,"../alt":471,"../stores/AllPostStore":478,"superagent":461}],470:[function(require,module,exports){
 var alt = require('../alt');
 var request = require('superagent');
 var config = require('../../config');
@@ -43300,7 +43312,6 @@ var AllPostActions = require('../actions/AllPostActions');
             self.postsByPage = {};
             self.pageNum = 1;
             self.numberOfPosts = 0;
-            self.test = 'test';
         });
 
     }

@@ -13,7 +13,6 @@ class AllPostStore{
             self.postsByPage = {};
             self.pageNum = 1;
             self.numberOfPosts = 0;
-            self.test = 'test';
         });
 
     }
