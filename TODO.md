@@ -13,5 +13,8 @@
 9. move posts.json to require include (rethink that)
 10. Load page by page in post list view
 11. Document blog installation using blog created
-12. Cache pages after looking them up (Need to do single page view)
+12. Add nested pages/sections
+13. Make paging seo friendly
+14. Rework includes to not have to use jsx (update exports.showSinglePost)
+15. Cache pages after looking them up (Done)
 
