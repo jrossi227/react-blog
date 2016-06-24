@@ -43009,20 +43009,29 @@ function SinglePostActions(){"use strict";}
     Object.defineProperty(SinglePostActions.prototype,"loadSinglePost",{writable:true,configurable:true,value:function(id,cb){"use strict";
         var self = this;
 
-        if(typeof window.NProgress != 'undefined') {
-            NProgress.start();
-        }
-        request.get(config.baseUrl+'/ajax/post/'+id,function(err,response){
-            self.actions.updateCurrentPost(response.body);
-            setTimeout(function(){
-                if(typeof NProgress != 'undefined') {
-                    NProgress.done();
-                }
-            },500);
+        var SinglePostStore = require('../stores/SinglePostStore');
+        var state = SinglePostStore.getState();
+        if(!!state.postsById[id]) {
+            this.actions.updateCurrentPost(state.postsById[id]);
             if(cb){
                 cb();
             }
-        });
+        } else {
+            if(typeof window.NProgress != 'undefined') {
+                NProgress.start();
+            }
+            request.get(config.baseUrl+'/ajax/post/'+id,function(err,response){
+                self.actions.updateCurrentPost(response.body);
+                setTimeout(function(){
+                    if(typeof NProgress != 'undefined') {
+                        NProgress.done();
+                    }
+                },500);
+                if(cb){
+                    cb();
+                }
+            });   
+        }
     }});
 
     Object.defineProperty(SinglePostActions.prototype,"updateCurrentPost",{writable:true,configurable:true,value:function(post){"use strict";
@@ -43033,7 +43042,7 @@ function SinglePostActions(){"use strict";}
 
 module.exports = alt.createActions(SinglePostActions);
 
-},{"../../config":2,"../alt":471,"superagent":461}],471:[function(require,module,exports){
+},{"../../config":2,"../alt":471,"../stores/SinglePostStore":479,"superagent":461}],471:[function(require,module,exports){
 var Alt = require('alt');
 var alt = new Alt();
 module.exports = alt;
@@ -43355,11 +43364,13 @@ var SinglePostActions = require('../actions/SinglePostActions');
         });
         this.on('init', function(){
             self.currentPost = null;
+            self.postsById = {};
         });
     }
 
     Object.defineProperty(SinglePostStore.prototype,"handleUpdateCurrentPost",{writable:true,configurable:true,value:function(post){"use strict";
         this.currentPost = post;
+        this.postsById[post.id] = post;
     }});
 
 

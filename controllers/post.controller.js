@@ -36,6 +36,10 @@ exports.showSinglePost = function(req,res,next){
                         "currentPost" : post
                     }
                 };
+
+                res.locals.data.SinglePostStore.postsById = {};
+                res.locals.data.SinglePostStore.postsById[post.id] = post;
+                
                 next();
             }
         });

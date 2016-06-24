@@ -9,11 +9,13 @@ class SinglePostStore{
         });
         this.on('init', function(){
             self.currentPost = null;
+            self.postsById = {};
         });
     }
 
     handleUpdateCurrentPost(post){
         this.currentPost = post;
+        this.postsById[post.id] = post;
     }
 }
 
