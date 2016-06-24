@@ -3,14 +3,19 @@ var request = require('superagent');
 var config = require('../../config');
 
 class SinglePostActions {
-    
+
     loadSinglePost(id,cb){
         var self = this;
-        //NProgress.start();
+
+        if(typeof window.NProgress != 'undefined') {
+            NProgress.start();
+        }
         request.get(config.baseUrl+'/ajax/post/'+id,function(err,response){
             self.actions.updateCurrentPost(response.body);
             setTimeout(function(){
-                //NProgress.done();
+                if(typeof NProgress != 'undefined') {
+                    NProgress.done();
+                }
             },500);
             if(cb){
                 cb();

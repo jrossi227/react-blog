@@ -17,11 +17,15 @@ class AllPostActions {
             var end = (pageNum * config.itemsPerPage) + config.itemsPerPage;
             var start = (pageNum * config.itemsPerPage);
 
-            NProgress.start();
+            if(typeof NProgress != 'undefined') {
+                NProgress.start();
+            }
             request.get(config.baseUrl+'/ajax/postsByPage/' + start + '/' + end,function(err,response){
                 self.actions.updatePosts(response.body);
                 setTimeout(function(){
-                    NProgress.done();
+                    if(typeof NProgress != 'undefined') {
+                        NProgress.done();
+                    }
                 },500);
                 if(!!cb){
                     cb();

@@ -4,9 +4,12 @@ var request = require('superagent'),
 
 exports.showAllPosts = function(req,res,next){
     request.get(config.baseUrl+'/static/posts.json',function(err,response){
-       res.locals.data = {
+        var itemsPerPage = config.itemsPerPage;
+        res.locals.data = {
            "AllPostStore" : {
-               "posts" : response.body
+               "postsByPage" : {
+                   '1': response.body.slice(0, itemsPerPage)
+               }
            }
        }
        next();

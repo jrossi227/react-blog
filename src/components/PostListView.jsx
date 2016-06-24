@@ -13,10 +13,13 @@ var PostListView = React.createClass({
         router: React.PropTypes.func
     },
 
-    componentDidMount : function() {
-        AllPostStore.listen(this.onChange);
+    componentWillMount: function() {
         AllPostActions.getNumberOfPosts();
         AllPostActions.loadPage(this.state.pageNum);
+    },
+
+    componentDidMount : function() {
+        AllPostStore.listen(this.onChange);
     },
 
     componentWillUnmount : function() {

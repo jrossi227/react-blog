@@ -6,15 +6,14 @@ var React = require('react/addons');
 var routes = require('./routes.jsx');
 var alt = require('./alt');
 
-window.onload = function(){
-    Iso.bootstrap(function (state, meta, container) {
-        alt.bootstrap(state);
-        Router.run(routes, Router.HistoryLocation, function (Handler) {
-            var node = React.createElement(Handler);
-            React.render(node, container);
-        });
+Iso.bootstrap(function (state, meta, container) {
+    alt.bootstrap(state);
+    Router.run(routes, Router.HistoryLocation, function (Handler) {
+        var node = React.createElement(Handler);
+        React.render(node, container);
     });
-}
+});
+
 
 },{"./alt":471,"./routes.jsx":477,"iso":72,"react-router":272,"react/addons":287}],2:[function(require,module,exports){
 var port = 9080;
@@ -42952,11 +42951,15 @@ function AllPostActions(){"use strict";}
             var end = (pageNum * config.itemsPerPage) + config.itemsPerPage;
             var start = (pageNum * config.itemsPerPage);
 
-            NProgress.start();
+            if(typeof NProgress != 'undefined') {
+                NProgress.start();
+            }
             request.get(config.baseUrl+'/ajax/postsByPage/' + start + '/' + end,function(err,response){
                 self.actions.updatePosts(response.body);
                 setTimeout(function(){
-                    NProgress.done();
+                    if(typeof NProgress != 'undefined') {
+                        NProgress.done();
+                    }
                 },500);
                 if(!!cb){
                     cb();
@@ -43002,14 +43005,19 @@ var request = require('superagent');
 var config = require('../../config');
 
 function SinglePostActions(){"use strict";}
-    
+
     Object.defineProperty(SinglePostActions.prototype,"loadSinglePost",{writable:true,configurable:true,value:function(id,cb){"use strict";
         var self = this;
-        //NProgress.start();
+
+        if(typeof window.NProgress != 'undefined') {
+            NProgress.start();
+        }
         request.get(config.baseUrl+'/ajax/post/'+id,function(err,response){
             self.actions.updateCurrentPost(response.body);
             setTimeout(function(){
-                //NProgress.done();
+                if(typeof NProgress != 'undefined') {
+                    NProgress.done();
+                }
             },500);
             if(cb){
                 cb();
@@ -43111,10 +43119,13 @@ var PostListView = React.createClass({displayName: "PostListView",
         router: React.PropTypes.func
     },
 
-    componentDidMount : function() {
-        AllPostStore.listen(this.onChange);
+    componentWillMount: function() {
         AllPostActions.getNumberOfPosts();
         AllPostActions.loadPage(this.state.pageNum);
+    },
+
+    componentDidMount : function() {
+        AllPostStore.listen(this.onChange);
     },
 
     componentWillUnmount : function() {
@@ -43196,7 +43207,7 @@ var PostPreview = React.createClass({displayName: "PostPreview",
 
     render : function() {
         return (
-            React.createElement("a", {href: "#", className: "single-post", onClick: this.loadPost}, 
+            React.createElement("a", {href: '/post/' + this.props.post.id +'/'+this.props.post.slug, className: "single-post", onClick: this.loadPost}, 
                 React.createElement("div", {className: "post-title"}, this.props.post.title), 
                 React.createElement("div", {className: "author-details"}, React.createElement("img", {src: this.props.post.author.photo, className: "author-photo"}), 
                     React.createElement("span", {className: "author-name"}, this.props.post.author.name)
