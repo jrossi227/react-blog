@@ -10,8 +10,9 @@ class SinglePostActions {
 
         var SinglePostStore = require('../stores/SinglePostStore');
         var state = SinglePostStore.getState();
-        if(!!state.postsById[id]) {
-            this.actions.updateCurrentPost(state.postsById[id]);
+        if(!!state.stateById[id]) {
+            this.actions.updateCurrentPost(state.stateById[id].post);
+            this.actions.updateIncludes(state.stateById[id].includes);
             if(cb){
                 cb();
             }
@@ -71,6 +72,10 @@ class SinglePostActions {
     
     updateIncludes(includes) {
         this.dispatch(includes);
+    }
+    
+    reset() {
+        this.dispatch();
     }
 }
 

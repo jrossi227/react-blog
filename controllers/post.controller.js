@@ -37,12 +37,14 @@ exports.showSinglePost = function(req,res,next){
 
                 res.locals.data = {
                     "SinglePostStore" : {
-                        "currentPost" : post
+                        "currentPost" : post,
+                        "id": post.id,
+                        "stateById": {}
                     }
                 };
 
-                res.locals.data.SinglePostStore.postsById = {};
-                res.locals.data.SinglePostStore.postsById[post.id] = post;
+                res.locals.data.SinglePostStore.stateById[post.id] = {};
+                res.locals.data.SinglePostStore.stateById[post.id].post = post;
                 
                 var includes = post.includes || [];
                 var includeNum  = includes.length;
@@ -56,9 +58,10 @@ exports.showSinglePost = function(req,res,next){
                            type: type,
                            value: data
                         });
-
+                        
                         includeNum --;
                         if(includeNum == 0) {
+                            res.locals.data.SinglePostStore.stateById[post.id].includes = res.locals.data.SinglePostStore.includes;
                             next();
                         }
                     };

@@ -43038,8 +43038,9 @@ function SinglePostActions(){"use strict";}
 
         var SinglePostStore = require('../stores/SinglePostStore');
         var state = SinglePostStore.getState();
-        if(!!state.postsById[id]) {
-            this.actions.updateCurrentPost(state.postsById[id]);
+        if(!!state.stateById[id]) {
+            this.actions.updateCurrentPost(state.stateById[id].post);
+            this.actions.updateIncludes(state.stateById[id].includes);
             if(cb){
                 cb();
             }
@@ -43099,6 +43100,10 @@ function SinglePostActions(){"use strict";}
     
     Object.defineProperty(SinglePostActions.prototype,"updateIncludes",{writable:true,configurable:true,value:function(includes) {"use strict";
         this.dispatch(includes);
+    }});
+    
+    Object.defineProperty(SinglePostActions.prototype,"reset",{writable:true,configurable:true,value:function() {"use strict";
+        this.dispatch();
     }});
 
 
@@ -43304,15 +43309,13 @@ var SinglePostView = React.createClass({displayName: "SinglePostView",
     },
 
     componentWillMount: function() {
-        SinglePostActions.loadSinglePost(this.props.params.id,function(){});
-    },
-    
-    componentDidMount : function() {
         SinglePostStore.listen(this.onChange);
+        SinglePostActions.loadSinglePost(this.props.params.id,function(){});
     },
 
     componentWillUnmount : function() {
         SinglePostStore.unlisten(this.onChange);
+        SinglePostActions.reset();
     },
 
     onChange : function(state){
@@ -43425,22 +43428,35 @@ var SinglePostActions = require('../actions/SinglePostActions');
         var self = this;
         this.bindListeners({
             handleUpdateCurrentPost: SinglePostActions.UPDATE_CURRENT_POST,
-            handleUpdateIncludes: SinglePostActions.UPDATE_INCLUDES
+            handleUpdateIncludes: SinglePostActions.UPDATE_INCLUDES,
+            handleReset: SinglePostActions.RESET
         });
         this.on('init', function(){
-            self.currentPost = null;
-            self.postsById = {};
-            self.includes = [];
+            self.$SinglePostStore_reset();
+            self.stateById = {};
         });
     }
 
+    Object.defineProperty(SinglePostStore.prototype,"$SinglePostStore_reset",{writable:true,configurable:true,value:function() {"use strict";
+        this.currentPost = null;
+        this.includes = [];
+    }});
+
     Object.defineProperty(SinglePostStore.prototype,"handleUpdateCurrentPost",{writable:true,configurable:true,value:function(post){"use strict";
+        this.id = post.id;
         this.currentPost = post;
-        this.postsById[post.id] = post;
+        this.stateById[this.id] = this.stateById[this.id] || {};
+        this.stateById[this.id].post = post;
     }});
 
     Object.defineProperty(SinglePostStore.prototype,"handleUpdateIncludes",{writable:true,configurable:true,value:function(includes) {"use strict";
         this.includes = includes;
+        this.stateById[this.id] = this.stateById[this.id] || {};
+        this.stateById[this.id].includes = includes;
+    }});
+
+    Object.defineProperty(SinglePostStore.prototype,"handleReset",{writable:true,configurable:true,value:function() {"use strict";
+        this.$SinglePostStore_reset();
     }});
 
 

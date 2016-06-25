@@ -12,15 +12,19 @@ var SinglePostView = React.createClass({
     },
 
     componentWillMount: function() {
-        SinglePostActions.loadSinglePost(this.props.params.id,function(){});
+        var self = this;
+        SinglePostActions.loadSinglePost(this.props.params.id,function(){
+            self.setState(SinglePostStore.getState());
+        });
     },
-    
+
     componentDidMount : function() {
         SinglePostStore.listen(this.onChange);
     },
 
     componentWillUnmount : function() {
         SinglePostStore.unlisten(this.onChange);
+        SinglePostActions.reset();
     },
 
     onChange : function(state){
