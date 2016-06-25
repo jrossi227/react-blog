@@ -12,9 +12,7 @@ var PostPreview = React.createClass({
     loadPost : function(e){
         e.preventDefault();
         var self = this;
-        SinglePostActions.loadSinglePost(this.props.post.id,function(){
-           self.context.router.transitionTo('/post/'+self.props.post.id+'/'+self.props.post.slug);
-        });
+        self.context.router.transitionTo('/post/'+self.props.post.id+'/'+self.props.post.slug);
     },
 
     render : function() {

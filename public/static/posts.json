@@ -5,8 +5,8 @@
     "title" : "10 reasons to use React in your next project",
     "includes" : [
       {
-        "type": "jsx",
-        "path": "../../public/static/jsx/reasons-to-use-react.jsx"
+        "type": "html",
+        "path": "/static/html/reasons-to-use-react.html"
       }
     ],
     "author" : {

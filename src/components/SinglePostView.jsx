@@ -5,15 +5,16 @@ var SinglePostActions = require('../actions/SinglePostActions');
 var AllPostActions = require('../actions/AllPostActions');
 var Link = require('react-router').Link;
 
-/** STATIC FILE INCLUDES **/
-var ReasonsToUseReact  = require('../../public/static/jsx/reasons-to-use-react.jsx');
-
 var SinglePostView = React.createClass({
 
     contextTypes: {
         router: React.PropTypes.func
     },
 
+    componentWillMount: function() {
+        SinglePostActions.loadSinglePost(this.props.params.id,function(){});
+    },
+    
     componentDidMount : function() {
         SinglePostStore.listen(this.onChange);
     },
@@ -31,18 +32,20 @@ var SinglePostView = React.createClass({
     },
 
     render : function() {
-        var includes = this.state.currentPost.includes || [];
+        if(this.state.currentPost == null) {
+            return (<div></div>);
+        }
+
+        var includes = this.state.includes || [];
 
         var htmlIncludes = [], jsIncludes = [];
-        if(!!includes) {
+        if(includes.length > 0) {
             var include;
-            var Template;
             for(var i=0; i<includes.length; i++) {
                 include = includes[i];
                 switch(include.type) {
-                    case 'jsx':
-                        Template = require(include.path);
-                        htmlIncludes.push(<Template key={i}/>);
+                    case 'html':
+                        htmlIncludes.push(include.value);
                         break;
                 }
             }
@@ -59,8 +62,8 @@ var SinglePostView = React.createClass({
                     <span className="author-name">{this.state.currentPost.author.name}</span>
                 </div>
                 <div className="post-content">
-                    {this.state.currentPost.description || ''}
-                    {htmlIncludes}
+                    <div dangerouslySetInnerHTML={ {__html: this.state.currentPost.description || ''} }></div>
+                    <div dangerouslySetInnerHTML={ {__html: htmlIncludes.join('')} }></div>
                 </div>
             </div>
         )

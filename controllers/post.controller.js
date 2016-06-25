@@ -1,6 +1,7 @@
 
 var request = require('superagent'),
-    config = require('../config');
+    config = require('../config'),
+    IncludeHandler = require('../src/IncludeHandler');
 
 exports.showAllPosts = function(req,res,next){
     request.get(config.baseUrl+'/static/posts.json',function(err,response){
@@ -29,8 +30,11 @@ exports.showSinglePost = function(req,res,next){
 
         var posts = response.body;
 
+        var found = false;
         posts.forEach(function(post){
             if(post.id === parseInt(id,10)){
+                found = true;
+
                 res.locals.data = {
                     "SinglePostStore" : {
                         "currentPost" : post
@@ -40,11 +44,38 @@ exports.showSinglePost = function(req,res,next){
                 res.locals.data.SinglePostStore.postsById = {};
                 res.locals.data.SinglePostStore.postsById[post.id] = post;
                 
-                next();
+                var includes = post.includes || [];
+                var includeNum  = includes.length;
+
+                if(includeNum > 0) {
+
+                    res.locals.data.SinglePostStore.includes = [];
+                    var includeCallback = function(type, data) {
+
+                        res.locals.data.SinglePostStore.includes.push({
+                           type: type,
+                           value: data
+                        });
+
+                        includeNum --;
+                        if(includeNum == 0) {
+                            next();
+                        }
+                    };
+
+                    var type, path;
+                    for(var i=0; i<includes.length; i++) {
+                        type = includes[i].type;
+                        path = includes[i].path;
+                        IncludeHandler.handleInclude(type, path, includeCallback);
+                    }
+                } else {
+                    next();
+                }
             }
         });
 
-        next();
+        if(!found) next();
     });
 }
 

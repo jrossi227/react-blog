@@ -1,6 +1,7 @@
 var alt = require('../alt');
 var request = require('superagent');
 var config = require('../../config');
+var IncludeHandler = require('../IncludeHandler');
 
 class SinglePostActions {
 
@@ -18,15 +19,47 @@ class SinglePostActions {
             if(typeof window.NProgress != 'undefined') {
                 NProgress.start();
             }
+
             request.get(config.baseUrl+'/ajax/post/'+id,function(err,response){
-                self.actions.updateCurrentPost(response.body);
-                setTimeout(function(){
-                    if(typeof NProgress != 'undefined') {
-                        NProgress.done();
+                var post = response.body;
+                var includes = post.includes || [], loadedIncludes = [];
+                var includeNum  = includes.length;
+                
+                var finish = function() {
+                    self.actions.updateCurrentPost(post);
+                    self.actions.updateIncludes(loadedIncludes);
+                    setTimeout(function(){
+                        if(typeof NProgress != 'undefined') {
+                            NProgress.done();
+                        }
+                    },500);
+                    if(cb){
+                        cb();
                     }
-                },500);
-                if(cb){
-                    cb();
+                };
+
+                if(includeNum > 0) {
+
+                    var includeCallback = function(type, data) {
+                        loadedIncludes.push({
+                            type: type,
+                            value: data
+                        });
+
+                        includeNum --;
+                        if(includeNum == 0) {
+                            finish();
+                        }
+                    };
+
+                    var type, path;
+                    for(var i=0; i<includes.length; i++) {
+                        type = includes[i].type;
+                        path = includes[i].path;
+                        IncludeHandler.handleInclude(type, path, includeCallback);
+                    }
+                } else {
+                    finish();
                 }
             });   
         }
@@ -34,6 +67,10 @@ class SinglePostActions {
 
     updateCurrentPost(post){
         this.dispatch(post);
+    }
+    
+    updateIncludes(includes) {
+        this.dispatch(includes);
     }
 }
 
