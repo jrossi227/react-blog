@@ -3,10 +3,12 @@ var AllPostStore = require('../stores/AllPostStore');
 var AllPostActions = require('../actions/AllPostActions');
 var PostPreview = require('./PostPreview.jsx');
 var Pagination = require('react-bootstrap').Pagination;
+var CustomPagination = require('./Pagination.jsx');
 var config = require('../../config');
 
 var PostListView = React.createClass({
 
+    pageNum: 1,
     itemsPerPage: config.itemsPerPage,
 
     contextTypes: {
@@ -14,8 +16,9 @@ var PostListView = React.createClass({
     },
 
     componentWillMount: function() {
+        this.pageNum = parseInt(this.props.params.pageNum || 1);
         AllPostActions.getNumberOfPosts();
-        AllPostActions.loadPage(this.state.pageNum);
+        AllPostActions.loadPage(this.pageNum);
     },
 
     componentDidMount : function() {
@@ -24,6 +27,13 @@ var PostListView = React.createClass({
 
     componentWillUnmount : function() {
         AllPostStore.unlisten(this.onChange);
+    },
+
+    componentWillReceiveProps(nextProps) {
+        if(!!nextProps.params.pageNum && nextProps.params.pageNum != this.pageNum) {
+            this.pageNum = parseInt(nextProps.params.pageNum || 1);
+            AllPostActions.loadPage(this.pageNum);
+        }
     },
 
     onChange : function(state){
@@ -35,16 +45,12 @@ var PostListView = React.createClass({
         return state;
     },
 
-    handleSelect: function(event, data) {
-        AllPostActions.updateActivePage(data.eventKey);
-    },
-
     getNumberOfPages: function() {
         return Math.ceil(this.state.numberOfPosts / this.itemsPerPage);
     },
 
     render : function() {
-        var posts = this.state.postsByPage[this.state.pageNum + ''] || [];
+        var posts = this.state.postsByPage[this.pageNum] || [];
 
         posts = posts.map(function(post){
                 return (
@@ -59,18 +65,13 @@ var PostListView = React.createClass({
                 </div>
 
                 <div className="pagination-wrapper">
-                    <Pagination
-                        className = "pagination-container"
-                        prev
-                        next
-                        first
-                        last
-                        ellipsis
-                        boundaryLinks
-                        items={this.getNumberOfPages()}
+
+                    <CustomPagination
+                        numberOfPages={this.getNumberOfPages()}
                         maxButtons={5}
-                        activePage={this.state.pageNum}
+                        activePage={this.pageNum}
                         onSelect={this.handleSelect} />
+
                 </div>
             </div>
         )

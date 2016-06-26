@@ -4,16 +4,22 @@ var request = require('superagent'),
     IncludeHandler = require('../src/IncludeHandler');
 
 exports.showAllPosts = function(req,res,next){
+    console.log(req.params.pageNum);
+    var pageNum = parseInt(req.params.pageNum || 1);
+    pageNum -= 1;
+
     request.get(config.baseUrl+'/static/posts.json',function(err,response){
         var itemsPerPage = config.itemsPerPage;
         res.locals.data = {
            "AllPostStore" : {
                "postsByPage" : {
-                   '1': response.body.slice(0, itemsPerPage)
                }
            }
-       }
-       next();
+        };
+
+        res.locals.data.AllPostStore.postsByPage[pageNum+1] = response.body.slice(itemsPerPage * pageNum, (itemsPerPage * pageNum) + itemsPerPage);
+
+        next();
     });
 }
 

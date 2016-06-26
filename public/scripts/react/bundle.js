@@ -15,7 +15,7 @@ Iso.bootstrap(function (state, meta, container) {
 });
 
 
-},{"./alt":473,"./routes.jsx":479,"iso":11,"react-router":273,"react/addons":291}],2:[function(require,module,exports){
+},{"./alt":473,"./routes.jsx":480,"iso":11,"react-router":273,"react/addons":291}],2:[function(require,module,exports){
 var port = 9080;
 
 var config = {
@@ -42967,8 +42967,8 @@ function AllPostActions(){"use strict";}
     Object.defineProperty(AllPostActions.prototype,"loadPage",{writable:true,configurable:true,value:function(pageNum, cb) {"use strict";
         var AllPostStore = require('../stores/AllPostStore');
         var state = AllPostStore.getState();
-        if(!!state.postsByPage[pageNum + '']) {
-            this.actions.updatePosts(state.postsByPage[pageNum])
+        if(!!state.postsByPage[pageNum]) {
+            this.actions.updatePosts(state.postsByPage[pageNum], pageNum);
         } else {
             var self = this;
 
@@ -42981,7 +42981,7 @@ function AllPostActions(){"use strict";}
                 NProgress.start();
             }
             request.get(config.baseUrl+'/ajax/postsByPage/' + start + '/' + end,function(err,response){
-                self.actions.updatePosts(response.body);
+                self.actions.updatePosts(response.body, pageNum + 1);
                 setTimeout(function(){
                     if(typeof NProgress != 'undefined') {
                         NProgress.done();
@@ -43012,20 +43012,18 @@ function AllPostActions(){"use strict";}
         this.dispatch(num);
     }});
 
-    Object.defineProperty(AllPostActions.prototype,"updatePosts",{writable:true,configurable:true,value:function(posts){"use strict";
-        this.dispatch(posts);
-    }});
-
-    Object.defineProperty(AllPostActions.prototype,"updateActivePage",{writable:true,configurable:true,value:function(pageNum) {"use strict";
-        this.dispatch(pageNum);
-        this.actions.loadPage(pageNum);
+    Object.defineProperty(AllPostActions.prototype,"updatePosts",{writable:true,configurable:true,value:function(post, pageNum){"use strict";
+        this.dispatch({
+            post: post,
+            pageNum: pageNum
+        });
     }});
 
 
 
 module.exports = alt.createActions(AllPostActions);
 
-},{"../../config":2,"../alt":473,"../stores/AllPostStore":480,"superagent":464}],472:[function(require,module,exports){
+},{"../../config":2,"../alt":473,"../stores/AllPostStore":481,"superagent":464}],472:[function(require,module,exports){
 var alt = require('../alt');
 var request = require('superagent');
 var config = require('../../config');
@@ -43110,7 +43108,7 @@ function SinglePostActions(){"use strict";}
 
 module.exports = alt.createActions(SinglePostActions);
 
-},{"../../config":2,"../IncludeHandler":470,"../alt":473,"../stores/SinglePostStore":481,"superagent":464}],473:[function(require,module,exports){
+},{"../../config":2,"../IncludeHandler":470,"../alt":473,"../stores/SinglePostStore":482,"superagent":464}],473:[function(require,module,exports){
 var Alt = require('alt');
 var alt = new Alt();
 module.exports = alt;
@@ -43182,13 +43180,20 @@ module.exports = Header;
 
 },{"../actions/AllPostActions":471,"react-bootstrap":83,"react-router":273,"react/addons":291}],476:[function(require,module,exports){
 var React = require('react/addons');
-var AllPostStore = require('../stores/AllPostStore');
-var AllPostActions = require('../actions/AllPostActions');
-var PostPreview = require('./PostPreview.jsx');
-var Pagination = require('react-bootstrap').Pagination;
 var config = require('../../config');
+var Link = require('react-router').Link;
 
-var PostListView = React.createClass({displayName: "PostListView",
+var Pagination = React.createClass({displayName: "Pagination",
+
+    /**
+     *
+     * numberOfPages{this.getNumberOfPages()}
+     * maxButtons={5}
+     * activePage={this.state.pageNum}
+     * onSelect={this.handleSelect}
+     *
+     */
+
 
     itemsPerPage: config.itemsPerPage,
 
@@ -43197,8 +43202,91 @@ var PostListView = React.createClass({displayName: "PostListView",
     },
 
     componentWillMount: function() {
+
+    },
+
+    componentDidMount : function() {
+
+    },
+
+    componentWillUnmount : function() {
+
+    },
+
+    _renderPageLinks: function() {
+        var numberOfPages = this.props.numberOfPages;
+
+        var links = [];
+        var active = '';
+        for(var i=1; i<=numberOfPages; i++) {
+            active = '';
+            if(i == this.props.activePage) {
+                active = 'active';
+            }
+
+            links.push(
+                React.createElement("li", {className: active, key: i}, 
+                    React.createElement(Link, {to: '/page/' + i, role: "button"}, i)
+                ));
+        }
+
+        return links;
+    },
+
+    render : function() {
+
+        return (
+            React.createElement("ul", {className: "pagination-container pagination"}, 
+                React.createElement("li", {className: this.props.activePage == 1 ? 'disabled' : ''}, 
+                    React.createElement(Link, {role: "button", to: '/page/1'}, 
+                        React.createElement("span", {"aria-label": "First"}, "«")
+                    )
+                ), 
+                React.createElement("li", {className: this.props.activePage == 1 ? 'disabled' : ''}, 
+                    React.createElement(Link, {role: "button", to: '/page/' +(this.props.activePage - 1)}, 
+                        React.createElement("span", {"aria-label": "Previous"}, "‹")
+                    )
+                ), 
+                this._renderPageLinks(), 
+                React.createElement("li", {className: this.props.activePage == this.props.numberOfPages ? 'disabled' : ''}, 
+                    React.createElement(Link, {role: "button", to: '/page/' + (this.props.activePage + 1)}, 
+                        React.createElement("span", {"aria-label": "Next"}, "›")
+                    )
+                ), 
+                React.createElement("li", {className: this.props.activePage == this.props.numberOfPages ? 'disabled' : ''}, 
+                    React.createElement(Link, {role: "button", to: '/page/' +this.props.numberOfPages}, 
+                        React.createElement("span", {"aria-label": "Last"}, "»")
+                    )
+                )
+            )
+        )
+    }
+});
+
+module.exports = Pagination;
+
+},{"../../config":2,"react-router":273,"react/addons":291}],477:[function(require,module,exports){
+var React = require('react/addons');
+var AllPostStore = require('../stores/AllPostStore');
+var AllPostActions = require('../actions/AllPostActions');
+var PostPreview = require('./PostPreview.jsx');
+var Pagination = require('react-bootstrap').Pagination;
+var CustomPagination = require('./Pagination.jsx');
+var config = require('../../config');
+
+var PostListView = React.createClass({displayName: "PostListView",
+
+    pageNum: 1,
+    itemsPerPage: config.itemsPerPage,
+
+    contextTypes: {
+        router: React.PropTypes.func
+    },
+
+    componentWillMount: function() {
+        this.pageNum = parseInt(this.props.params.pageNum || 1);
         AllPostActions.getNumberOfPosts();
-        AllPostActions.loadPage(this.state.pageNum);
+        AllPostActions.loadPage(this.pageNum);
     },
 
     componentDidMount : function() {
@@ -43207,6 +43295,13 @@ var PostListView = React.createClass({displayName: "PostListView",
 
     componentWillUnmount : function() {
         AllPostStore.unlisten(this.onChange);
+    },
+
+    componentWillReceiveProps:function(nextProps) {
+        if(!!nextProps.params.pageNum && nextProps.params.pageNum != this.pageNum) {
+            this.pageNum = parseInt(nextProps.params.pageNum || 1);
+            AllPostActions.loadPage(this.pageNum);
+        }
     },
 
     onChange : function(state){
@@ -43218,16 +43313,12 @@ var PostListView = React.createClass({displayName: "PostListView",
         return state;
     },
 
-    handleSelect: function(event, data) {
-        AllPostActions.updateActivePage(data.eventKey);
-    },
-
     getNumberOfPages: function() {
         return Math.ceil(this.state.numberOfPosts / this.itemsPerPage);
     },
 
     render : function() {
-        var posts = this.state.postsByPage[this.state.pageNum + ''] || [];
+        var posts = this.state.postsByPage[this.pageNum] || [];
 
         posts = posts.map(function(post){
                 return (
@@ -43242,18 +43333,13 @@ var PostListView = React.createClass({displayName: "PostListView",
                 ), 
 
                 React.createElement("div", {className: "pagination-wrapper"}, 
-                    React.createElement(Pagination, {
-                        className: "pagination-container", 
-                        prev: true, 
-                        next: true, 
-                        first: true, 
-                        last: true, 
-                        ellipsis: true, 
-                        boundaryLinks: true, 
-                        items: this.getNumberOfPages(), 
+
+                    React.createElement(CustomPagination, {
+                        numberOfPages: this.getNumberOfPages(), 
                         maxButtons: 5, 
-                        activePage: this.state.pageNum, 
+                        activePage: this.pageNum, 
                         onSelect: this.handleSelect})
+
                 )
             )
         )
@@ -43262,7 +43348,7 @@ var PostListView = React.createClass({displayName: "PostListView",
 
 module.exports = PostListView;
 
-},{"../../config":2,"../actions/AllPostActions":471,"../stores/AllPostStore":480,"./PostPreview.jsx":477,"react-bootstrap":83,"react/addons":291}],477:[function(require,module,exports){
+},{"../../config":2,"../actions/AllPostActions":471,"../stores/AllPostStore":481,"./Pagination.jsx":476,"./PostPreview.jsx":478,"react-bootstrap":83,"react/addons":291}],478:[function(require,module,exports){
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var Link = require('react-router').Link;
@@ -43294,7 +43380,7 @@ var PostPreview = React.createClass({displayName: "PostPreview",
 
 module.exports = PostPreview;
 
-},{"../actions/SinglePostActions":472,"react-router":273,"react/addons":291}],478:[function(require,module,exports){
+},{"../actions/SinglePostActions":472,"react-router":273,"react/addons":291}],479:[function(require,module,exports){
 var React = require('react/addons');
 var SinglePostStore = require('../stores/SinglePostStore');
 var Glyphicon = require('react-bootstrap').Glyphicon;
@@ -43309,8 +43395,14 @@ var SinglePostView = React.createClass({displayName: "SinglePostView",
     },
 
     componentWillMount: function() {
+        var self = this;
+        SinglePostActions.loadSinglePost(this.props.params.id,function(){
+            self.setState(SinglePostStore.getState());
+        });
+    },
+
+    componentDidMount : function() {
         SinglePostStore.listen(this.onChange);
-        SinglePostActions.loadSinglePost(this.props.params.id,function(){});
     },
 
     componentWillUnmount : function() {
@@ -43367,23 +43459,25 @@ var SinglePostView = React.createClass({displayName: "SinglePostView",
 
 module.exports = SinglePostView;
 
-},{"../actions/AllPostActions":471,"../actions/SinglePostActions":472,"../stores/SinglePostStore":481,"react-bootstrap":83,"react-router":273,"react/addons":291}],479:[function(require,module,exports){
+},{"../actions/AllPostActions":471,"../actions/SinglePostActions":472,"../stores/SinglePostStore":482,"react-bootstrap":83,"react-router":273,"react/addons":291}],480:[function(require,module,exports){
 var React = require('react/addons');
 var Route = require('react-router').Route;
+var DefaultRoute = require('react-router').DefaultRoute;
 var PostListView = require('./components/PostListView.jsx');
 var SinglePostView = require('./components/SinglePostView.jsx');
 var App = require('./components/App.jsx');
 
 var routes = (
     React.createElement(Route, {name: "home", path: "/", handler: App}, 
-        React.createElement(Route, {name: "postListView", path: "/", handler: PostListView}), 
-        React.createElement(Route, {name: "singlePostView", path: "/post/:id/:slug", handler: SinglePostView})
+        React.createElement(Route, {name: "postListView", path: "/page/:pageNum", handler: PostListView}), 
+        React.createElement(Route, {name: "singlePostView", path: "/post/:id/:slug", handler: SinglePostView}), 
+        React.createElement(DefaultRoute, {handler: PostListView})
     )
 );
 
 module.exports = routes;
 
-},{"./components/App.jsx":474,"./components/PostListView.jsx":476,"./components/SinglePostView.jsx":478,"react-router":273,"react/addons":291}],480:[function(require,module,exports){
+},{"./components/App.jsx":474,"./components/PostListView.jsx":477,"./components/SinglePostView.jsx":479,"react-router":273,"react/addons":291}],481:[function(require,module,exports){
 var alt = require('../alt');
 var AllPostActions = require('../actions/AllPostActions');
 
@@ -43392,12 +43486,10 @@ var AllPostActions = require('../actions/AllPostActions');
         var self = this;
         this.bindListeners({
             handleUpdatePosts:  AllPostActions.UPDATE_POSTS,
-            handleUpdateActivePage:  AllPostActions.UPDATE_ACTIVE_PAGE,
             handleNumberOfPosts: AllPostActions.UPDATE_NUMBER_OF_POSTS
         });
         this.on('init', function(){
             self.postsByPage = {};
-            self.pageNum = 1;
             self.numberOfPosts = 0;
         });
 
@@ -43407,19 +43499,14 @@ var AllPostActions = require('../actions/AllPostActions');
         this.numberOfPosts = num;
     }});
     
-    Object.defineProperty(AllPostStore.prototype,"handleUpdatePosts",{writable:true,configurable:true,value:function(posts){"use strict";
-        this.postsByPage[this.pageNum + ''] = posts;
+    Object.defineProperty(AllPostStore.prototype,"handleUpdatePosts",{writable:true,configurable:true,value:function(obj){"use strict";
+        this.postsByPage[obj.pageNum] = obj.post;
     }});
-
-    Object.defineProperty(AllPostStore.prototype,"handleUpdateActivePage",{writable:true,configurable:true,value:function(pageNum) {"use strict";
-        this.pageNum = pageNum;
-    }});
-
 
 
 module.exports = alt.createStore(AllPostStore, 'AllPostStore');
 
-},{"../actions/AllPostActions":471,"../alt":473}],481:[function(require,module,exports){
+},{"../actions/AllPostActions":471,"../alt":473}],482:[function(require,module,exports){
 var alt = require('../alt');
 var SinglePostActions = require('../actions/SinglePostActions');
 

@@ -17,4 +17,5 @@
 13. Make paging seo friendly
 14. Rework includes to not have to use jsx (update exports.showSinglePost)
 15. Cache pages after looking them up (Done)
+16. Cache numberOfPosts in AllPostStore
 

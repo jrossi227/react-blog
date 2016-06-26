@@ -3,6 +3,7 @@ var express = require('express'),
     PostController = require('../controllers/post.controller');
 
 router.route('/').get(PostController.showAllPosts);
+router.route('/page/:pageNum').get(PostController.showAllPosts);
 router.route('/ajax/posts').get(PostController.loadPostsViaAjax);
 router.route('/ajax/postsByPage/:start/:end').get(PostController.loadPostsByPage);
 router.route('/ajax/getNumberOfPosts').get(PostController.getNumberOfPosts);

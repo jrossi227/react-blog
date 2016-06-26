@@ -7,8 +7,8 @@ class AllPostActions {
     loadPage(pageNum, cb) {
         var AllPostStore = require('../stores/AllPostStore');
         var state = AllPostStore.getState();
-        if(!!state.postsByPage[pageNum + '']) {
-            this.actions.updatePosts(state.postsByPage[pageNum])
+        if(!!state.postsByPage[pageNum]) {
+            this.actions.updatePosts(state.postsByPage[pageNum], pageNum);
         } else {
             var self = this;
 
@@ -21,7 +21,7 @@ class AllPostActions {
                 NProgress.start();
             }
             request.get(config.baseUrl+'/ajax/postsByPage/' + start + '/' + end,function(err,response){
-                self.actions.updatePosts(response.body);
+                self.actions.updatePosts(response.body, pageNum + 1);
                 setTimeout(function(){
                     if(typeof NProgress != 'undefined') {
                         NProgress.done();
@@ -52,13 +52,11 @@ class AllPostActions {
         this.dispatch(num);
     }
 
-    updatePosts(posts){
-        this.dispatch(posts);
-    }
-
-    updateActivePage(pageNum) {
-        this.dispatch(pageNum);
-        this.actions.loadPage(pageNum);
+    updatePosts(post, pageNum){
+        this.dispatch({
+            post: post,
+            pageNum: pageNum
+        });
     }
 }
 
