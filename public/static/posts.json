@@ -7,6 +7,14 @@
       {
         "type": "html",
         "path": "/static/html/reasons-to-use-react.html"
+      },
+      {
+        "type": "js",
+        "path": "/static/js/reasons-to-use-react.js"
+      },
+      {
+        "type": "css",
+        "path": "/static/css/reasons-to-use-react.css"
       }
     ],
     "author" : {

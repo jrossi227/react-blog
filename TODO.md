@@ -18,4 +18,5 @@
 14. Rework includes to not have to use jsx (update exports.showSinglePost)
 15. Cache pages after looking them up (Done)
 16. Cache numberOfPosts in AllPostStore
+17. Move included js and css inside the build
 

@@ -2,8 +2,7 @@ var React = require('react/addons');
 var AllPostStore = require('../stores/AllPostStore');
 var AllPostActions = require('../actions/AllPostActions');
 var PostPreview = require('./PostPreview.jsx');
-var Pagination = require('react-bootstrap').Pagination;
-var CustomPagination = require('./Pagination.jsx');
+var Pagination = require('./Pagination.jsx');
 var config = require('../../config');
 
 var PostListView = React.createClass({
@@ -66,7 +65,7 @@ var PostListView = React.createClass({
 
                 <div className="pagination-wrapper">
 
-                    <CustomPagination
+                    <Pagination
                         numberOfPages={this.getNumberOfPages()}
                         maxButtons={5}
                         activePage={this.pageNum}
