@@ -19,4 +19,6 @@
 15. Cache pages after looking them up (Done)
 16. Cache numberOfPosts in AllPostStore
 17. Move included js and css inside the build (Done)
+18. Add header and footer to list view
+19. Add global header and footer
 

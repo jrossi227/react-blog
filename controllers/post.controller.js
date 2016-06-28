@@ -14,11 +14,12 @@ exports.showAllPosts = function(req,res,next){
            "AllPostStore" : {
                "postsByPage" : {
                },
-               "numberOfPosts": response.body.length
+               "numberOfPosts": response.body.posts.length,
+               "postListContent": response.body.postListContent
            }
         };
 
-        res.locals.data.AllPostStore.postsByPage[pageNum+1] = response.body.slice(itemsPerPage * pageNum, (itemsPerPage * pageNum) + itemsPerPage);
+        res.locals.data.AllPostStore.postsByPage[pageNum+1] = response.body.posts.slice(itemsPerPage * pageNum, (itemsPerPage * pageNum) + itemsPerPage);
 
         next();
     });
@@ -26,7 +27,7 @@ exports.showAllPosts = function(req,res,next){
 
 exports.loadPostsViaAjax = function(req,res){
     request.get(config.baseUrl+'/static/posts.json',function(err,response){
-        res.json(response.body);
+        res.json(response.body.posts);
     });
 }
 
@@ -35,7 +36,7 @@ exports.showSinglePost = function(req,res,next){
 
     request.get(config.baseUrl+'/static/posts.json',function(err,response){
 
-        var posts = response.body;
+        var posts = response.body.posts;
 
         var found = false;
         posts.forEach(function(post){
@@ -92,11 +93,17 @@ exports.showSinglePost = function(req,res,next){
 exports.loadSinglePostViaAjax = function(req,res){
     var id = req.params.id;
     request.get(config.baseUrl+'/static/posts.json',function(err,response){
-        response.body.forEach(function(post){
+        response.body.posts.forEach(function(post){
             if(post.id === parseInt(id,10)){
                 return res.json(post);
             }
         });
+    });
+}
+
+exports.loadPostListContent = function(req, res) {
+    request.get(config.baseUrl+'/static/posts.json',function(err,response){
+        res.json(response.body.postListContent);
     });
 }
 
@@ -105,7 +112,7 @@ exports.loadPostsByPage = function(req,res){
     var end = req.params.end;
     request.get(config.baseUrl+'/static/posts.json',function(err,response){
 
-        res.json(response.body.filter(function(post, index) {
+        res.json(response.body.posts.filter(function(post, index) {
             if(index >= start && index < end) {
                 return true;
             }
@@ -119,7 +126,7 @@ exports.getNumberOfPosts = function(req,res){
     request.get(config.baseUrl+'/static/posts.json',function(err,response){
 
         res.json({
-            numberOfPosts: response.body.length
+            numberOfPosts: response.body.posts.length
         });
     });
 }

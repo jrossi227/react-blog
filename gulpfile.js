@@ -18,7 +18,7 @@ var getIncludesByType = function(type) {
     var allIncludes = [];
     var data = fs.readFileSync('./public/static/posts.json', 'utf8');
 
-    var posts = JSON.parse(data);
+    var posts = JSON.parse(data).posts;
     var post;
     for(var i=0; i<posts.length; i++) {
         post = posts[i];

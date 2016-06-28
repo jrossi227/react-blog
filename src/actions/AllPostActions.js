@@ -34,6 +34,20 @@ class AllPostActions {
         }
     }
 
+    loadPostListContent() {
+        var self = this;
+
+        var AllPostStore = require('../stores/AllPostStore');
+        var state = AllPostStore.getState();
+        if( (!!state.postListContent.content && state.postListContent.content != '') ||
+            (!!state.postListContent.header && state.postListContent.header != '')) {
+            return;
+        }
+        request.get(config.baseUrl+'/ajax/postListContent',function(err,response){
+            self.actions.updatePostListContent(response.body);
+        });
+    }
+
     getNumberOfPosts() {
         var self = this;
 
@@ -57,6 +71,10 @@ class AllPostActions {
             post: post,
             pageNum: pageNum
         });
+    }
+
+    updatePostListContent(postListContent) {
+        this.dispatch(postListContent);
     }
 }
 

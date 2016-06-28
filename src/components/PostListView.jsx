@@ -4,6 +4,7 @@ var AllPostActions = require('../actions/AllPostActions');
 var PostPreview = require('./PostPreview.jsx');
 var Pagination = require('./Pagination.jsx');
 var config = require('../../config');
+var PostListHeader = require('./PostListHeader.jsx');
 
 var PostListView = React.createClass({
 
@@ -18,6 +19,7 @@ var PostListView = React.createClass({
         this.pageNum = parseInt(this.props.params.pageNum || 1);
         AllPostActions.getNumberOfPosts();
         AllPostActions.loadPage(this.pageNum);
+        AllPostActions.loadPostListContent();
     },
 
     componentDidMount : function() {
@@ -52,13 +54,16 @@ var PostListView = React.createClass({
         var posts = this.state.postsByPage[this.pageNum] || [];
 
         posts = posts.map(function(post){
-                return (
-                    <PostPreview key={post.id} post={post} />
-                )
+            return (
+                <PostPreview key={post.id} post={post} />
+            )
         });
 
         return (
             <div>
+                
+                <PostListHeader header={this.state.postListContent.header} content={this.state.postListContent.content}/>
+
                 <div className="post-list">
                     {posts}
                 </div>
