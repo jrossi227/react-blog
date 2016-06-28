@@ -13,7 +13,8 @@ exports.showAllPosts = function(req,res,next){
         res.locals.data = {
            "AllPostStore" : {
                "postsByPage" : {
-               }
+               },
+               "numberOfPosts": response.body.length
            }
         };
 

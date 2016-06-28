@@ -1,5 +1,9 @@
 .pagination-container {
   margin: 0 auto;
+
+  .disabled {
+    pointer-events: none;
+  }
 }
 
 .pagination-wrapper {

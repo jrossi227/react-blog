@@ -99,8 +99,8 @@ gulp.task('styles',['appStyles', 'cssIncludes']);
 gulp.task('build-all', ['bundle', 'styles']);
 
 gulp.task('watch', function () {
-    gulp.watch(['src/**/*.js', 'src/**/*.jsx', 'public/static/**/.js'],['bundle']);
-    gulp.watch(['sass/**/*.scss', 'public/static/**/.css'],['styles']);
+    gulp.watch(['src/**/*.js', 'src/**/*.jsx', 'public/static/**/*.js'],['bundle']);
+    gulp.watch(['sass/**/*.scss', 'public/static/**/*.css'],['styles']);
 });
 
 gulp.task('nodemon', function () {
