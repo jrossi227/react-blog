@@ -4,7 +4,7 @@ var config = {
     port: port,
     baseUrl : "http://localhost:" + port,
     pageTitle: 'React Blog',
-    itemsPerPage: 4
+    itemsPerPage: 5
 };
 
 module.exports = config;

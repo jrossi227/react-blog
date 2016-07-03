@@ -1,5 +1,4 @@
 var React = require('react/addons');
-var AllPostActions = require('../actions/AllPostActions');
 
 var Navbar = require('react-bootstrap').Navbar;
 var NavBrand = require('react-bootstrap').NavBrand;

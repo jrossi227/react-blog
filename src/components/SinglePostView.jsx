@@ -4,7 +4,6 @@ var Glyphicon = require('react-bootstrap').Glyphicon;
 var SinglePostActions = require('../actions/SinglePostActions');
 var AllPostActions = require('../actions/AllPostActions');
 var Link = require('react-router').Link;
-var markdown = require( "markdown" ).markdown;
 var marked = require('marked');
 
 var SinglePostView = React.createClass({

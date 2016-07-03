@@ -15,11 +15,11 @@
 11. Document blog installation using blog created
 12. Add nested pages/sections (holding off)
 13. Make paging seo friendly (done)
-14. Rework includes to not have to use jsx (update exports.showSinglePost)
+14. Rework includes to not have to use jsx (update exports.showSinglePost) (Done)
 15. Cache pages after looking them up (Done)
-16. Cache numberOfPosts in AllPostStore
+16. Cache numberOfPosts in AllPostStore (Done)
 17. Move included js and css inside the build (Done)
-18. Add header and footer to list view
+18. Add header and footer to list view (We need a footer)
 19. Add global header and footer
-20. Add markdown support for posts
-
+20. Add markdown support for posts (Done)
+21. Add configurable max pages to paging nav
