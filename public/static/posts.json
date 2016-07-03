@@ -29,8 +29,8 @@
     },
     {
       "id" : 2,
-      "slug" : "marked",
-      "title" : "marked",
+      "slug" : "marked-example",
+      "title" : "Markdown example using marked",
       "includes" : [
         {
           "type": "md",
@@ -245,6 +245,126 @@
       "id" : 22,
       "slug" : "sample-post-22",
       "title" : "Sample Post 22",
+      "description" : "Sample Post Placeholder",
+      "author" : {
+        "photo" : "/images/jonathan.jpg",
+        "name" : "Jonathan"
+      }
+    },
+    {
+      "id" : 23,
+      "slug" : "sample-post-23",
+      "title" : "Sample Post 23",
+      "description" : "Sample Post Placeholder",
+      "author" : {
+        "photo" : "/images/jonathan.jpg",
+        "name" : "Jonathan"
+      }
+    },
+    {
+      "id" : 24,
+      "slug" : "sample-post-24",
+      "title" : "Sample Post 24",
+      "description" : "Sample Post Placeholder",
+      "author" : {
+        "photo" : "/images/jonathan.jpg",
+        "name" : "Jonathan"
+      }
+    },
+    {
+      "id" : 25,
+      "slug" : "sample-post-25",
+      "title" : "Sample Post 25",
+      "description" : "Sample Post Placeholder",
+      "author" : {
+        "photo" : "/images/jonathan.jpg",
+        "name" : "Jonathan"
+      }
+    },
+    {
+      "id" : 26,
+      "slug" : "sample-post-26",
+      "title" : "Sample Post 26",
+      "description" : "Sample Post Placeholder",
+      "author" : {
+        "photo" : "/images/jonathan.jpg",
+        "name" : "Jonathan"
+      }
+    },
+    {
+      "id" : 27,
+      "slug" : "sample-post-27",
+      "title" : "Sample Post 27",
+      "description" : "Sample Post Placeholder",
+      "author" : {
+        "photo" : "/images/jonathan.jpg",
+        "name" : "Jonathan"
+      }
+    },
+    {
+      "id" : 28,
+      "slug" : "sample-post-28",
+      "title" : "Sample Post 28",
+      "description" : "Sample Post Placeholder",
+      "author" : {
+        "photo" : "/images/jonathan.jpg",
+        "name" : "Jonathan"
+      }
+    },
+    {
+      "id" : 29,
+      "slug" : "sample-post-29",
+      "title" : "Sample Post 29",
+      "description" : "Sample Post Placeholder",
+      "author" : {
+        "photo" : "/images/jonathan.jpg",
+        "name" : "Jonathan"
+      }
+    },
+    {
+      "id" : 30,
+      "slug" : "sample-post-30",
+      "title" : "Sample Post 30",
+      "description" : "Sample Post Placeholder",
+      "author" : {
+        "photo" : "/images/jonathan.jpg",
+        "name" : "Jonathan"
+      }
+    },
+    {
+      "id" : 31,
+      "slug" : "sample-post-31",
+      "title" : "Sample Post 31",
+      "description" : "Sample Post Placeholder",
+      "author" : {
+        "photo" : "/images/jonathan.jpg",
+        "name" : "Jonathan"
+      }
+    },
+    {
+      "id" : 32,
+      "slug" : "sample-post-32",
+      "title" : "Sample Post 32",
+      "description" : "Sample Post Placeholder",
+      "author" : {
+        "photo" : "/images/jonathan.jpg",
+        "name" : "Jonathan"
+      }
+    },
+    {
+      "id" : 33,
+      "slug" : "sample-post-33",
+      "title" : "Sample Post 33",
+      "description" : "Sample Post Placeholder",
+      "author" : {
+        "photo" : "/images/jonathan.jpg",
+        "name" : "Jonathan"
+      }
+    },
+    {
+      "id" : 33,
+      "slug" : "sample-post-33",
+      "title" : "Sample Post 33",
       "description" : "Sample Post Placeholder",
       "author" : {
         "photo" : "/images/jonathan.jpg",

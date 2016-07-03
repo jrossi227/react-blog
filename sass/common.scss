@@ -68,3 +68,9 @@ body{
     float: left;
   }
 }
+
+@media (max-device-width: 768px) {
+  h1 {
+    font-size: 24px !important;
+  }
+}
