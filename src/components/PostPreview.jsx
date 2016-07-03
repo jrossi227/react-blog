@@ -1,13 +1,14 @@
 var React = require('react/addons');
-var RouteHandler = require('react-router').RouteHandler;
-var Link = require('react-router').Link;
 var SinglePostActions = require('../actions/SinglePostActions');
+var AuthorMixin = require('../mixins/AuthorMixin.jsx');
 
 var PostPreview = React.createClass({
 
     contextTypes: {
         router: React.PropTypes.func
     },
+
+    mixins: [AuthorMixin],
 
     loadPost : function(e){
         e.preventDefault();
@@ -19,8 +20,8 @@ var PostPreview = React.createClass({
         return (
             <a href={'/post/' + this.props.post.id +'/'+this.props.post.slug} className="single-post" onClick={this.loadPost}>
                 <div className="post-title">{this.props.post.title}</div>
-                <div className="author-details"><img src={this.props.post.author.photo} className="author-photo"/>
-                    <span className="author-name">{this.props.post.author.name}</span>
+                <div className="author-details">
+                    {this.getAuthorDetails(this.props.post)}
                 </div>
             </a>
         )

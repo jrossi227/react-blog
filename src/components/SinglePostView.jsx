@@ -5,12 +5,15 @@ var SinglePostActions = require('../actions/SinglePostActions');
 var AllPostActions = require('../actions/AllPostActions');
 var Link = require('react-router').Link;
 var marked = require('marked');
+var AuthorMixin = require('../mixins/AuthorMixin.jsx');
 
 var SinglePostView = React.createClass({
 
     contextTypes: {
         router: React.PropTypes.func
     },
+
+    mixins: [AuthorMixin],
 
     componentWillMount: function() {
         var self = this;
@@ -66,8 +69,7 @@ var SinglePostView = React.createClass({
                 </div>
                 <h1 className="post-title">{this.state.currentPost.title}</h1>
                 <div className="author-details">
-                    <img src={this.state.currentPost.author.photo} className="author-photo"/>
-                    <span className="author-name">{this.state.currentPost.author.name}</span>
+                    {this.getAuthorDetails(this.state.currentPost)}
                 </div>
                 <div className="post-content">
                     <div dangerouslySetInnerHTML={ {__html: this.state.currentPost.description || ''} }></div>

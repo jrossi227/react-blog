@@ -2,20 +2,20 @@
   display: block;
   padding: 15px 20px;
   text-decoration: none;
-}
 
-.single-post .post-title{
-  font-size: 20px;
-  color: #607D8B;
-  font-weight: 300;
-}
+  &:hover{
+    background: #ECEFF1;
+    text-decoration: none;
+  }
 
-.single-post:hover{
-  background: #ECEFF1;
-  text-decoration: none;
-}
+  .post-title{
+    font-size: 20px;
+    color: #607D8B;
+    font-weight: 300;
+  }
 
-.single-post .author-details{
-  overflow: auto;
-  margin-top: 15px;
+  .author-details{
+    overflow: auto;
+    margin-top: 15px;
+  }
 }

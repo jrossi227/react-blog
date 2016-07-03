@@ -15,7 +15,7 @@ Iso.bootstrap(function (state, meta, container) {
 });
 
 
-},{"./alt":472,"./routes.jsx":481,"iso":72,"react-router":273,"react/addons":288}],2:[function(require,module,exports){
+},{"./alt":472,"./routes.jsx":482,"iso":72,"react-router":273,"react/addons":288}],2:[function(require,module,exports){
 var port = 9080;
 
 var config = {
@@ -44328,7 +44328,7 @@ function AllPostActions(){"use strict";}
 
 module.exports = alt.createActions(AllPostActions);
 
-},{"../../config":2,"../alt":472,"../stores/AllPostStore":482,"superagent":462}],471:[function(require,module,exports){
+},{"../../config":2,"../alt":472,"../stores/AllPostStore":483,"superagent":462}],471:[function(require,module,exports){
 var alt = require('../alt');
 var request = require('superagent');
 var config = require('../../config');
@@ -44413,7 +44413,7 @@ function SinglePostActions(){"use strict";}
 
 module.exports = alt.createActions(SinglePostActions);
 
-},{"../../config":2,"../IncludeHandler":469,"../alt":472,"../stores/SinglePostStore":483,"superagent":462}],472:[function(require,module,exports){
+},{"../../config":2,"../IncludeHandler":469,"../alt":472,"../stores/SinglePostStore":484,"superagent":462}],472:[function(require,module,exports){
 var Alt = require('alt');
 var alt = new Alt();
 module.exports = alt;
@@ -44709,17 +44709,18 @@ var PostListView = React.createClass({displayName: "PostListView",
 
 module.exports = PostListView;
 
-},{"../../config":2,"../actions/AllPostActions":470,"../stores/AllPostStore":482,"./Pagination.jsx":476,"./PostListHeader.jsx":477,"./PostPreview.jsx":479,"react/addons":288}],479:[function(require,module,exports){
+},{"../../config":2,"../actions/AllPostActions":470,"../stores/AllPostStore":483,"./Pagination.jsx":476,"./PostListHeader.jsx":477,"./PostPreview.jsx":479,"react/addons":288}],479:[function(require,module,exports){
 var React = require('react/addons');
-var RouteHandler = require('react-router').RouteHandler;
-var Link = require('react-router').Link;
 var SinglePostActions = require('../actions/SinglePostActions');
+var AuthorMixin = require('../mixins/AuthorMixin.jsx');
 
 var PostPreview = React.createClass({displayName: "PostPreview",
 
     contextTypes: {
         router: React.PropTypes.func
     },
+
+    mixins: [AuthorMixin],
 
     loadPost : function(e){
         e.preventDefault();
@@ -44731,8 +44732,8 @@ var PostPreview = React.createClass({displayName: "PostPreview",
         return (
             React.createElement("a", {href: '/post/' + this.props.post.id +'/'+this.props.post.slug, className: "single-post", onClick: this.loadPost}, 
                 React.createElement("div", {className: "post-title"}, this.props.post.title), 
-                React.createElement("div", {className: "author-details"}, React.createElement("img", {src: this.props.post.author.photo, className: "author-photo"}), 
-                    React.createElement("span", {className: "author-name"}, this.props.post.author.name)
+                React.createElement("div", {className: "author-details"}, 
+                    this.getAuthorDetails(this.props.post)
                 )
             )
         )
@@ -44741,7 +44742,7 @@ var PostPreview = React.createClass({displayName: "PostPreview",
 
 module.exports = PostPreview;
 
-},{"../actions/SinglePostActions":471,"react-router":273,"react/addons":288}],480:[function(require,module,exports){
+},{"../actions/SinglePostActions":471,"../mixins/AuthorMixin.jsx":481,"react/addons":288}],480:[function(require,module,exports){
 var React = require('react/addons');
 var SinglePostStore = require('../stores/SinglePostStore');
 var Glyphicon = require('react-bootstrap').Glyphicon;
@@ -44749,12 +44750,15 @@ var SinglePostActions = require('../actions/SinglePostActions');
 var AllPostActions = require('../actions/AllPostActions');
 var Link = require('react-router').Link;
 var marked = require('marked');
+var AuthorMixin = require('../mixins/AuthorMixin.jsx');
 
 var SinglePostView = React.createClass({displayName: "SinglePostView",
 
     contextTypes: {
         router: React.PropTypes.func
     },
+
+    mixins: [AuthorMixin],
 
     componentWillMount: function() {
         var self = this;
@@ -44810,8 +44814,7 @@ var SinglePostView = React.createClass({displayName: "SinglePostView",
                 ), 
                 React.createElement("h1", {className: "post-title"}, this.state.currentPost.title), 
                 React.createElement("div", {className: "author-details"}, 
-                    React.createElement("img", {src: this.state.currentPost.author.photo, className: "author-photo"}), 
-                    React.createElement("span", {className: "author-name"}, this.state.currentPost.author.name)
+                    this.getAuthorDetails(this.state.currentPost)
                 ), 
                 React.createElement("div", {className: "post-content"}, 
                     React.createElement("div", {dangerouslySetInnerHTML:  {__html: this.state.currentPost.description || ''} }), 
@@ -44825,7 +44828,27 @@ var SinglePostView = React.createClass({displayName: "SinglePostView",
 
 module.exports = SinglePostView;
 
-},{"../actions/AllPostActions":470,"../actions/SinglePostActions":471,"../stores/SinglePostStore":483,"marked":144,"react-bootstrap":217,"react-router":273,"react/addons":288}],481:[function(require,module,exports){
+},{"../actions/AllPostActions":470,"../actions/SinglePostActions":471,"../mixins/AuthorMixin.jsx":481,"../stores/SinglePostStore":484,"marked":144,"react-bootstrap":217,"react-router":273,"react/addons":288}],481:[function(require,module,exports){
+var React = require('react/addons');
+
+var AuthorMixin = {
+    getAuthorDetails: function(post) {
+        var details = [];
+        if(post.author.photo && post.author.photo != '') {
+            details.push(React.createElement("img", {key: "author-photo", src: post.author.photo, className: "author-photo"}));
+        } else {
+            details.push(React.createElement("div", {key: "author-photo", className: "author-photo-placeholder"}));
+        }
+        if(post.author.name && post.author.name != '') {
+            details.push(React.createElement("span", {key: "author-name", className: "author-name"}, post.author.name));
+        }
+        return details;
+    }
+};
+
+module.exports = AuthorMixin;
+
+},{"react/addons":288}],482:[function(require,module,exports){
 var React = require('react/addons');
 var Route = require('react-router').Route;
 var DefaultRoute = require('react-router').DefaultRoute;
@@ -44843,7 +44866,7 @@ var routes = (
 
 module.exports = routes;
 
-},{"./components/App.jsx":473,"./components/PostListView.jsx":478,"./components/SinglePostView.jsx":480,"react-router":273,"react/addons":288}],482:[function(require,module,exports){
+},{"./components/App.jsx":473,"./components/PostListView.jsx":478,"./components/SinglePostView.jsx":480,"react-router":273,"react/addons":288}],483:[function(require,module,exports){
 var alt = require('../alt');
 var AllPostActions = require('../actions/AllPostActions');
 
@@ -44883,7 +44906,7 @@ var AllPostActions = require('../actions/AllPostActions');
 
 module.exports = alt.createStore(AllPostStore, 'AllPostStore');
 
-},{"../actions/AllPostActions":470,"../alt":472}],483:[function(require,module,exports){
+},{"../actions/AllPostActions":470,"../alt":472}],484:[function(require,module,exports){
 var alt = require('../alt');
 var SinglePostActions = require('../actions/SinglePostActions');
 
