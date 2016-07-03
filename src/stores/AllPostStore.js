@@ -12,6 +12,7 @@ class AllPostStore{
         this.on('init', function(){
             self.postsByPage = {};
             self.numberOfPosts = 0;
+            self.pageNum = 1;
             self.postListContent = {
                 header: '',
                 content: ''
@@ -25,6 +26,7 @@ class AllPostStore{
     }
     
     handleUpdatePosts(obj){
+        this.pageNum = obj.pageNum;
         this.postsByPage[obj.pageNum] = obj.post;
     }
 

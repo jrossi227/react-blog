@@ -16,7 +16,7 @@ var PostListView = React.createClass({
     },
 
     componentWillMount: function() {
-        this.pageNum = parseInt(this.props.params.pageNum || 1);
+        this.pageNum = parseInt(this.props.params.pageNum || AllPostStore.getState().pageNum);
         AllPostActions.getNumberOfPosts();
         AllPostActions.loadPage(this.pageNum);
         AllPostActions.loadPostListContent();
@@ -32,7 +32,7 @@ var PostListView = React.createClass({
 
     componentWillReceiveProps(nextProps) {
         if(!!nextProps.params.pageNum && nextProps.params.pageNum != this.pageNum) {
-            this.pageNum = parseInt(nextProps.params.pageNum || 1);
+            this.pageNum = parseInt(nextProps.params.pageNum);
             AllPostActions.loadPage(this.pageNum);
         }
     },

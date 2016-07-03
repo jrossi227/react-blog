@@ -22,7 +22,6 @@ var getIncludesByType = function(type) {
     var post;
     for(var i=0; i<posts.length; i++) {
         post = posts[i];
-        //console.log(post);
         var includes = post.includes;
         if(!!includes) {
             includes = includes
@@ -48,7 +47,7 @@ gulp.task('jsIncludes', function() {
 
     return gulp.src(allIncludes)
         .pipe(print())
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(concat('includes.js'))
         .pipe(gulp.dest('./public/scripts'));
 
@@ -65,7 +64,7 @@ gulp.task('react', function() {
         .pipe(source(package.dest.app))
         .pipe(clean({force: true}))
         .pipe(buffer()) // <----- convert from streaming to buffered vinyl file object
-        .pipe(uglify()) // now gulp-uglify works
+        //.pipe(uglify()) // now gulp-uglify works
         .pipe(gulp.dest(package.dest.dist));
 });
 
