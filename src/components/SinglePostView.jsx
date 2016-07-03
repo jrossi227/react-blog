@@ -4,6 +4,8 @@ var Glyphicon = require('react-bootstrap').Glyphicon;
 var SinglePostActions = require('../actions/SinglePostActions');
 var AllPostActions = require('../actions/AllPostActions');
 var Link = require('react-router').Link;
+var markdown = require( "markdown" ).markdown;
+var marked = require('marked');
 
 var SinglePostView = React.createClass({
 
@@ -42,7 +44,7 @@ var SinglePostView = React.createClass({
 
         var includes = this.state.includes || [];
 
-        var htmlIncludes = [], jsIncludes = [];
+        var htmlIncludes = [], mdIncludes = [];
         if(includes.length > 0) {
             var include;
             for(var i=0; i<includes.length; i++) {
@@ -50,6 +52,9 @@ var SinglePostView = React.createClass({
                 switch(include.type) {
                     case 'html':
                         htmlIncludes.push(include.value);
+                        break;
+                    case 'md':
+                        mdIncludes.push(include.value);
                         break;
                 }
             }
@@ -68,6 +73,7 @@ var SinglePostView = React.createClass({
                 <div className="post-content">
                     <div dangerouslySetInnerHTML={ {__html: this.state.currentPost.description || ''} }></div>
                     <div dangerouslySetInnerHTML={ {__html: htmlIncludes.join('')} }></div>
+                    <div dangerouslySetInnerHTML={ {__html: marked( mdIncludes.join('') )} }></div>
                 </div>
             </div>
         )

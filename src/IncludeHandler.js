@@ -14,6 +14,7 @@ var IncludeHandler = (function() {
 
         switch(type) {
             case 'html':
+            case 'md':
 
                 request
                     .get(config.baseUrl+path)

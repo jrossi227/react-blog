@@ -9,16 +9,17 @@
 5. Add tags and Grouping
 6. Add support for RSS feeds
 7. Implement Breadcrumbs and three levels (Not needed for two levels)
-8. Make NProgress work or find something else
-9. move posts.json to require include (rethink that)
-10. Load page by page in post list view
+8. Make NProgress work or find something else (done)
+9. move posts.json to require include (done)
+10. Load page by page in post list view (done)
 11. Document blog installation using blog created
-12. Add nested pages/sections
-13. Make paging seo friendly
+12. Add nested pages/sections (holding off)
+13. Make paging seo friendly (done)
 14. Rework includes to not have to use jsx (update exports.showSinglePost)
 15. Cache pages after looking them up (Done)
 16. Cache numberOfPosts in AllPostStore
 17. Move included js and css inside the build (Done)
 18. Add header and footer to list view
 19. Add global header and footer
+20. Add markdown support for posts
 
