@@ -22,7 +22,8 @@ var config = {
     port: port,
     baseUrl : "http://localhost:" + port,
     pageTitle: 'React Blog',
-    itemsPerPage: 5
+    itemsPerPage: 5,
+    maxPageButtons: 3
 };
 
 module.exports = config;
@@ -44520,33 +44521,113 @@ var Pagination = React.createClass({displayName: "Pagination",
         router: React.PropTypes.func
     },
 
-    componentWillMount: function() {
-
-    },
-
-    componentDidMount : function() {
-
-    },
-
-    componentWillUnmount : function() {
-
-    },
-
     _renderPageLinks: function() {
         var numberOfPages = this.props.numberOfPages;
+        var activePage = this.props.activePage;
+        var maxButtons = this.props.maxButtons;
 
         var links = [];
         var active = '';
-        for(var i=1; i<=numberOfPages; i++) {
-            active = '';
-            if(i == this.props.activePage) {
-                active = 'active';
-            }
+        var prefix = 1 + '-';
+        if(numberOfPages > maxButtons) {
+            if(activePage <= maxButtons) {
+                prefix = 2 + '-';
 
-            links.push(
-                React.createElement("li", {className: active, key: i}, 
-                    React.createElement(Link, {to: '/page/' + i, role: "button"}, i)
-                ));
+                //buttons on the left
+                for(var i=1; i<=maxButtons; i++) {
+                    active = '';
+                    if(i == activePage) {
+                        active = 'active';
+                    }
+
+                    links.push(
+                        React.createElement("li", {className: active, key: prefix + i}, 
+                            React.createElement(Link, {to: '/page/' + i, role: "button"}, i)
+                        ));
+                }
+
+                links.push( React.createElement("li", {className: "disabled", key: prefix + 'more'}, 
+                                React.createElement("a", {role: "button", href: ""}, 
+                                    React.createElement("span", {"aria-label": "More"}, "…")
+                                )
+                            ));
+                links.push( React.createElement("li", {key: prefix + numberOfPages}, 
+                                React.createElement(Link, {to: '/page/' + numberOfPages, role: "button"}, numberOfPages)
+                            ));
+
+
+
+            } else if ((numberOfPages - activePage) < maxButtons){
+                prefix = 3 + '-';
+
+                //buttons on the right
+                links.push( React.createElement("li", {key: prefix + 1}, 
+                                React.createElement(Link, {to: '/page/1', role: "button"}, "1")
+                            ));
+                links.push( React.createElement("li", {className: "disabled", key: prefix + 'more'}, 
+                                React.createElement("a", {role: "button", href: ""}, 
+                                    React.createElement("span", {"aria-label": "More"}, "…")
+                                )
+                            ));
+
+                for(var i=(numberOfPages - maxButtons + 1); i<=numberOfPages; i++) {
+                    active = '';
+                    if(i == activePage) {
+                        active = 'active';
+                    }
+
+                    links.push(
+                        React.createElement("li", {className: active, key: prefix + i}, 
+                            React.createElement(Link, {to: '/page/' + i, role: "button"}, i)
+                        ));
+                }
+
+            } else {
+                prefix = 4 + '-';
+
+                //buttons in the middle
+                links.push( React.createElement("li", {key: prefix + '1'}, 
+                                React.createElement(Link, {to: '/page/1', role: "button"}, "1")
+                            ));
+                links.push( React.createElement("li", {className: "disabled", key: prefix + 'more-1'}, 
+                                React.createElement("a", {role: "button", href: ""}, 
+                                    React.createElement("span", {"aria-label": "More"}, "…")
+                                )
+                            ));
+
+                for(var i=(activePage - (Math.floor(maxButtons/2))); i<=activePage + (Math.floor(maxButtons/2)); i++) {
+                    active = '';
+                    if(i == activePage) {
+                        active = 'active';
+                    }
+
+                    links.push(
+                        React.createElement("li", {className: active, key: prefix + i}, 
+                            React.createElement(Link, {to: '/page/' + i, role: "button"}, i)
+                        ));
+                }
+
+                links.push( React.createElement("li", {className: "disabled", key: prefix + 'more-2'}, 
+                                React.createElement("a", {role: "button", href: ""}, 
+                                    React.createElement("span", {"aria-label": "More"}, "…")
+                                )
+                            ));
+                links.push( React.createElement("li", {key: prefix + numberOfPages}, 
+                                React.createElement(Link, {to: '/page/' + numberOfPages, role: "button"}, numberOfPages)
+                            ));
+            }
+        } else {
+            for(var i=1; i<=numberOfPages; i++) {
+                active = '';
+                if(i == activePage) {
+                    active = 'active';
+                }
+
+                links.push(
+                    React.createElement("li", {className: active, key: prefix + i}, 
+                        React.createElement(Link, {to: '/page/' + i, role: "button"}, i)
+                    ));
+            }
         }
 
         return links;
@@ -44697,7 +44778,7 @@ var PostListView = React.createClass({displayName: "PostListView",
 
                     React.createElement(Pagination, {
                         numberOfPages: this.getNumberOfPages(), 
-                        maxButtons: 5, 
+                        maxButtons: config.maxPageButtons, 
                         activePage: this.pageNum, 
                         onSelect: this.handleSelect})
 

@@ -72,7 +72,7 @@ var PostListView = React.createClass({
 
                     <Pagination
                         numberOfPages={this.getNumberOfPages()}
-                        maxButtons={5}
+                        maxButtons={config.maxPageButtons}
                         activePage={this.pageNum}
                         onSelect={this.handleSelect} />
 

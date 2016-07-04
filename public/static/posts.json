@@ -38,6 +38,7 @@
         }
       ],
       "author" : {
+        "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"
       }
     },
