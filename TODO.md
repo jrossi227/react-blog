@@ -22,6 +22,6 @@
 18. Add header and footer to list view (Done)
 19. Add global header and footer (Done)
 20. Add markdown support for posts (Done)
-21. Add configurable max pages to paging nav
-22. Add meta description to posts
+21. Add configurable max pages to paging nav (Done)
+22. Add meta description to posts (Done)
 23. Style for smaller devices with media queries

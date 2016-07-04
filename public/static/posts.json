@@ -1,13 +1,15 @@
 {
   "postListContent": {
     "header": "This is a test header",
-    "content": "<p>This is test content<p>"
+    "content": "<p>This is test content<p>",
+    "metaDescription": "React Isomorphic Blog Engine"
   },
   "posts": [
     {
       "id" : 1,
       "slug" : "10-reasons-you-should-use-react-in-your-next-app",
       "title" : "10 reasons to use React in your next project",
+      "metaDescription": "10 reasons to use React in your next project",
       "includes" : [
         {
           "type": "html",

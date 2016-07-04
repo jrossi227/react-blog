@@ -11,15 +11,16 @@ exports.showAllPosts = function(req,res,next){
     request.get(config.baseUrl+'/static/posts.json',function(err,response){
         var itemsPerPage = config.itemsPerPage;
         res.locals.data = {
-           "AllPostStore" : {
+            "AllPostStore" : {
                "postsByPage" : {
                },
                "numberOfPosts": response.body.posts.length,
                "postListContent": response.body.postListContent
-           }
+            }
         };
 
         res.locals.data.AllPostStore.postsByPage[pageNum+1] = response.body.posts.slice(itemsPerPage * pageNum, (itemsPerPage * pageNum) + itemsPerPage);
+        res.locals.metaDescription = response.body.postListContent.metaDescription || '';
 
         next();
     });
@@ -50,6 +51,8 @@ exports.showSinglePost = function(req,res,next){
                         "stateById": {}
                     }
                 };
+
+                res.locals.metaDescription = post.metaDescription || post.title;
 
                 res.locals.data.SinglePostStore.stateById[post.id] = {};
                 res.locals.data.SinglePostStore.stateById[post.id].post = post;
