@@ -1,8 +1,8 @@
 {
   "postListContent": {
-    "header": "This is a test header",
-    "content": "<p>This is test content<p>",
-    "metaDescription": "React Isomorphic Blog Engine"
+    "header": "This is a test text only header",
+    "content": "<p>This is test dynamic html content<p>",
+    "metaDescription": "This is a test text only meta description"
   },
   "posts": [
     {
