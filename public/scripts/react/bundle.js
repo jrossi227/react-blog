@@ -15,7 +15,7 @@ Iso.bootstrap(function (state, meta, container) {
 });
 
 
-},{"./alt":472,"./routes.jsx":482,"iso":72,"react-router":273,"react/addons":288}],2:[function(require,module,exports){
+},{"./alt":473,"./routes.jsx":484,"iso":72,"react-router":273,"react/addons":288}],2:[function(require,module,exports){
 var port = 9080;
 
 var config = {
@@ -44206,6 +44206,26 @@ function has(o, k) {
 }
 }).call(this,require('_process'))
 },{"_process":146,"invariant":71,"react":460}],469:[function(require,module,exports){
+var React = require('react/addons');
+
+var ReasonsToUseReact = React.createClass({displayName: "ReasonsToUseReact",
+
+    render : function() {
+
+        return (
+        React.createElement("p", null, "React, developed by Facebook, is an open source library for building User Interfaces. As the front end world moves" + ' ' +
+            "too fast you should not be hesitant to try out new things. I am a big fan of AngularJS and a few months back I" + ' ' +
+            "started trying React. As React doesn't assume anything about rest of your tech stack it plays well with others. The" + ' ' +
+            "biggest reason for me to try React was to create isomorphic apps that render on both client and server (with a" + ' ' +
+            "little help from other libraries as well). In this article I am going to share 10 best reasons to use React in your" + ' ' +
+            "next project.")
+        )
+    }
+});
+
+module.exports = ReasonsToUseReact;
+
+},{"react/addons":288}],470:[function(require,module,exports){
 var request = require('superagent'),
     config = require('../config');
 
@@ -44214,9 +44234,9 @@ var IncludeHandler = (function() {
     
     var _handleInclude = function(type, path, cb) {
 
-        var executeCallback = function(type, data) {
+        var executeCallback = function(data) {
             if(typeof cb != 'undefined') {
-                cb(type, data);
+                cb(type, data, path);
             }
         };
 
@@ -44227,12 +44247,12 @@ var IncludeHandler = (function() {
                 request
                     .get(config.baseUrl+path)
                     .end(function(err, res){
-                        executeCallback(type, res.text);
+                        executeCallback(res.text);
                     });
                 break;
 
             default:
-                executeCallback(type, null);
+                executeCallback(null);
                 break;
         }
     };
@@ -44245,7 +44265,7 @@ var IncludeHandler = (function() {
 
 module.exports = IncludeHandler;
 
-},{"../config":2,"superagent":462}],470:[function(require,module,exports){
+},{"../config":2,"superagent":462}],471:[function(require,module,exports){
 var alt = require('../alt');
 var request = require('superagent');
 var config = require('../../config');
@@ -44329,7 +44349,7 @@ function AllPostActions(){"use strict";}
 
 module.exports = alt.createActions(AllPostActions);
 
-},{"../../config":2,"../alt":472,"../stores/AllPostStore":483,"superagent":462}],471:[function(require,module,exports){
+},{"../../config":2,"../alt":473,"../stores/AllPostStore":485,"superagent":462}],472:[function(require,module,exports){
 var alt = require('../alt');
 var request = require('superagent');
 var config = require('../../config');
@@ -44373,10 +44393,11 @@ function SinglePostActions(){"use strict";}
 
                 if(includeNum > 0) {
 
-                    var includeCallback = function(type, data) {
+                    var includeCallback = function(type, data, path) {
                         loadedIncludes.push({
                             type: type,
-                            value: data
+                            value: data,
+                            path: path
                         });
 
                         includeNum --;
@@ -44414,12 +44435,12 @@ function SinglePostActions(){"use strict";}
 
 module.exports = alt.createActions(SinglePostActions);
 
-},{"../../config":2,"../IncludeHandler":469,"../alt":472,"../stores/SinglePostStore":484,"superagent":462}],472:[function(require,module,exports){
+},{"../../config":2,"../IncludeHandler":470,"../alt":473,"../stores/SinglePostStore":486,"superagent":462}],473:[function(require,module,exports){
 var Alt = require('alt');
 var alt = new Alt();
 module.exports = alt;
 
-},{"alt":3}],473:[function(require,module,exports){
+},{"alt":3}],474:[function(require,module,exports){
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var Header = require('./Header.jsx');
@@ -44451,7 +44472,7 @@ var App = React.createClass({displayName: "App",
 
 module.exports = App;
 
-},{"./Footer.jsx":474,"./Header.jsx":475,"react-bootstrap":217,"react-router":273,"react/addons":288}],474:[function(require,module,exports){
+},{"./Footer.jsx":475,"./Header.jsx":476,"react-bootstrap":217,"react-router":273,"react/addons":288}],475:[function(require,module,exports){
 var React = require('react/addons');
 
 var Link = require('react-router').Link;
@@ -44473,7 +44494,7 @@ var Footer = React.createClass({displayName: "Footer",
 
 module.exports = Footer;
 
-},{"react-router":273,"react/addons":288}],475:[function(require,module,exports){
+},{"react-router":273,"react/addons":288}],476:[function(require,module,exports){
 var React = require('react/addons');
 
 var Navbar = require('react-bootstrap').Navbar;
@@ -44498,7 +44519,15 @@ var Header = React.createClass({displayName: "Header",
 
 module.exports = Header;
 
-},{"react-bootstrap":217,"react-router":273,"react/addons":288}],476:[function(require,module,exports){
+},{"react-bootstrap":217,"react-router":273,"react/addons":288}],477:[function(require,module,exports){
+//This file was auto generated. Updating it will have no effect
+var JsxIncludes = {};
+JsxIncludes["/static/jsx/reasons-to-use-react.jsx"] = require("../../public/static/jsx/reasons-to-use-react.jsx");
+
+module.exports = JsxIncludes;
+
+
+},{"../../public/static/jsx/reasons-to-use-react.jsx":469}],478:[function(require,module,exports){
 var React = require('react/addons');
 var config = require('../../config');
 var Link = require('react-router').Link;
@@ -44665,7 +44694,7 @@ var Pagination = React.createClass({displayName: "Pagination",
 
 module.exports = Pagination;
 
-},{"../../config":2,"react-router":273,"react/addons":288}],477:[function(require,module,exports){
+},{"../../config":2,"react-router":273,"react/addons":288}],479:[function(require,module,exports){
 var React = require('react/addons');
 
 var PostListHeader = React.createClass({displayName: "PostListHeader",
@@ -44703,7 +44732,7 @@ var PostListHeader = React.createClass({displayName: "PostListHeader",
 
 module.exports = PostListHeader;
 
-},{"react/addons":288}],478:[function(require,module,exports){
+},{"react/addons":288}],480:[function(require,module,exports){
 var React = require('react/addons');
 var AllPostStore = require('../stores/AllPostStore');
 var AllPostActions = require('../actions/AllPostActions');
@@ -44790,7 +44819,7 @@ var PostListView = React.createClass({displayName: "PostListView",
 
 module.exports = PostListView;
 
-},{"../../config":2,"../actions/AllPostActions":470,"../stores/AllPostStore":483,"./Pagination.jsx":476,"./PostListHeader.jsx":477,"./PostPreview.jsx":479,"react/addons":288}],479:[function(require,module,exports){
+},{"../../config":2,"../actions/AllPostActions":471,"../stores/AllPostStore":485,"./Pagination.jsx":478,"./PostListHeader.jsx":479,"./PostPreview.jsx":481,"react/addons":288}],481:[function(require,module,exports){
 var React = require('react/addons');
 var SinglePostActions = require('../actions/SinglePostActions');
 var AuthorMixin = require('../mixins/AuthorMixin.jsx');
@@ -44823,7 +44852,7 @@ var PostPreview = React.createClass({displayName: "PostPreview",
 
 module.exports = PostPreview;
 
-},{"../actions/SinglePostActions":471,"../mixins/AuthorMixin.jsx":481,"react/addons":288}],480:[function(require,module,exports){
+},{"../actions/SinglePostActions":472,"../mixins/AuthorMixin.jsx":483,"react/addons":288}],482:[function(require,module,exports){
 var React = require('react/addons');
 var SinglePostStore = require('../stores/SinglePostStore');
 var Glyphicon = require('react-bootstrap').Glyphicon;
@@ -44832,6 +44861,7 @@ var AllPostActions = require('../actions/AllPostActions');
 var Link = require('react-router').Link;
 var marked = require('marked');
 var AuthorMixin = require('../mixins/AuthorMixin.jsx');
+var JsxIncludes = require('./JsxIncludes');
 
 var SinglePostView = React.createClass({displayName: "SinglePostView",
 
@@ -44872,7 +44902,7 @@ var SinglePostView = React.createClass({displayName: "SinglePostView",
 
         var includes = this.state.includes || [];
 
-        var htmlIncludes = [], mdIncludes = [];
+        var htmlIncludes = [], mdIncludes = [], jsxIncludes = [];
         if(includes.length > 0) {
             var include;
             for(var i=0; i<includes.length; i++) {
@@ -44883,6 +44913,10 @@ var SinglePostView = React.createClass({displayName: "SinglePostView",
                         break;
                     case 'md':
                         mdIncludes.push(include.value);
+                        break;
+                    case 'jsx':
+                        var Template = JsxIncludes[include.path];
+                        jsxIncludes.push(React.createElement(Template, {key: include.path}));
                         break;
                 }
             }
@@ -44900,7 +44934,7 @@ var SinglePostView = React.createClass({displayName: "SinglePostView",
                 React.createElement("div", {className: "post-content"}, 
                     React.createElement("div", {dangerouslySetInnerHTML:  {__html: this.state.currentPost.description || ''} }), 
                     React.createElement("div", {dangerouslySetInnerHTML:  {__html: htmlIncludes.join('')} }), 
-                    React.createElement("div", {dangerouslySetInnerHTML:  {__html: marked( mdIncludes.join('') )} })
+                    jsxIncludes
                 )
             )
         )
@@ -44909,7 +44943,7 @@ var SinglePostView = React.createClass({displayName: "SinglePostView",
 
 module.exports = SinglePostView;
 
-},{"../actions/AllPostActions":470,"../actions/SinglePostActions":471,"../mixins/AuthorMixin.jsx":481,"../stores/SinglePostStore":484,"marked":144,"react-bootstrap":217,"react-router":273,"react/addons":288}],481:[function(require,module,exports){
+},{"../actions/AllPostActions":471,"../actions/SinglePostActions":472,"../mixins/AuthorMixin.jsx":483,"../stores/SinglePostStore":486,"./JsxIncludes":477,"marked":144,"react-bootstrap":217,"react-router":273,"react/addons":288}],483:[function(require,module,exports){
 var React = require('react/addons');
 
 var AuthorMixin = {
@@ -44929,7 +44963,7 @@ var AuthorMixin = {
 
 module.exports = AuthorMixin;
 
-},{"react/addons":288}],482:[function(require,module,exports){
+},{"react/addons":288}],484:[function(require,module,exports){
 var React = require('react/addons');
 var Route = require('react-router').Route;
 var DefaultRoute = require('react-router').DefaultRoute;
@@ -44947,7 +44981,7 @@ var routes = (
 
 module.exports = routes;
 
-},{"./components/App.jsx":473,"./components/PostListView.jsx":478,"./components/SinglePostView.jsx":480,"react-router":273,"react/addons":288}],483:[function(require,module,exports){
+},{"./components/App.jsx":474,"./components/PostListView.jsx":480,"./components/SinglePostView.jsx":482,"react-router":273,"react/addons":288}],485:[function(require,module,exports){
 var alt = require('../alt');
 var AllPostActions = require('../actions/AllPostActions');
 
@@ -44987,7 +45021,7 @@ var AllPostActions = require('../actions/AllPostActions');
 
 module.exports = alt.createStore(AllPostStore, 'AllPostStore');
 
-},{"../actions/AllPostActions":470,"../alt":472}],484:[function(require,module,exports){
+},{"../actions/AllPostActions":471,"../alt":473}],486:[function(require,module,exports){
 var alt = require('../alt');
 var SinglePostActions = require('../actions/SinglePostActions');
 
@@ -45030,4 +45064,4 @@ var SinglePostActions = require('../actions/SinglePostActions');
 
 module.exports = alt.createStore(SinglePostStore, 'SinglePostStore');
 
-},{"../actions/SinglePostActions":471,"../alt":472}]},{},[1]);
+},{"../actions/SinglePostActions":472,"../alt":473}]},{},[1]);

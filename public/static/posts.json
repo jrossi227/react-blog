@@ -46,9 +46,15 @@
     },
     {
       "id" : 3,
-      "slug" : "understanding-foundation-5-grid-system-tutorial",
-      "title" : "Understanding Foundation 5 Grid System — Tutorial",
-      "description" : "A grid system is used to place the website's elements in proper locations and control the overall structure of the website. It is a virtual structure of rows and columns, which when intersect, create rectangular containers for placing other elements.",
+      "slug" : "10-reasons-you-should-use-react-in-your-next-app-jsx",
+      "title" : "10 reasons to use React in your next project JSX",
+      "metaDescription": "10 reasons to use React in your next project JSX",
+      "includes" : [
+        {
+          "type": "jsx",
+          "path": "/static/jsx/reasons-to-use-react.jsx"
+        }
+      ],
       "author" : {
         "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"

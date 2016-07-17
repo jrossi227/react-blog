@@ -41,10 +41,11 @@ class SinglePostActions {
 
                 if(includeNum > 0) {
 
-                    var includeCallback = function(type, data) {
+                    var includeCallback = function(type, data, path) {
                         loadedIncludes.push({
                             type: type,
-                            value: data
+                            value: data,
+                            path: path
                         });
 
                         includeNum --;

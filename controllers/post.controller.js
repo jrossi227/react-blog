@@ -63,11 +63,12 @@ exports.showSinglePost = function(req,res,next){
                 if(includeNum > 0) {
 
                     res.locals.data.SinglePostStore.includes = [];
-                    var includeCallback = function(type, data) {
+                    var includeCallback = function(type, data, path) {
 
                         res.locals.data.SinglePostStore.includes.push({
-                           type: type,
-                           value: data
+                            type: type,
+                            value: data,
+                            path: path
                         });
                         
                         includeNum --;

@@ -6,9 +6,9 @@ var IncludeHandler = (function() {
     
     var _handleInclude = function(type, path, cb) {
 
-        var executeCallback = function(type, data) {
+        var executeCallback = function(data) {
             if(typeof cb != 'undefined') {
-                cb(type, data);
+                cb(type, data, path);
             }
         };
 
@@ -19,12 +19,12 @@ var IncludeHandler = (function() {
                 request
                     .get(config.baseUrl+path)
                     .end(function(err, res){
-                        executeCallback(type, res.text);
+                        executeCallback(res.text);
                     });
                 break;
 
             default:
-                executeCallback(type, null);
+                executeCallback(null);
                 break;
         }
     };

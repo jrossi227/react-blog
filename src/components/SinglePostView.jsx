@@ -6,6 +6,7 @@ var AllPostActions = require('../actions/AllPostActions');
 var Link = require('react-router').Link;
 var marked = require('marked');
 var AuthorMixin = require('../mixins/AuthorMixin.jsx');
+var JsxIncludes = require('./JsxIncludes');
 
 var SinglePostView = React.createClass({
 
@@ -46,7 +47,7 @@ var SinglePostView = React.createClass({
 
         var includes = this.state.includes || [];
 
-        var htmlIncludes = [], mdIncludes = [];
+        var htmlIncludes = [], mdIncludes = [], jsxIncludes = [];
         if(includes.length > 0) {
             var include;
             for(var i=0; i<includes.length; i++) {
@@ -57,6 +58,10 @@ var SinglePostView = React.createClass({
                         break;
                     case 'md':
                         mdIncludes.push(include.value);
+                        break;
+                    case 'jsx':
+                        var Template = JsxIncludes[include.path];
+                        jsxIncludes.push(<Template key={include.path}/>);
                         break;
                 }
             }
@@ -74,7 +79,7 @@ var SinglePostView = React.createClass({
                 <div className="post-content">
                     <div dangerouslySetInnerHTML={ {__html: this.state.currentPost.description || ''} }></div>
                     <div dangerouslySetInnerHTML={ {__html: htmlIncludes.join('')} }></div>
-                    <div dangerouslySetInnerHTML={ {__html: marked( mdIncludes.join('') )} }></div>
+                    {jsxIncludes}
                 </div>
             </div>
         )

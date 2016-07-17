@@ -14,7 +14,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     sass = require('gulp-sass');
 
-var getIncludesByType = function(type) {
+var getIncludesByType = function(type, includePublicPath) {
     var allIncludes = [];
     var data = fs.readFileSync('./public/static/posts.json', 'utf8');
 
@@ -32,7 +32,11 @@ var getIncludesByType = function(type) {
 
                     return false;
                 }).map(function(include) {
-                    return './public' + include.path;
+                    if(includePublicPath === true) {
+                        return './public' + include.path;
+                    }
+
+                    return include.path;
                 });
 
             allIncludes = allIncludes.concat(includes);
@@ -42,8 +46,27 @@ var getIncludesByType = function(type) {
     return allIncludes;
 };
 
+function generateJsxIncludes() {
+
+    var includes = getIncludesByType('jsx', false);
+    var includesString = '//This file was auto generated. Updating it will have no effect\n';
+    includesString += 'var JsxIncludes = {};\n';
+
+    if(includes.length > 0) {
+
+        var path;
+        for(var i=0; i<includes.length; i++) {
+
+            path = '../../public' + includes[i];
+            includesString += 'JsxIncludes["' + includes[i] + '"] = require("' + path + '");\n';
+        }
+    }
+    includesString += '\nmodule.exports = JsxIncludes;\n'
+    fs.writeFileSync('./src/components/JsxIncludes.js', includesString, 'utf8');
+}
+
 gulp.task('jsIncludes', function() {
-    var allIncludes = getIncludesByType('js');
+    var allIncludes = getIncludesByType('js', true);
 
     return gulp.src(allIncludes)
         .pipe(print())
@@ -55,6 +78,9 @@ gulp.task('jsIncludes', function() {
 
 
 gulp.task('react', function() {
+
+    generateJsxIncludes();
+
     return browserify(package.paths.app)
         .transform('reactify',
             {
@@ -71,7 +97,7 @@ gulp.task('react', function() {
 gulp.task('bundle', ['react', 'jsIncludes']);
 
 gulp.task('cssIncludes', function() {
-    var allIncludes = getIncludesByType('css');
+    var allIncludes = getIncludesByType('css', true);
 
     return gulp.src(allIncludes)
         .pipe(print())

@@ -25,4 +25,5 @@
 21. Add configurable max pages to paging nav (Done)
 22. Add meta description to posts (Done)
 23. Style for smaller devices with media queries
-24. Need jsx support for includes
+24. Need jsx support for includes dynamically write includes.jsx (Done)
+25. Show sample react bootstrap by using jsx include
