@@ -44934,6 +44934,7 @@ var SinglePostView = React.createClass({displayName: "SinglePostView",
                 React.createElement("div", {className: "post-content"}, 
                     React.createElement("div", {dangerouslySetInnerHTML:  {__html: this.state.currentPost.description || ''} }), 
                     React.createElement("div", {dangerouslySetInnerHTML:  {__html: htmlIncludes.join('')} }), 
+                    React.createElement("div", {dangerouslySetInnerHTML:  {__html: marked( mdIncludes.join('') )} }), 
                     jsxIncludes
                 )
             )

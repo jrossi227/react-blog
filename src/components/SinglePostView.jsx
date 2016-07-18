@@ -79,6 +79,7 @@ var SinglePostView = React.createClass({
                 <div className="post-content">
                     <div dangerouslySetInnerHTML={ {__html: this.state.currentPost.description || ''} }></div>
                     <div dangerouslySetInnerHTML={ {__html: htmlIncludes.join('')} }></div>
+                    <div dangerouslySetInnerHTML={ {__html: marked( mdIncludes.join('') )} }></div>
                     {jsxIncludes}
                 </div>
             </div>
