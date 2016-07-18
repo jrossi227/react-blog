@@ -26,4 +26,4 @@
 22. Add meta description to posts (Done)
 23. Style for smaller devices with media queries
 24. Need jsx support for includes dynamically write includes.jsx (Done)
-25. Show sample react bootstrap by using jsx include
+25. Show sample react bootstrap by using jsx include, (First Page - Installation (Including React Bootstrap Docs), Second Page dynamic Bootstrap, Third Page, Static Bootstrap, Foursth Page Markdown example, Then Placeholders)
