@@ -1,27 +1,19 @@
 {
   "postListContent": {
-    "header": "This is a test text only header",
-    "content": "<p>This is test dynamic html content<p>",
+    "header": "React Isomorphic Blog example",
+    "content": "<p>The articles below are used as examples to show the functionality of this blogging system<p>",
     "metaDescription": "This is a test text only meta description"
   },
   "posts": [
     {
       "id" : 1,
-      "slug" : "10-reasons-you-should-use-react-in-your-next-app",
-      "title" : "10 reasons to use React in your next project",
-      "metaDescription": "10 reasons to use React in your next project",
+      "slug" : "markdown-example",
+      "metaDescription": "Markdown Example",
+      "title" : "Markdown example using the Readme from React-Blog",
       "includes" : [
         {
-          "type": "html",
-          "path": "/static/html/reasons-to-use-react.html"
-        },
-        {
-          "type": "js",
-          "path": "/static/js/reasons-to-use-react.js"
-        },
-        {
-          "type": "css",
-          "path": "/static/css/reasons-to-use-react.css"
+          "type": "md",
+          "path": "/static/md/react-blog-readme.md"
         }
       ],
       "author" : {
@@ -31,12 +23,21 @@
     },
     {
       "id" : 2,
-      "slug" : "marked-example",
-      "title" : "Markdown example using marked",
+      "slug" : "Static html example",
+      "title" : "Static html example",
+      "metaDescription": "Static html example",
       "includes" : [
         {
-          "type": "md",
-          "path": "/static/md/marked.md"
+          "type": "html",
+          "path": "/static/html/static-html-example.html"
+        },
+        {
+          "type": "js",
+          "path": "/static/js/static-html-example.js"
+        },
+        {
+          "type": "css",
+          "path": "/static/css/static-html-example.css"
         }
       ],
       "author" : {
@@ -46,13 +47,13 @@
     },
     {
       "id" : 3,
-      "slug" : "10-reasons-you-should-use-react-in-your-next-app-jsx",
-      "title" : "10 reasons to use React in your next project JSX",
-      "metaDescription": "10 reasons to use React in your next project JSX",
+      "slug" : "react-components-example",
+      "title" : "React Components Example",
+      "metaDescription": "React Components Example",
       "includes" : [
         {
           "type": "jsx",
-          "path": "/static/jsx/reasons-to-use-react.jsx"
+          "path": "/static/jsx/react-components-example.jsx"
         }
       ],
       "author" : {
@@ -62,9 +63,9 @@
     },
     {
       "id" : 4,
-      "slug" : "creating-a-social-news-sharing-app-in-20-minutes-with-meteor",
-      "title" : "Creating a social news sharing app in 20 minutes with Meteor",
-      "description" : "Meteor 1.0 is already out and everybody is talking about its reactiveness. In this article I will show you how to create a basic social news sharing app (in other words a Hacker News clone) in just 20 minutes with Meteor. Obviously, the end product won't be as feature rich as Hacker News. But it will be simple and easy to extend. The source code is available on GitHub.",
+      "slug" : "placeholder-4",
+      "title" : "Placeholder",
+      "description" : "This is a Placeholder to show paging",
       "author" : {
         "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"
@@ -72,9 +73,9 @@
     },
     {
       "id" : 5,
-      "slug" : "introduction-to-javascript-immutability-with-immutablejs",
-      "title" : "Introduction to JavaScript Immutability with Immutable.js",
-      "description" : "Immutable.js is a JavaScript library by Facebook that lets you work with persistent immutable data collections. Immutability means once a collection is created, it can't be changed (mutated). With Immutable.js, operations like push, unshift, set etc will return new immutable collections instead of changing the original collection. So, let's see why immutability is useful and explore how Immutable.js lets you write immutable code.",
+      "slug" : "placeholder-5",
+      "title" : "Placeholder",
+      "description" : "This is a Placeholder to show paging",
       "author" : {
         "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"
@@ -82,9 +83,9 @@
     },
     {
       "id" : 6,
-      "slug" : "introduction-to-javascript-immutability-with-immutablejs",
-      "title" : "Introduction to JavaScript Immutability with Immutable.js",
-      "description" : "Immutable.js is a JavaScript library by Facebook that lets you work with persistent immutable data collections. Immutability means once a collection is created, it can't be changed (mutated). With Immutable.js, operations like push, unshift, set etc will return new immutable collections instead of changing the original collection. So, let's see why immutability is useful and explore how Immutable.js lets you write immutable code.",
+      "slug" : "placeholder-6",
+      "title" : "Placeholder",
+      "description" : "This is a Placeholder to show paging",
       "author" : {
         "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"
@@ -92,9 +93,9 @@
     },
     {
       "id" : 7,
-      "slug" : "introduction-to-javascript-immutability-with-immutablejs",
-      "title" : "Introduction to JavaScript Immutability with Immutable.js",
-      "description" : "Immutable.js is a JavaScript library by Facebook that lets you work with persistent immutable data collections. Immutability means once a collection is created, it can't be changed (mutated). With Immutable.js, operations like push, unshift, set etc will return new immutable collections instead of changing the original collection. So, let's see why immutability is useful and explore how Immutable.js lets you write immutable code.",
+      "slug" : "placeholder-7",
+      "title" : "Placeholder",
+      "description" : "This is a Placeholder to show paging",
       "author" : {
         "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"
@@ -102,9 +103,9 @@
     },
     {
       "id" : 8,
-      "slug" : "introduction-to-javascript-immutability-with-immutablejs",
-      "title" : "Introduction to JavaScript Immutability with Immutable.js",
-      "description" : "Immutable.js is a JavaScript library by Facebook that lets you work with persistent immutable data collections. Immutability means once a collection is created, it can't be changed (mutated). With Immutable.js, operations like push, unshift, set etc will return new immutable collections instead of changing the original collection. So, let's see why immutability is useful and explore how Immutable.js lets you write immutable code.",
+      "slug" : "placeholder-8",
+      "title" : "Placeholder",
+      "description" : "This is a Placeholder to show paging",
       "author" : {
         "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"
@@ -112,9 +113,9 @@
     },
     {
       "id" : 9,
-      "slug" : "sample-post-9",
-      "title" : "Sample Post 9",
-      "description" : "Sample Post Placeholder",
+      "slug" : "placeholder-9",
+      "title" : "Placeholder",
+      "description" : "This is a Placeholder to show paging",
       "author" : {
         "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"
@@ -122,19 +123,9 @@
     },
     {
       "id" : 10,
-      "slug" : "sample-post-10",
-      "title" : "Sample Post 10",
-      "description" : "Sample Post Placeholder",
-      "author" : {
-        "photo" : "/images/jonathan.jpg",
-        "name" : "Jonathan"
-      }
-    },
-    {
-      "id" : 10,
-      "slug" : "sample-post-10",
-      "title" : "Sample Post 10",
-      "description" : "Sample Post Placeholder",
+      "slug" : "placeholder-10",
+      "title" : "Placeholder",
+      "description" : "This is a Placeholder to show paging",
       "author" : {
         "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"
@@ -142,9 +133,9 @@
     },
     {
       "id" : 11,
-      "slug" : "sample-post-11",
-      "title" : "Sample Post 11",
-      "description" : "Sample Post Placeholder",
+      "slug" : "placeholder-11",
+      "title" : "Placeholder",
+      "description" : "This is a Placeholder to show paging",
       "author" : {
         "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"
@@ -152,9 +143,9 @@
     },
     {
       "id" : 12,
-      "slug" : "sample-post-12",
-      "title" : "Sample Post 12",
-      "description" : "Sample Post Placeholder",
+      "slug" : "placeholder-12",
+      "title" : "Placeholder",
+      "description" : "This is a Placeholder to show paging",
       "author" : {
         "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"
@@ -162,9 +153,9 @@
     },
     {
       "id" : 13,
-      "slug" : "sample-post-13",
-      "title" : "Sample Post 13",
-      "description" : "Sample Post Placeholder",
+      "slug" : "placeholder-13",
+      "title" : "Placeholder",
+      "description" : "This is a Placeholder to show paging",
       "author" : {
         "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"
@@ -172,9 +163,9 @@
     },
     {
       "id" : 14,
-      "slug" : "sample-post-14",
-      "title" : "Sample Post 14",
-      "description" : "Sample Post Placeholder",
+      "slug" : "placeholder-14",
+      "title" : "Placeholder",
+      "description" : "This is a Placeholder to show paging",
       "author" : {
         "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"
@@ -182,9 +173,9 @@
     },
     {
       "id" : 15,
-      "slug" : "sample-post-15",
-      "title" : "Sample Post 15",
-      "description" : "Sample Post Placeholder",
+      "slug" : "placeholder-15",
+      "title" : "Placeholder",
+      "description" : "This is a Placeholder to show paging",
       "author" : {
         "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"
@@ -192,9 +183,9 @@
     },
     {
       "id" : 16,
-      "slug" : "sample-post-16",
-      "title" : "Sample Post 16",
-      "description" : "Sample Post Placeholder",
+      "slug" : "placeholder-16",
+      "title" : "Placeholder",
+      "description" : "This is a Placeholder to show paging",
       "author" : {
         "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"
@@ -202,9 +193,9 @@
     },
     {
       "id" : 17,
-      "slug" : "sample-post-17",
-      "title" : "Sample Post 17",
-      "description" : "Sample Post Placeholder",
+      "slug" : "placeholder-17",
+      "title" : "Placeholder",
+      "description" : "This is a Placeholder to show paging",
       "author" : {
         "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"
@@ -212,9 +203,9 @@
     },
     {
       "id" : 18,
-      "slug" : "sample-post-18",
-      "title" : "Sample Post 18",
-      "description" : "Sample Post Placeholder",
+      "slug" : "placeholder-18",
+      "title" : "Placeholder",
+      "description" : "This is a Placeholder to show paging",
       "author" : {
         "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"
@@ -222,9 +213,9 @@
     },
     {
       "id" : 19,
-      "slug" : "sample-post-19",
-      "title" : "Sample Post 19",
-      "description" : "Sample Post Placeholder",
+      "slug" : "placeholder-19",
+      "title" : "Placeholder",
+      "description" : "This is a Placeholder to show paging",
       "author" : {
         "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"
@@ -232,9 +223,9 @@
     },
     {
       "id" : 20,
-      "slug" : "sample-post-20",
-      "title" : "Sample Post 20",
-      "description" : "Sample Post Placeholder",
+      "slug" : "placeholder-20",
+      "title" : "Placeholder",
+      "description" : "This is a Placeholder to show paging",
       "author" : {
         "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"
@@ -242,9 +233,9 @@
     },
     {
       "id" : 21,
-      "slug" : "sample-post-21",
-      "title" : "Sample Post 21",
-      "description" : "Sample Post Placeholder",
+      "slug" : "placeholder-21",
+      "title" : "Placeholder",
+      "description" : "This is a Placeholder to show paging",
       "author" : {
         "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"
@@ -252,9 +243,9 @@
     },
     {
       "id" : 22,
-      "slug" : "sample-post-22",
-      "title" : "Sample Post 22",
-      "description" : "Sample Post Placeholder",
+      "slug" : "placeholder-22",
+      "title" : "Placeholder",
+      "description" : "This is a Placeholder to show paging",
       "author" : {
         "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"
@@ -262,9 +253,9 @@
     },
     {
       "id" : 23,
-      "slug" : "sample-post-23",
-      "title" : "Sample Post 23",
-      "description" : "Sample Post Placeholder",
+      "slug" : "placeholder-23",
+      "title" : "Placeholder",
+      "description" : "This is a Placeholder to show paging",
       "author" : {
         "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"
@@ -272,9 +263,9 @@
     },
     {
       "id" : 24,
-      "slug" : "sample-post-24",
-      "title" : "Sample Post 24",
-      "description" : "Sample Post Placeholder",
+      "slug" : "placeholder-24",
+      "title" : "Placeholder",
+      "description" : "This is a Placeholder to show paging",
       "author" : {
         "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"
@@ -282,9 +273,9 @@
     },
     {
       "id" : 25,
-      "slug" : "sample-post-25",
-      "title" : "Sample Post 25",
-      "description" : "Sample Post Placeholder",
+      "slug" : "placeholder-25",
+      "title" : "Placeholder",
+      "description" : "This is a Placeholder to show paging",
       "author" : {
         "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"
@@ -292,9 +283,9 @@
     },
     {
       "id" : 26,
-      "slug" : "sample-post-26",
-      "title" : "Sample Post 26",
-      "description" : "Sample Post Placeholder",
+      "slug" : "placeholder-26",
+      "title" : "Placeholder",
+      "description" : "This is a Placeholder to show paging",
       "author" : {
         "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"
@@ -302,79 +293,9 @@
     },
     {
       "id" : 27,
-      "slug" : "sample-post-27",
-      "title" : "Sample Post 27",
-      "description" : "Sample Post Placeholder",
-      "author" : {
-        "photo" : "/images/jonathan.jpg",
-        "name" : "Jonathan"
-      }
-    },
-    {
-      "id" : 28,
-      "slug" : "sample-post-28",
-      "title" : "Sample Post 28",
-      "description" : "Sample Post Placeholder",
-      "author" : {
-        "photo" : "/images/jonathan.jpg",
-        "name" : "Jonathan"
-      }
-    },
-    {
-      "id" : 29,
-      "slug" : "sample-post-29",
-      "title" : "Sample Post 29",
-      "description" : "Sample Post Placeholder",
-      "author" : {
-        "photo" : "/images/jonathan.jpg",
-        "name" : "Jonathan"
-      }
-    },
-    {
-      "id" : 30,
-      "slug" : "sample-post-30",
-      "title" : "Sample Post 30",
-      "description" : "Sample Post Placeholder",
-      "author" : {
-        "photo" : "/images/jonathan.jpg",
-        "name" : "Jonathan"
-      }
-    },
-    {
-      "id" : 31,
-      "slug" : "sample-post-31",
-      "title" : "Sample Post 31",
-      "description" : "Sample Post Placeholder",
-      "author" : {
-        "photo" : "/images/jonathan.jpg",
-        "name" : "Jonathan"
-      }
-    },
-    {
-      "id" : 32,
-      "slug" : "sample-post-32",
-      "title" : "Sample Post 32",
-      "description" : "Sample Post Placeholder",
-      "author" : {
-        "photo" : "/images/jonathan.jpg",
-        "name" : "Jonathan"
-      }
-    },
-    {
-      "id" : 33,
-      "slug" : "sample-post-33",
-      "title" : "Sample Post 33",
-      "description" : "Sample Post Placeholder",
-      "author" : {
-        "photo" : "/images/jonathan.jpg",
-        "name" : "Jonathan"
-      }
-    },
-    {
-      "id" : 33,
-      "slug" : "sample-post-33",
-      "title" : "Sample Post 33",
-      "description" : "Sample Post Placeholder",
+      "slug" : "placeholder-27",
+      "title" : "Placeholder",
+      "description" : "This is a Placeholder to show paging",
       "author" : {
         "photo" : "/images/jonathan.jpg",
         "name" : "Jonathan"

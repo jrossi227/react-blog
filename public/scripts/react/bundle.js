@@ -44207,25 +44207,122 @@ function has(o, k) {
 }).call(this,require('_process'))
 },{"_process":146,"invariant":71,"react":460}],469:[function(require,module,exports){
 var React = require('react/addons');
+var Tabs = require('react-bootstrap').Tabs;
+var Tab = require('react-bootstrap').Tab;
+var Tooltip = require('react-bootstrap').Tooltip;
+var ButtonToolbar = require('react-bootstrap').ButtonToolbar;
+var ButtonGroup = require('react-bootstrap').ButtonGroup;
+var Glyphicon = require('react-bootstrap').Glyphicon;
+var OverlayTrigger = require('react-bootstrap').OverlayTrigger;
+var Button = require('react-bootstrap').Button;
+var Navbar = require('react-bootstrap').Navbar;
+var NavBrand = require('react-bootstrap').NavBrand;
+var Nav = require('react-bootstrap').Nav;
+var NavItem = require('react-bootstrap').NavItem;
+var NavDropdown = require('react-bootstrap').NavDropdown;
+var MenuItem = require('react-bootstrap').MenuItem;
+
+const ControlledTabs = React.createClass({displayName: "ControlledTabs",
+    getInitialState:function() {
+        return {
+            key: 1
+        };
+    },
+
+    handleSelect:function(key) {
+        alert('selected ' + key);
+        this.setState({key:key});
+    },
+
+    render:function() {
+        return (
+            React.createElement(Tabs, {activeKey: this.state.key, onSelect: this.handleSelect}, 
+                React.createElement(Tab, {eventKey: 1, title: "Tab 1"}, "Tab 1 content"), 
+                React.createElement(Tab, {eventKey: 2, title: "Tab 2"}, "Tab 2 content"), 
+                React.createElement(Tab, {eventKey: 3, title: "Tab 3", disabled: true}, "Tab 3 content")
+            )
+        );
+    }
+});
+
+const tooltip = (
+    React.createElement(Tooltip, null, React.createElement("strong", null, "Holy guacamole!"), " Check this info.")
+);
 
 var ReasonsToUseReact = React.createClass({displayName: "ReasonsToUseReact",
 
     render : function() {
 
         return (
-        React.createElement("p", null, "React, developed by Facebook, is an open source library for building User Interfaces. As the front end world moves" + ' ' +
-            "too fast you should not be hesitant to try out new things. I am a big fan of AngularJS and a few months back I" + ' ' +
-            "started trying React. As React doesn't assume anything about rest of your tech stack it plays well with others. The" + ' ' +
-            "biggest reason for me to try React was to create isomorphic apps that render on both client and server (with a" + ' ' +
-            "little help from other libraries as well). In this article I am going to share 10 best reasons to use React in your" + ' ' +
-            "next project.")
+            React.createElement("div", null, 
+                React.createElement("p", null, "This is an example to show a blog post that uses other React components. Please see the Readme for information on how to generate component documentation for React Bootstrap. You may use React Bootstrap or your own custom components."), 
+
+                React.createElement("h3", null, "Tabs"), 
+                React.createElement(ControlledTabs, null), 
+
+                React.createElement("h3", null, "Tooltips"), 
+                React.createElement(ButtonToolbar, null, 
+                    React.createElement(OverlayTrigger, {placement: "left", overlay: tooltip}, 
+                        React.createElement(Button, {bsStyle: "default"}, "Holy guacamole!")
+                    ), 
+
+                    React.createElement(OverlayTrigger, {placement: "top", overlay: tooltip}, 
+                        React.createElement(Button, {bsStyle: "default"}, "Holy guacamole!")
+                    ), 
+
+                    React.createElement(OverlayTrigger, {placement: "bottom", overlay: tooltip}, 
+                        React.createElement(Button, {bsStyle: "default"}, "Holy guacamole!")
+                    ), 
+
+                    React.createElement(OverlayTrigger, {placement: "right", overlay: tooltip}, 
+                        React.createElement(Button, {bsStyle: "default"}, "Holy guacamole!")
+                    )
+                ), 
+
+                React.createElement("h3", null, "Navbar"), 
+                React.createElement(Navbar, null, 
+                    React.createElement(NavBrand, null, React.createElement("a", {href: "#"}, "React-Bootstrap")), 
+                    React.createElement(Nav, null, 
+                        React.createElement(NavItem, {eventKey: 1, href: "#"}, "Link"), 
+                        React.createElement(NavItem, {eventKey: 2, href: "#"}, "Link"), 
+                        React.createElement(NavDropdown, {eventKey: 3, title: "Dropdown", id: "nav-brand-dropdown"}, 
+                            React.createElement(MenuItem, {eventKey: "1"}, "Action"), 
+                            React.createElement(MenuItem, {eventKey: "2"}, "Another action"), 
+                            React.createElement(MenuItem, {eventKey: "3"}, "Something else here"), 
+                            React.createElement(MenuItem, {divider: true}), 
+                            React.createElement(MenuItem, {eventKey: "4"}, "Separated link")
+                        )
+                    )
+                ), 
+
+                React.createElement("h3", null, "Glyphicons"), 
+                React.createElement("div", null, 
+                    React.createElement(ButtonToolbar, null, 
+                        React.createElement(ButtonGroup, null, 
+                            React.createElement(Button, null, React.createElement(Glyphicon, {glyph: "align-left"})), 
+                            React.createElement(Button, null, React.createElement(Glyphicon, {glyph: "align-center"})), 
+                            React.createElement(Button, null, React.createElement(Glyphicon, {glyph: "align-right"})), 
+                            React.createElement(Button, null, React.createElement(Glyphicon, {glyph: "align-justify"}))
+                        )
+                    ), 
+                    React.createElement(ButtonToolbar, null, 
+                        React.createElement(ButtonGroup, null, 
+                            React.createElement(Button, {bsSize: "large"}, React.createElement(Glyphicon, {glyph: "star"}), " Star"), 
+                            React.createElement(Button, null, React.createElement(Glyphicon, {glyph: "star"}), " Star"), 
+                            React.createElement(Button, {bsSize: "small"}, React.createElement(Glyphicon, {glyph: "star"}), " Star"), 
+                            React.createElement(Button, {bsSize: "xsmall"}, React.createElement(Glyphicon, {glyph: "star"}), " Star")
+                        )
+                    )
+                )
+
+            )
         )
     }
 });
 
 module.exports = ReasonsToUseReact;
 
-},{"react/addons":288}],470:[function(require,module,exports){
+},{"react-bootstrap":217,"react/addons":288}],470:[function(require,module,exports){
 var request = require('superagent'),
     config = require('../config');
 
@@ -44522,12 +44619,12 @@ module.exports = Header;
 },{"react-bootstrap":217,"react-router":273,"react/addons":288}],477:[function(require,module,exports){
 //This file was auto generated. Updating it will have no effect
 var JsxIncludes = {};
-JsxIncludes["/static/jsx/reasons-to-use-react.jsx"] = require("../../public/static/jsx/reasons-to-use-react.jsx");
+JsxIncludes["/static/jsx/react-components-example.jsx"] = require("../../public/static/jsx/react-components-example.jsx");
 
 module.exports = JsxIncludes;
 
 
-},{"../../public/static/jsx/reasons-to-use-react.jsx":469}],478:[function(require,module,exports){
+},{"../../public/static/jsx/react-components-example.jsx":469}],478:[function(require,module,exports){
 var React = require('react/addons');
 var config = require('../../config');
 var Link = require('react-router').Link;

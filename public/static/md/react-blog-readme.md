@@ -55,7 +55,7 @@ Contains seven fields, some are optional:
     Each include object has the following fields:
     
     - **type** - Valid types are as follows:
-        - **css** - custom styles to apply to the article. **Every article inherits bootstrap 3 css by default**.
+        - **css** - custom styles to apply to the article. **Every article inherits bootstrap css by default**.
         - **html** - custom html content for your post. 
         - **js** - custom javascript content for your post 
         - **md** - a markdown file for your post
@@ -75,10 +75,7 @@ The Blog currently has three primary options for rendering content.
 3. [Using React Bootstrap and your own React components for dynamic content.](#react-bootstrap)
 
 #### Using a markdown file
-This is the easiest way to generate custom markup. Include all of your markdown in one file. The React Blog application will parse your Markdown file and generate styled html content that is displayed to the user. See the first post in `public/static/posts.json` for a sample configuration.
 
 #### Using static html, css and js
-You can include custom html, css and js for a blog post. If you wish to import a library to use in your js file(JQuery) then you must do this asynchronously. See the second post in `public/static/posts.json` for sample code.
 
 #### Using React Bootstrap and your own React components for dynamic content.
-You may use custom React components for a blog post. This Blog was built using React Bootstrap and you may use React Bootstrap components out of the Box.

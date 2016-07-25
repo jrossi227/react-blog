@@ -124,7 +124,7 @@ gulp.task('styles',['appStyles', 'cssIncludes']);
 gulp.task('build-all', ['bundle', 'styles']);
 
 gulp.task('watch', function () {
-    gulp.watch(['src/**/*.js', 'src/**/*.jsx', 'public/static/**/*.js', 'app.js', 'config.js'],['bundle']);
+    gulp.watch(['src/**/*.js', 'src/**/*.jsx', 'public/static/**/*.js','public/static/**/*.jsx', 'public/static/**/*.json', 'app.js', 'config.js'],['bundle']);
     gulp.watch(['sass/**/*.scss', 'public/static/**/*.css'],['styles']);
 });
 
