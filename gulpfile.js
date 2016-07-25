@@ -43,6 +43,16 @@ var getIncludesByType = function(type, includePublicPath) {
         }
     }
 
+    var paths = {};
+    allIncludes = allIncludes.filter(function(path) {
+        if(!!paths[path]) {
+            return false;
+        }
+        
+        paths[path] = true;
+        return true;
+    });
+
     return allIncludes;
 };
 
