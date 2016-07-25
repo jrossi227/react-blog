@@ -72,7 +72,7 @@ The Blog currently has three primary options for rendering content.
 
 1. [Using a markdown file.](#using-a-markdown-file)
 2. [Using static html, css and js.](#using-static-html,-css-and-js)
-3. [Using React Bootstrap and your own React components for dynamic content.](#react-bootstrap)
+3. [Using React Bootstrap and your own React components for dynamic content.](#using-react-bootstrap-and-your-own-react-components-for-dynamic-content)
 
 #### Using a markdown file
 This is the easiest way to generate custom markup. Include all of your markdown in one file. The React Blog application will parse your Markdown file and generate styled html content that is displayed to the user. See the first post in `public/static/posts.json` for a sample configuration.
@@ -80,5 +80,12 @@ This is the easiest way to generate custom markup. Include all of your markdown 
 #### Using static html, css and js
 You can include custom html, css and js for a blog post. If you wish to import a library to use in your js file(JQuery) then you must do this asynchronously. See the second post in `public/static/posts.json` for sample code.
 
-#### Using React Bootstrap and your own React components for dynamic content.
-You may use custom React components for a blog post. This Blog was built using React Bootstrap and you may use React Bootstrap components out of the Box.
+#### Using React Bootstrap and your own React components for dynamic content
+You may use custom React components for a blog post. This blog application was built using React Bootstrap and you may use React Bootstrap components out of the Box. See the third post in `public/static/posts.json` for sample code.
+
+##### React Bootstrap documentation
+React Bootstrap is an ongoing project so documentation you encounter online may not be applicable to the version that this Blog is currently using. We have bundled the version that we are using with this repo. To generate the documentation you can do the following:
+
+1. Go to `react-bootstrap-0.26.4`
+2. run `npm run docs` and navigate your browser to `http://localhost:4000/components.html`.
+3. You should now be able to view all of the components and sample code. You can read `react-bootstrap-0.26.4/docs/README.md` for more information.
