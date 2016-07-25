@@ -9,6 +9,9 @@ This project provides a responsive SEO friendly React isomorphic blog.
 - [Developing Blog Content](#developing-blog-content)
 - [Content Recommendations and Explanations](#content-recommendations-and-explanations)
 
+### Demo
+The following link contains demo content for the blog. These examples are packaged into the current code base. [Demo](http://reactblog-jrossi.rhcloud.com/) 
+
 ### Code for this project
 The code for this project is located on Github [here](https://github.com/jrossi227/react-blog)
 
@@ -16,7 +19,7 @@ The code for this project is located on Github [here](https://github.com/jrossi2
 
 1. Install Gulp - `npm install -g gulp`
 2. `npm install` to install dependencies.
-3. Run `gulp bundle` to build the code.
+3. Run `gulp build-all` to build the code.
 4. Run `gulp nodemon` to start the server.
 5. Go to http://localhost:9080/
 6. You can optionally run `gulp watch` to auto bundle your code changes on update.

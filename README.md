@@ -19,7 +19,7 @@ The code for this project is located on Github [here](https://github.com/jrossi2
 
 1. Install Gulp - `npm install -g gulp`
 2. `npm install` to install dependencies.
-3. Run `gulp bundle` to build the code.
+3. Run `gulp build-all` to build the code.
 4. Run `gulp nodemon` to start the server.
 5. Go to http://localhost:9080/
 6. You can optionally run `gulp watch` to auto bundle your code changes on update.
