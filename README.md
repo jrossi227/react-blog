@@ -3,6 +3,7 @@
 This project provides a responsive SEO friendly React isomorphic blog.
 
 ## Contents
+- [Demo](#demo)
 - [Code for this project](#code-for-this-project)
 - [How to run](#how-to-run)
 - [Configuration](#configuration)
