@@ -1,8 +1,7 @@
 {
-  "name": "React-Isomorphic-Seed",
+  "name": "React-Isomorphic-Blog",
   "version": "1.0.0",
-  "description": "React Isomorphic Seed",
-  "main": "bin/www",
+  "description": "React Isomorphic Blog",
   "author": "Jonathan Rossi <jonathan.m.rossi@gmail.com>",
   "license": "MIT",
   "dependencies": {
