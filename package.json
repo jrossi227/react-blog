@@ -43,5 +43,8 @@
   "dest": {
     "app": "bundle.js",
     "dist": "public/scripts/react"
+  },
+  "scripts": {
+    "start": "gulp nodemon"
   }
 }
