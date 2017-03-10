@@ -10,7 +10,7 @@ if (typeof window !== 'undefined') {
 
 var config = {
     port: port,
-    baseUrl : protocol + "//" + host + (port != "" ? (":" + port) ? ""),
+    baseUrl : protocol + "//" + host + (port != "" ? (":" + port) : ""),
     pageTitle: 'React Blog',
     itemsPerPage: 5,
     maxPageButtons: 3
