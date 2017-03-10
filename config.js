@@ -2,7 +2,7 @@ var port = process.env.PORT || window.baseUrl || 9080;
 var host = "localhost";
 var protocol = "http:";
 
-if (window) {
+if (typeof window !== 'undefined') {
 	host = window.location.hostname || host;
 	protocol = window.location.protocol || protocol;
 }
