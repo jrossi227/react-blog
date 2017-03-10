@@ -1,15 +1,16 @@
-var port = process.env.PORT || window.port || 9080;
+var port = process.env.PORT || 9080;
 var host = "localhost";
 var protocol = "http:";
 
 if (typeof window !== 'undefined') {
-	host = window.location.hostname || host;
-	protocol = window.location.protocol || protocol;
+	host = window.location.hostname;
+	protocol = window.location.protocol;
+	port = window.location.port;
 }
 
 var config = {
     port: port,
-    baseUrl : protocol + "//" + host + ":" + port,
+    baseUrl : protocol + "//" + host + (port != "" ? (":" + port) ? ""),
     pageTitle: 'React Blog',
     itemsPerPage: 5,
     maxPageButtons: 3
