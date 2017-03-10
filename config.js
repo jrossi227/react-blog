@@ -1,4 +1,4 @@
-var port = 9080;
+var port = process.env.PORT || 9080;
 
 var config = {
     port: port,

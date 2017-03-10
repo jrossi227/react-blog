@@ -19,8 +19,6 @@ var alt = require('./src/alt');
 var config = require('./config.js');
 var app = express();
 
-var port = process.env.PORT || config.port;
-
 app.set('views', __dirname+'/views');
 app.set('view engine', 'jade');
 
@@ -72,6 +70,6 @@ app.use(function(err, req, res, next) {
 
 });
 
-app.listen(port, function () {
+app.listen(config.port, function () {
     console.log('Listening on ' + config.baseUrl);
 });
