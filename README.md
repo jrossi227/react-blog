@@ -11,7 +11,7 @@ This project provides a responsive SEO friendly React isomorphic blog.
 - [Content Recommendations and Explanations](#content-recommendations-and-explanations)
 
 ### Demo
-The following link contains demo content for the blog. These examples are packaged into the current code base. [Demo](http://reactblog-jrossi.rhcloud.com/) 
+The following link contains demo content for the blog. These examples are packaged into the current code base. [Demo](https://react-blog-web.herokuapp.com/) 
 
 ### Code for this project
 The code for this project is located on Github [here](https://github.com/jrossi227/react-blog)
