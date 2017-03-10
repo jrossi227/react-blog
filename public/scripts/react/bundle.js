@@ -16,11 +16,19 @@ Iso.bootstrap(function (state, meta, container) {
 
 
 },{"./alt":473,"./routes.jsx":484,"iso":72,"react-router":273,"react/addons":288}],2:[function(require,module,exports){
-var port = 9080;
+(function (process){
+var port = process.env.PORT || window.baseUrl || 9080;
+var host = "localhost";
+var protocol = "http:";
+
+if (typeof window !== 'undefined') {
+	host = window.location.hostname || host;
+	protocol = window.location.protocol || protocol;
+}
 
 var config = {
     port: port,
-    baseUrl : "http://localhost:" + port,
+    baseUrl : protocol + "//" + host + ":" + port,
     pageTitle: 'React Blog',
     itemsPerPage: 5,
     maxPageButtons: 3
@@ -28,7 +36,9 @@ var config = {
 
 module.exports = config;
 
-},{}],3:[function(require,module,exports){
+
+}).call(this,require('_process'))
+},{"_process":146}],3:[function(require,module,exports){
 "use strict";
 
 var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
