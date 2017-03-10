@@ -1,6 +1,11 @@
 var port = process.env.PORT || window.baseUrl || 9080;
-var host = window.location.hostname || "localhost";
-var protocol = window.location.protocol || "http:";
+var host = "localhost";
+var protocol = "http:";
+
+if (window) {
+	host = window.location.hostname || host;
+	protocol = window.location.protocol || protocol;
+}
 
 var config = {
     port: port,
