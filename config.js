@@ -1,4 +1,4 @@
-var port = 9080;
+var port = 80;
 
 var config = {
     port: port,
