@@ -17,18 +17,15 @@ Iso.bootstrap(function (state, meta, container) {
 
 },{"./alt":473,"./routes.jsx":484,"iso":72,"react-router":273,"react/addons":288}],2:[function(require,module,exports){
 (function (process){
-var port = process.env.PORT || window.baseUrl || 9080;
-var host = "localhost";
-var protocol = "http:";
+var port = process.env.PORT || 9080;
 
 if (typeof window !== 'undefined') {
-	host = window.location.hostname || host;
-	protocol = window.location.protocol || protocol;
+	port = window.location.port;
 }
 
 var config = {
     port: port,
-    baseUrl : protocol + "//" + host + ":" + port,
+    baseUrl : typeof window !== 'undefined' ? window.location.origin : "http://localhost:" + port,
     pageTitle: 'React Blog',
     itemsPerPage: 5,
     maxPageButtons: 3
