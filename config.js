@@ -1,4 +1,4 @@
-var port = process.env.PORT || window.baseUrl || 9080;
+var port = process.env.PORT || 9080;
 var host = "localhost";
 var protocol = "http:";
 

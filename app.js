@@ -49,8 +49,7 @@ app.use(function (req, res) {
         res.render('index',{
             content:iso.render(),
             pageTitle: config.pageTitle,
-            metaDescription: metaDescription,
-            baseUrl: config.baseUrl
+            metaDescription: metaDescription
         });
     });
 });
