@@ -1,0 +1,216 @@
+<h2>Installation Instructions</h2>
+<ul>
+    <li><a href="#windows">Windows</a>
+        <ul>
+            <li><a href="#windows_apache_installation">Apache Installation</a>
+                <ul>
+                    <li><a href="#windows_apache_installation_apache24">Apache 2.4</a>
+                        <ul>
+                            <li><a href="#windows_apache_installation_apache24_msi">MSI Installer</a></li>
+                            <li><a href="#windows_apache_installation_apache24_zip">Zip File</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#windows_apache_installation_apache22">Apache 2.2</a>
+                        <ul>
+                            <li><a href="#windows_apache_installation_apache22_msi">MSI Installer</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="#windows_apachegui_installation">ApacheGUI Installation</a></li>
+        </ul>
+    </li>
+</ul>
+<ul>
+    <li><a href="#linux">Linux Solaris and Mac OSX</a>
+        <ul>
+            <li><a href="#linux_apachegui">ApacheGUI Installation</a></li>
+            <li><a href="#linux_package">Package Settings</a>
+                <ul>
+                    <li><a href="#linux_mac">Mac OSX</a></li>
+                    <li><a href="#linux_debian">Debian, Ubuntu, Other Debian variants</a></li>
+                    <li><a href="#linux_fedora">Fedora, CentOS, RHEL, other Fedora variants</a></li>
+                    <li><a href="#linux_suse">OpenSUSE and SLES</a></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+<h2>Configuration Settings</h2>
+<ul>
+    <li><a href="#endpoints">Endpoints</a></li>
+    <li><a href="#ports">Ports</a></li>
+    <li><a href="#logging">Logging</a></li>
+    <li><a href="#ssl">SSL</a></li>
+    <li><a href="#selinux">SELINUX</a></li>
+</ul>
+<h2>Installation Instructions</h2>
+<h4 id="windows" style="padding-left: 30px;">Windows</h4>
+<h4 id="windows_apache_installation" style="padding-left: 60px;">Apache Installation</h4>
+<p style="padding-left: 60px;">If you have already installed Apache you can disregard these instructions. If you haven&#8217;t
+    installed Apache you can grab a build from the download page. <a title="Apache Installation Files"
+                                                                     href="http://sourceforge.net/projects/apachegui/files/1.11-Windows/"
+                                                                     target="_blank">http://sourceforge.net/projects/apachegui/files/1.11-Windows/</a>
+</p>
+<h4 id="windows_apache_installation_apache24" style="padding-left: 90px;">Apache 2.4</h4>
+<h5 id="windows_apache_installation_apache24_msi" style="padding-left: 120px;">MSI Installer</h5>
+<p style="padding-left: 150px;">1. Run the msi installer.</p>
+<p style="padding-left: 150px;">2. Apache should now be seen in your computers Program Files directory under<br/>
+    <code>[PROGRAM_FILES]\Apache Software Foundation\Apache2.4</code>. This full path to Apache is known as the Server
+    Root.</p>
+<p style="padding-left: 150px;">3. You can now install and use ApacheGUI.</p>
+<h5 id="windows_apache_installation_apache24_zip" style="padding-left: 120px;">Zip File</h5>
+<p style="padding-left: 150px;">1. Download the appropriate zip file for your system architecture.</p>
+<p style="padding-left: 150px;">2. Extract the Apache24 directory to the desired location of the Apache installation.
+    The full installation path that you use is known as the Server Root. For the purposes of these steps we will refer
+    to the Server Root path as <code>[SERVER_ROOT]</code>.</p>
+<p style="padding-left: 150px;">3. Open a command prompt as an Administrator. Go to <code>[SERVER_ROOT]/bin</code> and
+    run the command <code>httpd -k install</code>.</p>
+<p style="padding-left: 150px;">4. You can now install and use ApacheGUI or start Apache manually using <code>httpd -k
+    start</code>.</p>
+<h4 id="windows_apache_installation_apache22" style="padding-left: 90px;">Apache 2.2</h4>
+<h5 id="windows_apache_installation_apache22_msi" style="padding-left: 120px;">MSI Installer</h5>
+<p style="padding-left: 150px;">1. Run the msi installer.</p>
+<p style="padding-left: 150px;">2. Apache should now be seen in your computers Program Files directory under<br/>
+    <code>[PROGRAM_FILES]\Apache Software Foundation\Apache2.2</code>. This full path to Apache is known as the Server
+    Root.</p>
+<p style="padding-left: 150px;">3. You can now install and use ApacheGUI.</p>
+<h4 id="windows_apachegui_installation" style="padding-left: 60px;">ApacheGUI Installation</h4>
+<p style="padding-left: 90px;">1. Unzip the ApacheGUI archive to a directory of your choice. We will refer to this
+    directory as <code>[APACHEGUI_HOME]</code> in the following installation steps.</p>
+<p style="padding-left: 90px;">2. You will need a jdk or jre in order to run Apache GUI. This means Java must be
+    installed on your machine.</p>
+<p style="padding-left: 90px;">If you do not have Java installed then you can download Java from the Oracle download
+    pages.<br/>
+    <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a>
+</p>
+<p style="padding-left: 90px;">Set your <code>JAVA_HOME</code> and/or <code>JRE_HOME</code> environment variable to the
+    pathname of the directory of your jdk or jre. You may add environment variables on Windows by selecting <strong>System</strong>
+    from the Control Panel, selecting <strong>Advanced system settings</strong>, and clicking <strong>Environment
+        Variables</strong>.</p>
+<p style="padding-left: 90px;">It is mandatory to set one of these environment variables, although you are free to set
+    both.</p>
+<p style="padding-left: 90px;"><code>JRE_HOME</code></p>
+<p style="padding-left: 120px;">The following is an example path for a correct <code>JRE_HOME</code></p>
+<p style="padding-left: 120px;"><code>C:\Program Files\Java\jdk1.7.0_05</code> (Incorrect)</p>
+<p style="padding-left: 120px;"><code>C:\Program Files\Java\jre7</code> (Correct)</p>
+<p style="padding-left: 90px;"><code>JAVA_HOME</code></p>
+<p style="padding-left: 120px;"><code>JAVA_HOME</code> must be set to a jdk and not a jre! The following is an example
+    path for a correct <code>JAVA_HOME</code></p>
+<p style="padding-left: 120px;"><code>C:\Program Files\Java\jdk1.7.0_05</code> (Correct)</p>
+<p style="padding-left: 120px;"><code>C:\Program Files\Java\jre7</code> (Incorrect)</p>
+<p style="padding-left: 90px;">3. To start the web tool go to <code>[APACHEGUI_HOME]/bin</code> and run the batch file
+    <code>run.bat</code>. Once the GUI has started it may be accessed through <a href="http://localhost:9999/ApacheGUI/"
+                                                                                 target="_blank">http://localhost:9999/ApacheGUI/</a>.
+</p>
+<p style="padding-left: 90px;">4. To stop the web tool go to <code>[APACHEGUI_HOME]/bin</code> and run the batch file
+    <code>stop.bat</code></p>
+<h4 id="linux" style="padding-left: 30px; padding-top: 20px;">Linux Solaris and Mac OSX</h4>
+<h4 id="linux_apachegui" style="padding-left: 60px;">ApacheGUI Installation</h4>
+<p style="padding-left: 90px;">You will need a Java jdk in order to run Apache GUI. It is recommended that you install a
+    jdk through your Operating System&#8217;s package manager.</p>
+<p style="padding-left: 90px;">1. Extract ApacheGUI.tar.gz to the desired location of install. For the purposes of these
+    steps we will refer to this directory as <code>[APACHEGUI_HOME]</code>.</p>
+<p style="padding-left: 90px;">2. Open a terminal and switch to root permissions. You should be prompted for a password
+    if you try to start ApacheGUI without root permissions.</p>
+<p style="padding-left: 90px;">3. Set your <code>JAVA_HOME</code> environment variable to the pathname of the directory
+    of your jdk.<br/>
+    ApacheGUI will not start without a valid <code>JAVA_HOME</code>. If you install Java from a package manager <code>JAVA_HOME</code>
+    should already be set up and you may skip this step.</p>
+<p style="padding-left: 90px;">4. To start the web tool go to <code>[APACHEGUI_HOME]/bin</code> and run the
+    command:<br/>
+    <code>#./run.sh</code><br/>
+    Once the GUI has been started it may be accessed through <a href="http://localhost:9999/ApacheGUI/" target="_blank">http://localhost:9999/ApacheGUI/</a>.
+</p>
+<p style="padding-left: 90px;">5. To stop the web tool to <code>[APACHEGUI_HOME]/bin</code> and run the command:<br/>
+    <code>#./stop.sh</code></p>
+<h4 id="linux_package" style="padding-left: 60px;">Package Settings</h4>
+<p style="padding-left: 60px;">The following settings can be used to configure the GUI if you have installed Apache
+    using your Operating System&#8217;s package manager. These settings are not applicable if you have installed Apache
+    from source.</p>
+<h4 id="linux_mac" style="padding-left: 90px;">Mac OSX</h4>
+<p style="padding-left: 120px;">Server Root &#8211; <code>/usr</code><br/>
+    Primary Configuration File &#8211; <code>/etc/apache2/httpd.conf</code><br/>
+    Configuration Directory &#8211; <code>/etc/apache2</code><br/>
+    Log Directory &#8211; <code>/var/log/apache2</code><br/>
+    Modules Directory &#8211; <code>/usr/libexec/apache2</code><br/>
+    Binary File &#8211; <code>/usr/sbin/apachectl</code></p>
+<h4 id="linux_debian" style="padding-left: 90px;">Debian, Ubuntu, Other Debian variants</h4>
+<p style="padding-left: 120px;">Server Root &#8211; <code>/etc/apache2</code><br/>
+    Primary Configuration File &#8211; <code>/etc/apache2/apache2.conf</code><br/>
+    Configuration Directory &#8211; <code>/etc/apache2</code><br/>
+    Log Directory &#8211; <code>/var/log/apache2</code><br/>
+    Modules Directory &#8211; <code>/usr/lib/apache2/modules</code><br/>
+    Binary File &#8211; <code>/usr/sbin/apache2ctl</code></p>
+<h4 id="linux_fedora" style="padding-left: 90px;">Fedora, CentOS, RHEL, other fedora variants</h4>
+<p style="padding-left: 120px;">Server Root &#8211; <code>/etc/httpd</code><br/>
+    Primary Configuration File &#8211; <code>/etc/httpd/conf/httpd.conf</code><br/>
+    Configuration Directory &#8211; <code>/etc/httpd</code><br/>
+    Log Directory &#8211; <code>/var/log/httpd</code><br/>
+    Modules Directory &#8211; <code>/etc/httpd/modules</code><br/>
+    Binary File &#8211; <code>/usr/sbin/apachectl</code></p>
+<h4 id="linux_suse" style="padding-left: 90px;">OpenSUSE and SLES</h4>
+<p style="padding-left: 120px;">Server Root &#8211; <code>/etc/apache2</code><br/>
+    Primary Configuration File &#8211; <code>/etc/apache2/httpd.conf</code><br/>
+    Configuration Directory &#8211; <code>/etc/apache2</code><br/>
+    Log Directory &#8211; <code>/var/log/apache2</code><br/>
+    Modules Directory &#8211; <code>/usr/lib/apache2</code> (32 bit OS) or <code>/usr/lib64/apache2</code> (64 bit
+    OS)<br/>
+    Binary File &#8211; <code>/usr/sbin/apache2ctl</code></p>
+<h2>Configuration Settings</h2>
+<h4 id="endpoints" style="padding-left: 30px;">Endpoints</h4>
+<p style="padding-left: 60px;">ApacheGUI is configured by default to run using http on port 9999.</p>
+<p style="padding-left: 60px;">The default endpoint and credentials are:</p>
+<pre style="margin-left: 60px;">
+http://[HOST]:9999/ApacheGUI/
+Username: admin
+Password: admin</pre>
+<p style="padding-left: 60px;">You may change the username and password when configuring ApacheGUI after the first
+    login.</p>
+<h4 id="ports" style="padding-left: 30px;">Ports</h4>
+<p style="padding-left: 60px;">ApacheGUI runs by default on port 9999.</p>
+<p style="padding-left: 60px;">To change or add a port open <code>[APACHEGUI_HOME]/tomcat/conf/server.xml</code> and add
+    or modify a connector.</p>
+<p style="padding-left: 60px;">The following is the default connector that you will see in the server.xml file:</p>
+<pre style="margin-left: 60px;">&lt;Connector port="9999"
+    protocol="HTTP/1.1"
+    connectionTimeout="20000"
+    redirectPort="8443"
+    URIEncoding="UTF-8" /&gt;</pre>
+<p style="padding-left: 60px;">You may change port 9999 in the above connector or add a new connector to the file. You
+    must restart ApacheGUI for any connector changes to take effect.</p>
+<p style="padding-left: 60px;">Please see the following for more information on tomcat connectors:<br/>
+    <a href="http://tomcat.apache.org/tomcat-7.0-doc/config/http.html" target="_blank">http://tomcat.apache.org/tomcat-7.0-doc/config/http.html</a>
+</p>
+<h4 id="logging" style="padding-left: 30px;">Logging</h4>
+<p style="padding-left: 60px;">ApacheGUI currently only logs errors.</p>
+<p style="padding-left: 60px;">The error output is logged to the following file:</p>
+<p style="padding-left: 60px;"><code>[APACHEGUI_HOME]/tomcat/logs/catalina.out</code></p>
+<h4 id="ssl" style="padding-left: 30px;">SSL</h4>
+<p style="padding-left: 60px;">SSL has not been configured by default due to the fact that each server requires a
+    different ssl certificate.</p>
+<p style="padding-left: 60px;">The ApacheGUI runs on tomcat 7, as such the following tutorial can be used to configure
+    SSL:</p>
+<p style="padding-left: 60px;"><a href="http://tomcat.apache.org/tomcat-7.0-doc/ssl-howto.html" target="_blank">http://tomcat.apache.org/tomcat-7.0-doc/ssl-howto.html</a>
+</p>
+<p style="padding-left: 60px;">The following endpoint may be used once SSL has been configured:</p>
+<pre style="margin-left: 60px;">https://[HOST]:[SSLPORT]/ApacheGUI/</pre>
+<h4 id="selinux" style="padding-left: 30px;">SELINUX</h4>
+<p style="padding-left: 60px;">The history functionality may be blocked on SELINUX enabled systems. To use the history
+    functionality you must switch SELINUX to permissive mode.</p>
+<p style="padding-left: 60px;">To do this open <code>/etc/selinux/config</code> and make sure SELINUX is in permissive mode
+    like below. You may need to reboot for changes to take effect.</p>
+<pre style="margin-left: 60px;"><code>
+ # This file controls the state of SELinux on the system.
+ # SELINUX= can take one of these three values:
+ # enforcing - SELinux security policy is enforced.
+ # permissive - SELinux prints warnings instead of enforcing.
+ # disabled - No SELinux policy is loaded.
+ SELINUX=permissive
+ # SELINUXTYPE= can take one of these two values:
+ # targeted - Only targeted network daemons are protected.
+ # strict - Full SELinux protection.
+ SELINUXTYPE=targeted
+
+ </code></pre>
+<p><a href="#">Back to Top</a></p>

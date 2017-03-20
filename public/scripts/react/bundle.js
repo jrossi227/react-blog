@@ -15,7 +15,7 @@ Iso.bootstrap(function (state, meta, container) {
 });
 
 
-},{"./alt":473,"./routes.jsx":484,"iso":72,"react-router":273,"react/addons":288}],2:[function(require,module,exports){
+},{"./alt":472,"./routes.jsx":483,"iso":72,"react-router":273,"react/addons":288}],2:[function(require,module,exports){
 (function (process){
 var port = process.env.PORT || 9080;
 
@@ -26,7 +26,7 @@ if (typeof window !== 'undefined') {
 var config = {
     port: port,
     baseUrl : typeof window !== 'undefined' ? window.location.origin : "http://localhost:" + port,
-    pageTitle: 'React Blog',
+    pageTitle: 'ApacheGUI',
     itemsPerPage: 5,
     maxPageButtons: 3
 };
@@ -44213,123 +44213,6 @@ function has(o, k) {
 }
 }).call(this,require('_process'))
 },{"_process":146,"invariant":71,"react":460}],469:[function(require,module,exports){
-var React = require('react/addons');
-var Tabs = require('react-bootstrap').Tabs;
-var Tab = require('react-bootstrap').Tab;
-var Tooltip = require('react-bootstrap').Tooltip;
-var ButtonToolbar = require('react-bootstrap').ButtonToolbar;
-var ButtonGroup = require('react-bootstrap').ButtonGroup;
-var Glyphicon = require('react-bootstrap').Glyphicon;
-var OverlayTrigger = require('react-bootstrap').OverlayTrigger;
-var Button = require('react-bootstrap').Button;
-var Navbar = require('react-bootstrap').Navbar;
-var NavBrand = require('react-bootstrap').NavBrand;
-var Nav = require('react-bootstrap').Nav;
-var NavItem = require('react-bootstrap').NavItem;
-var NavDropdown = require('react-bootstrap').NavDropdown;
-var MenuItem = require('react-bootstrap').MenuItem;
-
-const ControlledTabs = React.createClass({displayName: "ControlledTabs",
-    getInitialState:function() {
-        return {
-            key: 1
-        };
-    },
-
-    handleSelect:function(key) {
-        alert('selected ' + key);
-        this.setState({key:key});
-    },
-
-    render:function() {
-        return (
-            React.createElement(Tabs, {activeKey: this.state.key, onSelect: this.handleSelect}, 
-                React.createElement(Tab, {eventKey: 1, title: "Tab 1"}, "Tab 1 content"), 
-                React.createElement(Tab, {eventKey: 2, title: "Tab 2"}, "Tab 2 content"), 
-                React.createElement(Tab, {eventKey: 3, title: "Tab 3", disabled: true}, "Tab 3 content")
-            )
-        );
-    }
-});
-
-const tooltip = (
-    React.createElement(Tooltip, null, React.createElement("strong", null, "Holy guacamole!"), " Check this info.")
-);
-
-var ReasonsToUseReact = React.createClass({displayName: "ReasonsToUseReact",
-
-    render : function() {
-
-        return (
-            React.createElement("div", null, 
-                React.createElement("p", null, "This is an example to show a blog post that uses other React components. Please see the Readme for information on how to generate component documentation for React Bootstrap. You may use React Bootstrap or your own custom components."), 
-
-                React.createElement("h3", null, "Tabs"), 
-                React.createElement(ControlledTabs, null), 
-
-                React.createElement("h3", null, "Tooltips"), 
-                React.createElement(ButtonToolbar, null, 
-                    React.createElement(OverlayTrigger, {placement: "left", overlay: tooltip}, 
-                        React.createElement(Button, {bsStyle: "default"}, "Holy guacamole!")
-                    ), 
-
-                    React.createElement(OverlayTrigger, {placement: "top", overlay: tooltip}, 
-                        React.createElement(Button, {bsStyle: "default"}, "Holy guacamole!")
-                    ), 
-
-                    React.createElement(OverlayTrigger, {placement: "bottom", overlay: tooltip}, 
-                        React.createElement(Button, {bsStyle: "default"}, "Holy guacamole!")
-                    ), 
-
-                    React.createElement(OverlayTrigger, {placement: "right", overlay: tooltip}, 
-                        React.createElement(Button, {bsStyle: "default"}, "Holy guacamole!")
-                    )
-                ), 
-
-                React.createElement("h3", null, "Navbar"), 
-                React.createElement(Navbar, null, 
-                    React.createElement(NavBrand, null, React.createElement("a", {href: "#"}, "React-Bootstrap")), 
-                    React.createElement(Nav, null, 
-                        React.createElement(NavItem, {eventKey: 1, href: "#"}, "Link"), 
-                        React.createElement(NavItem, {eventKey: 2, href: "#"}, "Link"), 
-                        React.createElement(NavDropdown, {eventKey: 3, title: "Dropdown", id: "nav-brand-dropdown"}, 
-                            React.createElement(MenuItem, {eventKey: "1"}, "Action"), 
-                            React.createElement(MenuItem, {eventKey: "2"}, "Another action"), 
-                            React.createElement(MenuItem, {eventKey: "3"}, "Something else here"), 
-                            React.createElement(MenuItem, {divider: true}), 
-                            React.createElement(MenuItem, {eventKey: "4"}, "Separated link")
-                        )
-                    )
-                ), 
-
-                React.createElement("h3", null, "Glyphicons"), 
-                React.createElement("div", null, 
-                    React.createElement(ButtonToolbar, null, 
-                        React.createElement(ButtonGroup, null, 
-                            React.createElement(Button, null, React.createElement(Glyphicon, {glyph: "align-left"})), 
-                            React.createElement(Button, null, React.createElement(Glyphicon, {glyph: "align-center"})), 
-                            React.createElement(Button, null, React.createElement(Glyphicon, {glyph: "align-right"})), 
-                            React.createElement(Button, null, React.createElement(Glyphicon, {glyph: "align-justify"}))
-                        )
-                    ), 
-                    React.createElement(ButtonToolbar, null, 
-                        React.createElement(ButtonGroup, null, 
-                            React.createElement(Button, {bsSize: "large"}, React.createElement(Glyphicon, {glyph: "star"}), " Star"), 
-                            React.createElement(Button, null, React.createElement(Glyphicon, {glyph: "star"}), " Star"), 
-                            React.createElement(Button, {bsSize: "small"}, React.createElement(Glyphicon, {glyph: "star"}), " Star"), 
-                            React.createElement(Button, {bsSize: "xsmall"}, React.createElement(Glyphicon, {glyph: "star"}), " Star")
-                        )
-                    )
-                )
-
-            )
-        )
-    }
-});
-
-module.exports = ReasonsToUseReact;
-
-},{"react-bootstrap":217,"react/addons":288}],470:[function(require,module,exports){
 var request = require('superagent'),
     config = require('../config');
 
@@ -44369,7 +44252,7 @@ var IncludeHandler = (function() {
 
 module.exports = IncludeHandler;
 
-},{"../config":2,"superagent":462}],471:[function(require,module,exports){
+},{"../config":2,"superagent":462}],470:[function(require,module,exports){
 var alt = require('../alt');
 var request = require('superagent');
 var config = require('../../config');
@@ -44453,7 +44336,7 @@ function AllPostActions(){"use strict";}
 
 module.exports = alt.createActions(AllPostActions);
 
-},{"../../config":2,"../alt":473,"../stores/AllPostStore":485,"superagent":462}],472:[function(require,module,exports){
+},{"../../config":2,"../alt":472,"../stores/AllPostStore":484,"superagent":462}],471:[function(require,module,exports){
 var alt = require('../alt');
 var request = require('superagent');
 var config = require('../../config');
@@ -44473,7 +44356,7 @@ function SinglePostActions(){"use strict";}
                 cb();
             }
         } else {
-            if(typeof window.NProgress != 'undefined') {
+            if(typeof window != 'undefined' && typeof window.NProgress != 'undefined') {
                 NProgress.start();
             }
 
@@ -44539,12 +44422,12 @@ function SinglePostActions(){"use strict";}
 
 module.exports = alt.createActions(SinglePostActions);
 
-},{"../../config":2,"../IncludeHandler":470,"../alt":473,"../stores/SinglePostStore":486,"superagent":462}],473:[function(require,module,exports){
+},{"../../config":2,"../IncludeHandler":469,"../alt":472,"../stores/SinglePostStore":485,"superagent":462}],472:[function(require,module,exports){
 var Alt = require('alt');
 var alt = new Alt();
 module.exports = alt;
 
-},{"alt":3}],474:[function(require,module,exports){
+},{"alt":3}],473:[function(require,module,exports){
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var Header = require('./Header.jsx');
@@ -44576,7 +44459,7 @@ var App = React.createClass({displayName: "App",
 
 module.exports = App;
 
-},{"./Footer.jsx":475,"./Header.jsx":476,"react-bootstrap":217,"react-router":273,"react/addons":288}],475:[function(require,module,exports){
+},{"./Footer.jsx":474,"./Header.jsx":475,"react-bootstrap":217,"react-router":273,"react/addons":288}],474:[function(require,module,exports){
 var React = require('react/addons');
 
 var Link = require('react-router').Link;
@@ -44590,6 +44473,7 @@ var Footer = React.createClass({displayName: "Footer",
     render : function() {
         return (
             React.createElement("div", {className: "footer"}, 
+                React.createElement("a", {className: "footer-powered-by", href: "https://github.com/jrossi227/react-blog"}, "Powered By React Blog"), 
                 React.createElement(Link, {to: ("/")}, "Home")
             )
         )
@@ -44598,7 +44482,7 @@ var Footer = React.createClass({displayName: "Footer",
 
 module.exports = Footer;
 
-},{"react-router":273,"react/addons":288}],476:[function(require,module,exports){
+},{"react-router":273,"react/addons":288}],475:[function(require,module,exports){
 var React = require('react/addons');
 
 var Navbar = require('react-bootstrap').Navbar;
@@ -44614,7 +44498,7 @@ var Header = React.createClass({displayName: "Header",
     render : function() {
         return (
             React.createElement(Navbar, null, 
-                React.createElement(NavBrand, null, React.createElement(Link, {to: ("/")}, "React Blog"))
+                React.createElement(NavBrand, null, React.createElement(Link, {to: ("/")}, "Apache GUI"))
             )
             
         )
@@ -44623,15 +44507,14 @@ var Header = React.createClass({displayName: "Header",
 
 module.exports = Header;
 
-},{"react-bootstrap":217,"react-router":273,"react/addons":288}],477:[function(require,module,exports){
+},{"react-bootstrap":217,"react-router":273,"react/addons":288}],476:[function(require,module,exports){
 //This file was auto generated. Updating it will have no effect
 var JsxIncludes = {};
-JsxIncludes["/static/jsx/react-components-example.jsx"] = require("../../public/static/jsx/react-components-example.jsx");
 
 module.exports = JsxIncludes;
 
 
-},{"../../public/static/jsx/react-components-example.jsx":469}],478:[function(require,module,exports){
+},{}],477:[function(require,module,exports){
 var React = require('react/addons');
 var config = require('../../config');
 var Link = require('react-router').Link;
@@ -44798,7 +44681,7 @@ var Pagination = React.createClass({displayName: "Pagination",
 
 module.exports = Pagination;
 
-},{"../../config":2,"react-router":273,"react/addons":288}],479:[function(require,module,exports){
+},{"../../config":2,"react-router":273,"react/addons":288}],478:[function(require,module,exports){
 var React = require('react/addons');
 
 var PostListHeader = React.createClass({displayName: "PostListHeader",
@@ -44836,7 +44719,7 @@ var PostListHeader = React.createClass({displayName: "PostListHeader",
 
 module.exports = PostListHeader;
 
-},{"react/addons":288}],480:[function(require,module,exports){
+},{"react/addons":288}],479:[function(require,module,exports){
 var React = require('react/addons');
 var AllPostStore = require('../stores/AllPostStore');
 var AllPostActions = require('../actions/AllPostActions');
@@ -44923,7 +44806,7 @@ var PostListView = React.createClass({displayName: "PostListView",
 
 module.exports = PostListView;
 
-},{"../../config":2,"../actions/AllPostActions":471,"../stores/AllPostStore":485,"./Pagination.jsx":478,"./PostListHeader.jsx":479,"./PostPreview.jsx":481,"react/addons":288}],481:[function(require,module,exports){
+},{"../../config":2,"../actions/AllPostActions":470,"../stores/AllPostStore":484,"./Pagination.jsx":477,"./PostListHeader.jsx":478,"./PostPreview.jsx":480,"react/addons":288}],480:[function(require,module,exports){
 var React = require('react/addons');
 var SinglePostActions = require('../actions/SinglePostActions');
 var AuthorMixin = require('../mixins/AuthorMixin.jsx');
@@ -44956,7 +44839,7 @@ var PostPreview = React.createClass({displayName: "PostPreview",
 
 module.exports = PostPreview;
 
-},{"../actions/SinglePostActions":472,"../mixins/AuthorMixin.jsx":483,"react/addons":288}],482:[function(require,module,exports){
+},{"../actions/SinglePostActions":471,"../mixins/AuthorMixin.jsx":482,"react/addons":288}],481:[function(require,module,exports){
 var React = require('react/addons');
 var SinglePostStore = require('../stores/SinglePostStore');
 var Glyphicon = require('react-bootstrap').Glyphicon;
@@ -45048,7 +44931,7 @@ var SinglePostView = React.createClass({displayName: "SinglePostView",
 
 module.exports = SinglePostView;
 
-},{"../actions/AllPostActions":471,"../actions/SinglePostActions":472,"../mixins/AuthorMixin.jsx":483,"../stores/SinglePostStore":486,"./JsxIncludes":477,"marked":144,"react-bootstrap":217,"react-router":273,"react/addons":288}],483:[function(require,module,exports){
+},{"../actions/AllPostActions":470,"../actions/SinglePostActions":471,"../mixins/AuthorMixin.jsx":482,"../stores/SinglePostStore":485,"./JsxIncludes":476,"marked":144,"react-bootstrap":217,"react-router":273,"react/addons":288}],482:[function(require,module,exports){
 var React = require('react/addons');
 
 var AuthorMixin = {
@@ -45068,10 +44951,9 @@ var AuthorMixin = {
 
 module.exports = AuthorMixin;
 
-},{"react/addons":288}],484:[function(require,module,exports){
+},{"react/addons":288}],483:[function(require,module,exports){
 var React = require('react/addons');
 var Route = require('react-router').Route;
-var DefaultRoute = require('react-router').DefaultRoute;
 var PostListView = require('./components/PostListView.jsx');
 var SinglePostView = require('./components/SinglePostView.jsx');
 var App = require('./components/App.jsx');
@@ -45080,13 +44962,13 @@ var routes = (
     React.createElement(Route, {name: "home", path: "/", handler: App}, 
         React.createElement(Route, {name: "postListView", path: "/page/:pageNum", handler: PostListView}), 
         React.createElement(Route, {name: "singlePostView", path: "/post/:id/:slug", handler: SinglePostView}), 
-        React.createElement(DefaultRoute, {handler: PostListView})
+        React.createElement(Route, {path: "*", handler: PostListView})
     )
 );
 
 module.exports = routes;
 
-},{"./components/App.jsx":474,"./components/PostListView.jsx":480,"./components/SinglePostView.jsx":482,"react-router":273,"react/addons":288}],485:[function(require,module,exports){
+},{"./components/App.jsx":473,"./components/PostListView.jsx":479,"./components/SinglePostView.jsx":481,"react-router":273,"react/addons":288}],484:[function(require,module,exports){
 var alt = require('../alt');
 var AllPostActions = require('../actions/AllPostActions');
 
@@ -45126,7 +45008,7 @@ var AllPostActions = require('../actions/AllPostActions');
 
 module.exports = alt.createStore(AllPostStore, 'AllPostStore');
 
-},{"../actions/AllPostActions":471,"../alt":473}],486:[function(require,module,exports){
+},{"../actions/AllPostActions":470,"../alt":472}],485:[function(require,module,exports){
 var alt = require('../alt');
 var SinglePostActions = require('../actions/SinglePostActions');
 
@@ -45169,4 +45051,4 @@ var SinglePostActions = require('../actions/SinglePostActions');
 
 module.exports = alt.createStore(SinglePostStore, 'SinglePostStore');
 
-},{"../actions/SinglePostActions":472,"../alt":473}]},{},[1]);
+},{"../actions/SinglePostActions":471,"../alt":472}]},{},[1]);

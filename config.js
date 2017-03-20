@@ -7,7 +7,7 @@ if (typeof window !== 'undefined') {
 var config = {
     port: port,
     baseUrl : typeof window !== 'undefined' ? window.location.origin : "http://localhost:" + port,
-    pageTitle: 'React Blog',
+    pageTitle: 'ApacheGUI',
     itemsPerPage: 5,
     maxPageButtons: 3
 };
