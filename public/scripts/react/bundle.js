@@ -44473,7 +44473,7 @@ function SinglePostActions(){"use strict";}
                 cb();
             }
         } else {
-            if(typeof window.NProgress != 'undefined') {
+            if(typeof window != 'undefined' && typeof window.NProgress != 'undefined') {
                 NProgress.start();
             }
 
@@ -44590,6 +44590,7 @@ var Footer = React.createClass({displayName: "Footer",
     render : function() {
         return (
             React.createElement("div", {className: "footer"}, 
+                React.createElement("a", {className: "footer-powered-by", href: "https://github.com/jrossi227/react-blog"}, "Powered By React Blog"), 
                 React.createElement(Link, {to: ("/")}, "Home")
             )
         )
@@ -45071,7 +45072,6 @@ module.exports = AuthorMixin;
 },{"react/addons":288}],484:[function(require,module,exports){
 var React = require('react/addons');
 var Route = require('react-router').Route;
-var DefaultRoute = require('react-router').DefaultRoute;
 var PostListView = require('./components/PostListView.jsx');
 var SinglePostView = require('./components/SinglePostView.jsx');
 var App = require('./components/App.jsx');
@@ -45080,7 +45080,7 @@ var routes = (
     React.createElement(Route, {name: "home", path: "/", handler: App}, 
         React.createElement(Route, {name: "postListView", path: "/page/:pageNum", handler: PostListView}), 
         React.createElement(Route, {name: "singlePostView", path: "/post/:id/:slug", handler: SinglePostView}), 
-        React.createElement(DefaultRoute, {handler: PostListView})
+        React.createElement(Route, {path: "*", handler: PostListView})
     )
 );
 

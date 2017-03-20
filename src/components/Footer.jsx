@@ -11,6 +11,7 @@ var Footer = React.createClass({
     render : function() {
         return (
             <div className="footer">
+                <a className="footer-powered-by" href="https://github.com/jrossi227/react-blog">Powered By React Blog</a>
                 <Link to={`/`}>Home</Link>
             </div>
         )

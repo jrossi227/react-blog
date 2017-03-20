@@ -17,7 +17,7 @@ class SinglePostActions {
                 cb();
             }
         } else {
-            if(typeof window.NProgress != 'undefined') {
+            if(typeof window != 'undefined' && typeof window.NProgress != 'undefined') {
                 NProgress.start();
             }
 
