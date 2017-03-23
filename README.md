@@ -35,6 +35,7 @@ It has the following options:
 - **pageTitle** - The text that appears in the top left home link for the blog. The default value is `React Blog`
 - **itemsPerPage** - The amount of list items to display per page. The The default value is `5`
 - **maxPageButtons** - The maximum amount of paging buttons to display in list view before collapsing. The default value is `3`
+- **googleAnalyticsId** - If you add a google analytics id then all page views will be tracked into the analytics account
 
 ### Developing Blog content
 
