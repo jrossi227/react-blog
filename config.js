@@ -10,7 +10,7 @@ var config = {
     pageTitle: 'ApacheGUI',
     itemsPerPage: 5,
     maxPageButtons: 3,
-    googleAnalyticsId: ''
+    googleAnalyticsId: 'UA-56627457-1'
 };
 
 module.exports = config;
